@@ -46,27 +46,29 @@ function ThemeToggle() {
 
   const isDark = theme === "dark";
 
+  // Pill: 62px wide, 30px tall, 3px padding → slot size = 24px × 24px
+  // Left slot:  left=3px,  top=3px
+  // Right slot: left=35px, top=3px  (3 + 24 + 8 gap = 35)
   return (
     <button
       onClick={() => setTheme(isDark ? "light" : "dark")}
       aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
-      className="relative flex items-center w-[64px] h-[32px] rounded-full border border-[#1F1F1F] bg-[#111111] p-[3px] transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#CC310E]"
+      className="relative w-[62px] h-[30px] rounded-full border border-[#1F1F1F] bg-[#111111] transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#CC310E]"
     >
-      {/* Sliding highlight */}
+      {/* Sliding red circle — same size & position as icon slots */}
       <motion.div
-        className="absolute w-[26px] h-[26px] rounded-full bg-[#CC310E]"
-        animate={{ x: isDark ? 3 : 29 }}
+        className="absolute top-[3px] w-[24px] h-[24px] rounded-full bg-[#CC310E]"
+        animate={{ left: isDark ? 3 : 35 }}
         transition={{ type: "spring", stiffness: 400, damping: 30 }}
-        style={{ borderRadius: "9999px" }}
       />
 
-      {/* Moon — left */}
-      <span className="relative z-10 w-[26px] h-[26px] flex items-center justify-center text-[#888888]">
+      {/* Moon — pinned to left slot */}
+      <span className="absolute top-[3px] left-[3px] z-10 w-[24px] h-[24px] flex items-center justify-center">
         <MoonIcon active={isDark} />
       </span>
 
-      {/* Sun — right */}
-      <span className="relative z-10 w-[26px] h-[26px] flex items-center justify-center text-[#888888]">
+      {/* Sun — pinned to right slot */}
+      <span className="absolute top-[3px] left-[35px] z-10 w-[24px] h-[24px] flex items-center justify-center">
         <SunIcon active={!isDark} />
       </span>
     </button>
