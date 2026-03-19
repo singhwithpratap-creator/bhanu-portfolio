@@ -175,8 +175,8 @@ export default function ProductAIPage() {
                 <div key={phase.num} className="group flex items-start gap-0 bg-[#0d0d0d] hover:bg-[#111111] transition-colors duration-200">
                   <div className="flex items-stretch">
                     <div className="w-[3px] bg-transparent group-hover:bg-[#CC310E] transition-colors duration-200" />
-                    <div className="flex items-center justify-center w-14 shrink-0 py-5">
-                      <span className="font-mono text-[10px] text-[#888888] group-hover:text-[#CC310E] transition-colors duration-200">{phase.num}</span>
+                    <div className="flex items-center justify-center w-16 shrink-0 py-5">
+                      <span className="font-mono text-base font-bold text-[#888888] group-hover:text-[#CC310E] transition-colors duration-200">{phase.num}</span>
                     </div>
                   </div>
                   <div className="py-5 pl-5 pr-6 border-l border-[#1F1F1F]">

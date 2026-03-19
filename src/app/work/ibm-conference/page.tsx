@@ -81,13 +81,13 @@ export default function IBMConferencePage() {
               ].map((p) => (
                 <div
                   key={p.num}
-                  className="group grid grid-cols-[32px_1fr] sm:grid-cols-[48px_1fr_1fr] bg-[#111111] hover:bg-[#161616] transition-colors duration-200"
+                  className="group grid grid-cols-[56px_1fr] sm:grid-cols-[72px_1fr_1fr] bg-[#111111] hover:bg-[#161616] transition-colors duration-200"
                 >
                   {/* Number column */}
                   <div className="flex items-stretch">
                     <div className="w-[3px] bg-transparent group-hover:bg-[#CC310E] transition-colors duration-200" />
                     <div className="flex items-center justify-center flex-1">
-                      <span className="font-mono text-[10px] text-[#888888] group-hover:text-[#CC310E] transition-colors duration-200">
+                      <span className="font-mono text-base font-bold text-[#888888] group-hover:text-[#CC310E] transition-colors duration-200">
                         {p.num}
                       </span>
                     </div>
