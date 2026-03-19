@@ -194,26 +194,15 @@ html.light section[aria-label*="Hero"] .from-\[\#080808\]\/70 {
 /* Accent stays red */
 html.light section[aria-label*="Hero"] .text-\[\#CC310E\] { color: #CC310E; }
 
-/* ── Hero text block glass card ── */
-html.light .hero-text-block {
-  background: rgba(244, 243, 240, 0.12);
-  backdrop-filter: blur(20px) saturate(1.5);
-  -webkit-backdrop-filter: blur(20px) saturate(1.5);
-  border: 1px solid rgba(244, 243, 240, 0.28);
-  border-radius: 6px;
-  padding: 2.5rem 2.5rem 3rem;
-  display: inline-block;
-  max-width: 520px;
+/* Text legibility over video — light text-shadow so copy reads without a block */
+html.light section[aria-label*="Hero"] h1 {
+  text-shadow: 0 2px 24px rgba(244,243,240,0.55), 0 1px 4px rgba(244,243,240,0.4);
+}
+html.light section[aria-label*="Hero"] .hero-text-block p,
+html.light section[aria-label*="Hero"] .hero-text-block div > p {
+  text-shadow: 0 1px 8px rgba(244,243,240,0.5);
 }
 
-@media (max-width: 767px) {
-  html.light .hero-text-block {
-    padding: 1.75rem 1.5rem 2rem;
-    max-width: calc(100vw - 3rem);
-    border-radius: 4px;
-    display: block;
-  }
-}
 
 /* ── Buttons: white text stays white on red bg ── */
 html.light .bg-\[\#CC310E\] .text-white { color: #ffffff; }
