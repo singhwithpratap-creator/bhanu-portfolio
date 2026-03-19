@@ -199,7 +199,7 @@ html.light section[aria-label*="Hero"] .text-\[\#CC310E\] { color: #CC310E; }
    so dark text reads on dark video.
 ──────────────────────────────────────── */
 html.light .hero-content {
-  background: rgba(244, 243, 240, 0.38);
+  background: rgba(244, 243, 240, 0.18);
   backdrop-filter: blur(18px) saturate(1.4);
   -webkit-backdrop-filter: blur(18px) saturate(1.4);
   border: 1px solid rgba(244, 243, 240, 0.35);
