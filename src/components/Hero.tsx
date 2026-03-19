@@ -134,23 +134,24 @@ export default function Hero() {
           </motion.div>
         </div>
 
-        {/* Scroll indicator — outside the glass block, absolutely positioned */}
-        <motion.div
-          {...fadeUp(1.2)}
-          className="absolute bottom-10 left-6 lg:left-12 flex items-center gap-3"
-          aria-hidden="true"
-        >
-          <motion.div
-            className="w-px h-14 bg-gradient-to-b from-[#CC310E] to-transparent"
-            animate={{ scaleY: [0, 1, 0] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-            style={{ transformOrigin: "top" }}
-          />
-          <span className="font-mono text-[10px] text-[#888888] uppercase tracking-[0.3em]">
-            Scroll
-          </span>
-        </motion.div>
       </div>
+
+      {/* Scroll indicator — anchored to section (h-screen), not content div */}
+      <motion.div
+        {...fadeUp(1.2)}
+        className="absolute bottom-10 left-6 lg:left-12 z-10 flex items-center gap-3"
+        aria-hidden="true"
+      >
+        <motion.div
+          className="w-px h-14 bg-gradient-to-b from-[#CC310E] to-transparent"
+          animate={{ scaleY: [0, 1, 0] }}
+          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          style={{ transformOrigin: "top" }}
+        />
+        <span className="font-mono text-[10px] text-[#888888] uppercase tracking-[0.3em]">
+          Scroll
+        </span>
+      </motion.div>
     </section>
   );
 }
