@@ -165,46 +165,36 @@ html.light .fixed.inset-0.z-40 { background-color: #F4F3F0; }
 html.light .backdrop-blur-xl { backdrop-filter: blur(24px) saturate(1.2); }
 
 /* ══════════════════════════════════════
-   HERO: keep dark overlays so the video
-   stays vivid and text stays readable.
-   Only the bottom fade transitions to
-   the light page background.
+   HERO — light mode
+   Warm translucent overlays replace the
+   dark ones so the video still shows.
+   Text is dark (handled by global rules).
+   Left side has a stronger warm wash for
+   text legibility; right side is mostly
+   transparent so the character shows.
 ═══════════════════════════════════════ */
-html.light section[aria-label*="Hero"] {
-  /* Ensure the hero section itself is dark underneath the video */
-  background-color: #080808;
-}
 
-/* Revert from-[#080808] variants back to dark inside hero */
+/* Left-side overlay: slightly stronger so dark text pops */
 html.light section[aria-label*="Hero"] .from-\[\#080808\] {
-  --tw-gradient-from: #080808 var(--tw-gradient-from-position);
-  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgb(8 8 8 / 0));
-}
-html.light section[aria-label*="Hero"] .from-\[\#080808\]\/40 {
-  --tw-gradient-from: rgb(8 8 8 / 0.4) var(--tw-gradient-from-position);
-  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgb(8 8 8 / 0));
-}
-html.light section[aria-label*="Hero"] .from-\[\#080808\]\/60 {
-  --tw-gradient-from: rgb(8 8 8 / 0.6) var(--tw-gradient-from-position);
-  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgb(8 8 8 / 0));
-}
-html.light section[aria-label*="Hero"] .from-\[\#080808\]\/70 {
-  --tw-gradient-from: rgb(8 8 8 / 0.7) var(--tw-gradient-from-position);
-  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgb(8 8 8 / 0));
+  --tw-gradient-from: rgb(244 243 240 / 0.92) var(--tw-gradient-from-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgb(244 243 240 / 0));
 }
 html.light section[aria-label*="Hero"] .via-\[\#080808\]\/75 {
-  --tw-gradient-via: rgb(8 8 8 / 0.75) var(--tw-gradient-via-position);
+  --tw-gradient-via: rgb(244 243 240 / 0.55) var(--tw-gradient-via-position);
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-via), var(--tw-gradient-to);
 }
-/* Bottom fade: go TO the light page bg for a smooth hero → content transition */
-html.light section[aria-label*="Hero"] .to-\[\#080808\] {
-  --tw-gradient-to: #F4F3F0 var(--tw-gradient-to-position);
+
+/* Top + bottom fade */
+html.light section[aria-label*="Hero"] .from-\[\#080808\]\/60 {
+  --tw-gradient-from: rgb(244 243 240 / 0.55) var(--tw-gradient-from-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgb(244 243 240 / 0));
+}
+html.light section[aria-label*="Hero"] .from-\[\#080808\]\/70 {
+  --tw-gradient-from: rgb(244 243 240 / 0.65) var(--tw-gradient-from-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgb(244 243 240 / 0));
 }
 
-/* Keep all text white inside hero (dark overlay makes it readable) */
-html.light section[aria-label*="Hero"] .text-\[\#F5F5F5\] { color: #F5F5F5; }
-html.light section[aria-label*="Hero"] .text-\[\#888888\] { color: rgba(245,245,245,0.6); }
-html.light section[aria-label*="Hero"] .text-\[\#888888\]\/70 { color: rgba(245,245,245,0.4); }
+/* Text: dark in light mode (global rule handles this, just ensure CC310E stays) */
 html.light section[aria-label*="Hero"] .text-\[\#CC310E\] { color: #CC310E; }
 
 /* ── Buttons: white text stays white on red bg ── */
