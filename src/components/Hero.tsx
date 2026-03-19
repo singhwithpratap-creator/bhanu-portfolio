@@ -80,20 +80,30 @@ export default function Hero() {
             Portfolio · 2026
           </motion.p>
 
-          {/* Main headline */}
-          <h1
-            className="font-display font-bold leading-[0.88] tracking-tight text-[#F5F5F5]"
-            style={{ fontSize: "clamp(72px, 11vw, 150px)" }}
+          {/* Main headline — float wrapper starts after fade-in */}
+          <motion.div
+            animate={{ y: [0, -10, 0] }}
+            transition={{
+              duration: 6,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 1.4,
+            }}
           >
-            <div className="overflow-hidden mb-1">
-              <motion.span {...fadeUp(0.5)} className="block">Bhanu</motion.span>
-            </div>
-            <div className="overflow-hidden">
-              <motion.span {...fadeUp(0.65)} className="block">
-                Parmar<span className="text-[#CC310E]">.</span>
-              </motion.span>
-            </div>
-          </h1>
+            <h1
+              className="font-display font-bold leading-[0.88] tracking-tight text-[#F5F5F5]"
+              style={{ fontSize: "clamp(72px, 11vw, 150px)" }}
+            >
+              <div className="overflow-hidden mb-1">
+                <motion.span {...fadeUp(0.5)} className="block">Bhanu</motion.span>
+              </div>
+              <div className="overflow-hidden">
+                <motion.span {...fadeUp(0.65)} className="block">
+                  Parmar<span className="text-[#CC310E]">.</span>
+                </motion.span>
+              </div>
+            </h1>
+          </motion.div>
 
           {/* Tagline */}
           <motion.div {...fadeUp(0.85)} className="mt-8 flex flex-col gap-2">
