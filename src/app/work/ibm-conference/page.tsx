@@ -81,7 +81,7 @@ export default function IBMConferencePage() {
               ].map((p) => (
                 <div
                   key={p.num}
-                  className="group grid grid-cols-[48px_1fr_1fr] bg-[#111111] hover:bg-[#161616] transition-colors duration-200"
+                  className="group grid grid-cols-[32px_1fr] sm:grid-cols-[48px_1fr_1fr] bg-[#111111] hover:bg-[#161616] transition-colors duration-200"
                 >
                   {/* Number column */}
                   <div className="flex items-stretch">
@@ -94,7 +94,7 @@ export default function IBMConferencePage() {
                   </div>
 
                   {/* Identity column */}
-                  <div className="py-5 pr-6 border-r border-[#1F1F1F]">
+                  <div className="py-5 pr-4 sm:pr-6 sm:border-r border-[#1F1F1F]">
                     <div className="flex items-center gap-3 mb-2">
                       <span className="font-mono text-[9px] text-[#CC310E] uppercase tracking-[0.25em] bg-[#CC310E]/10 border border-[#CC310E]/20 px-2 py-0.5">
                         {p.type}
@@ -115,8 +115,8 @@ export default function IBMConferencePage() {
                     </div>
                   </div>
 
-                  {/* Pain point column */}
-                  <div className="py-5 pl-6 pr-6 flex flex-col justify-center">
+                  {/* Pain point column — hidden on mobile */}
+                  <div className="hidden sm:flex py-5 pl-6 pr-6 flex-col justify-center">
                     <p className="font-mono text-[9px] text-[#888888] uppercase tracking-[0.2em] mb-2">Pain Point</p>
                     <p className="text-[#aaaaaa] text-xs leading-relaxed italic">
                       &ldquo;{p.pain}&rdquo;
@@ -156,7 +156,7 @@ export default function IBMConferencePage() {
               </div>
 
               {/* Wireframes */}
-              <div className="grid grid-cols-3 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                 {[
                   { src: "/images/cs01-wireframe-01.png", caption: "Concept A - persistent nav, lead CTA, speaker grid" },
                   { src: "/images/cs01-wireframe-02.png", caption: "Concept B - pricing-forward, community emphasis" },
@@ -205,7 +205,7 @@ export default function IBMConferencePage() {
           content:
             "The homepage hero anchored the 'GO/ further' campaign - editorial, bold, motion-forward. Beneath the hero: live event stats (7.9k+ Attendees, 466 Classrooms, 1.5k+ Sessions, 80k+ Hours of training, 750+ Certifications completed), 'What a week!' post-event recap with main stage session replays, and Major Announcements (IBM and Anthropic partnership, Project Bob AI agent access). The Rewards section - 'Recognizing TechXchange's super users' - used gamification to drive community engagement via XP points, credentials, and leaderboard recognition.",
           customContent: (
-            <div className="grid grid-cols-2 gap-3 mt-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-6">
               {[
                 { src: "/images/cs01-hifi-homepage-02.png", caption: "Conference homepage - 'We are GO/' hero, speakers, sessions, sponsors" },
                 { src: "/images/cs01-hifi-homepage-01.png", caption: "Post-conference homepage - 'GO/ further' recap, what a week, join us next year" },
@@ -250,26 +250,26 @@ export default function IBMConferencePage() {
           customContent: (
             <div className="mt-8 space-y-px border border-[#1F1F1F]">
 
-              {/* Top KPIs */}
-              <div className="grid grid-cols-3 gap-px bg-[#1F1F1F]">
+              {/* Top KPIs — stack to 1 col on mobile, 3 on sm+ */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-px bg-[#1F1F1F]">
                 {[
                   { value: "60%", label: "Registration Increase YTY", sub: "2K → 6K → 10K attendees" },
                   { value: "7M+",  label: "Page Views",               sub: "Since January 2025" },
                   { value: "103%", label: "Cert Completions YTY",     sub: "Training hub redesign" },
                 ].map((s) => (
-                  <div key={s.value} className="bg-[#0d0d0d] px-6 py-8 text-center">
-                    <p className="font-display text-5xl font-bold text-[#CC310E] mb-2">{s.value}</p>
+                  <div key={s.value} className="bg-[#0d0d0d] px-4 py-6 sm:px-6 sm:py-8 text-center">
+                    <p className="font-display text-4xl sm:text-5xl font-bold text-[#CC310E] mb-2">{s.value}</p>
                     <p className="font-mono text-[9px] text-[#F5F5F5] uppercase tracking-[0.2em] mb-1">{s.label}</p>
                     <p className="font-mono text-[9px] text-[#888888]">{s.sub}</p>
                   </div>
                 ))}
               </div>
 
-              {/* Middle: bar chart + attendee mix */}
-              <div className="grid grid-cols-2 gap-px bg-[#1F1F1F]">
+              {/* Middle: bar chart + attendee mix — stack on mobile */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-px bg-[#1F1F1F]">
 
                 {/* Registration growth bars */}
-                <div className="bg-[#0d0d0d] p-6">
+                <div className="bg-[#0d0d0d] p-5 sm:p-6">
                   <p className="font-mono text-[9px] text-[#CC310E] uppercase tracking-[0.25em] mb-5">Registration Growth</p>
                   <div className="flex items-end gap-4 h-28 mb-4">
                     {[
@@ -297,7 +297,7 @@ export default function IBMConferencePage() {
                 </div>
 
                 {/* Attendee mix */}
-                <div className="bg-[#0d0d0d] p-6">
+                <div className="bg-[#0d0d0d] p-5 sm:p-6">
                   <p className="font-mono text-[9px] text-[#CC310E] uppercase tracking-[0.25em] mb-5">Attendee Mix</p>
                   <div className="space-y-3">
                     {[
@@ -307,28 +307,28 @@ export default function IBMConferencePage() {
                       { label: "Data Expert",           pct: 8,  color: "#444444" },
                       { label: "AI Engineer",           pct: 6,  color: "#2e2e2e" },
                     ].map((a) => (
-                      <div key={a.label} className="flex items-center gap-3">
-                        <div className="flex-1 bg-[#1a1a1a] h-4 overflow-hidden">
+                      <div key={a.label} className="flex items-center gap-2">
+                        <div className="flex-1 bg-[#1a1a1a] h-4 overflow-hidden min-w-0">
                           <div className="h-full" style={{ width: `${a.pct}%`, backgroundColor: a.color }} />
                         </div>
-                        <span className="font-mono text-[9px] text-[#888888] w-7 text-right shrink-0">{a.pct}%</span>
-                        <span className="font-mono text-[9px] text-[#888888] w-32 shrink-0 leading-tight">{a.label}</span>
+                        <span className="font-mono text-[9px] text-[#888888] w-6 text-right shrink-0">{a.pct}%</span>
+                        <span className="font-mono text-[8px] sm:text-[9px] text-[#888888] w-24 sm:w-32 shrink-0 leading-tight">{a.label}</span>
                       </div>
                     ))}
                   </div>
                 </div>
               </div>
 
-              {/* Bottom: live event stats */}
-              <div className="grid grid-cols-3 gap-px bg-[#1F1F1F]">
+              {/* Bottom live stats — stack on mobile */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-px bg-[#1F1F1F]">
                 {[
                   { value: "90K",    label: "Unique page views", sub: "Oct 6–9 · 2.7× YTY" },
                   { value: "67,516", label: "Session attendance", sub: "Across 1,500+ sessions" },
                   { value: "466",    label: "Classrooms",         sub: "80K+ training hours" },
                 ].map((s) => (
-                  <div key={s.value} className="bg-[#0d0d0d] px-6 py-5 flex items-center gap-4 border-t border-[#1F1F1F]">
+                  <div key={s.value} className="bg-[#0d0d0d] px-4 py-5 sm:px-6 flex items-center gap-4 border-t border-[#1F1F1F]">
                     <div>
-                      <p className="font-display text-3xl font-bold text-[#F5F5F5]">{s.value}</p>
+                      <p className="font-display text-2xl sm:text-3xl font-bold text-[#F5F5F5]">{s.value}</p>
                       <p className="font-mono text-[9px] text-[#888888] uppercase tracking-wider mt-0.5">{s.label}</p>
                       <p className="font-mono text-[9px] text-[#888888] mt-0.5">{s.sub}</p>
                     </div>
