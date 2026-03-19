@@ -171,7 +171,7 @@ export default function ProductAIPage() {
                   title: "Preview, Test & Polish",
                   desc: "Local preview server, verified at 1440px / 768px / 375px. Tested navigation, hamburger menu, chart rendering, console errors. Fixed chart aspect ratios and differentiated nav icons.",
                 },
-              ].map((phase, i) => (
+              ].map((phase) => (
                 <div key={phase.num} className="group flex items-start gap-0 bg-[#0d0d0d] hover:bg-[#111111] transition-colors duration-200">
                   <div className="flex items-stretch">
                     <div className="w-[3px] bg-transparent group-hover:bg-[#CC310E] transition-colors duration-200" />
