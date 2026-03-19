@@ -69,80 +69,72 @@ export default function Hero() {
 
       {/* Content - z-10 above all overlays */}
       <div className="hero-content relative z-10 max-w-7xl mx-auto px-6 lg:px-12 w-full pt-16">
-        {/* Label */}
-        <motion.p
-          {...fadeUp(0.3)}
-          className="font-mono text-xs text-[#CC310E] uppercase tracking-[0.35em] mb-10"
-        >
-          Portfolio · 2026
-        </motion.p>
 
-        {/* Main headline */}
-        <h1
-          className="font-display font-bold leading-[0.88] tracking-tight text-[#F5F5F5]"
-          style={{ fontSize: "clamp(72px, 11vw, 150px)" }}
-        >
-          <div className="overflow-hidden mb-1">
-            <motion.span
-              {...fadeUp(0.5)}
-              className="block"
-            >
-              Bhanu
-            </motion.span>
-          </div>
-          <div className="overflow-hidden">
-            <motion.span
-              {...fadeUp(0.65)}
-              className="block"
-            >
-              Parmar<span className="text-[#CC310E]">.</span>
-            </motion.span>
-          </div>
-        </h1>
-
-        {/* Tagline */}
-        <motion.div {...fadeUp(0.85)} className="mt-8 flex flex-col gap-2">
-          <div className="flex items-center gap-3">
-            <div className="w-6 h-px bg-[#CC310E]" aria-hidden="true" />
-            <p className="font-mono text-sm text-[#888888] tracking-wide">
-              Product Designer.{" "}
-              <span className="text-[#F5F5F5]">AI-Native.</span>{" "}
-              Systems Thinker.
-            </p>
-          </div>
-          <div className="flex items-center gap-3 pl-9">
-            <p className="font-mono text-xs text-[#888888]/70 tracking-widest uppercase">
-              Toronto · 4× Industry Award Winner ★
-            </p>
-          </div>
-        </motion.div>
-
-        {/* CTAs */}
-        <motion.div
-          {...fadeUp(1.0)}
-          className="flex flex-wrap items-center gap-6 mt-14"
-        >
-          <Link
-            href="/#work"
-            className="group flex items-center gap-3 px-8 py-4 bg-[#CC310E] text-white font-mono text-xs uppercase tracking-[0.2em] hover:bg-[#a8280c] transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#CC310E]"
+        {/* Glass text block — only this inner div gets the frosted bg in light mode */}
+        <div className="hero-text-block">
+          {/* Label */}
+          <motion.p
+            {...fadeUp(0.3)}
+            className="font-mono text-xs text-[#CC310E] uppercase tracking-[0.35em] mb-10"
           >
-            View Work
-            <span className="group-hover:translate-x-1.5 transition-transform duration-200" aria-hidden="true">
-              →
-            </span>
-          </Link>
-          <Link
-            href="/#contact"
-            className="group flex items-center gap-2 font-mono text-xs text-[#888888] uppercase tracking-[0.2em] hover:text-[#F5F5F5] transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#CC310E]"
-          >
-            Get in Touch
-            <span className="group-hover:translate-x-1 transition-transform duration-200" aria-hidden="true">
-              ↗
-            </span>
-          </Link>
-        </motion.div>
+            Portfolio · 2026
+          </motion.p>
 
-        {/* Scroll indicator */}
+          {/* Main headline */}
+          <h1
+            className="font-display font-bold leading-[0.88] tracking-tight text-[#F5F5F5]"
+            style={{ fontSize: "clamp(72px, 11vw, 150px)" }}
+          >
+            <div className="overflow-hidden mb-1">
+              <motion.span {...fadeUp(0.5)} className="block">Bhanu</motion.span>
+            </div>
+            <div className="overflow-hidden">
+              <motion.span {...fadeUp(0.65)} className="block">
+                Parmar<span className="text-[#CC310E]">.</span>
+              </motion.span>
+            </div>
+          </h1>
+
+          {/* Tagline */}
+          <motion.div {...fadeUp(0.85)} className="mt-8 flex flex-col gap-2">
+            <div className="flex items-center gap-3">
+              <div className="w-6 h-px bg-[#CC310E]" aria-hidden="true" />
+              <p className="font-mono text-sm text-[#888888] tracking-wide">
+                Product Designer.{" "}
+                <span className="text-[#F5F5F5]">AI-Native.</span>{" "}
+                Systems Thinker.
+              </p>
+            </div>
+            <div className="flex items-center gap-3 pl-9">
+              <p className="font-mono text-xs text-[#888888]/70 tracking-widest uppercase">
+                Toronto · 4× Industry Award Winner ★
+              </p>
+            </div>
+          </motion.div>
+
+          {/* CTAs */}
+          <motion.div
+            {...fadeUp(1.0)}
+            className="flex flex-wrap items-center gap-6 mt-14"
+          >
+            <Link
+              href="/#work"
+              className="group flex items-center gap-3 px-8 py-4 bg-[#CC310E] text-white font-mono text-xs uppercase tracking-[0.2em] hover:bg-[#a8280c] transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#CC310E]"
+            >
+              View Work
+              <span className="group-hover:translate-x-1.5 transition-transform duration-200" aria-hidden="true">→</span>
+            </Link>
+            <Link
+              href="/#contact"
+              className="group flex items-center gap-2 font-mono text-xs text-[#888888] uppercase tracking-[0.2em] hover:text-[#F5F5F5] transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#CC310E]"
+            >
+              Get in Touch
+              <span className="group-hover:translate-x-1 transition-transform duration-200" aria-hidden="true">↗</span>
+            </Link>
+          </motion.div>
+        </div>
+
+        {/* Scroll indicator — outside the glass block, absolutely positioned */}
         <motion.div
           {...fadeUp(1.2)}
           className="absolute bottom-10 left-6 lg:left-12 flex items-center gap-3"

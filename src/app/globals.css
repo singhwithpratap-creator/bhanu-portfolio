@@ -171,50 +171,47 @@ html.light .backdrop-blur-xl { backdrop-filter: blur(24px) saturate(1.2); }
    behind the text block keeps type legible.
 ═══════════════════════════════════════ */
 
-/* Left-to-right overlay: barely-there warm tint */
+/* Left-to-right overlay: minimal warm tint so video breathes */
 html.light section[aria-label*="Hero"] .from-\[\#080808\] {
-  --tw-gradient-from: rgb(244 243 240 / 0.22) var(--tw-gradient-from-position);
+  --tw-gradient-from: rgb(244 243 240 / 0.10) var(--tw-gradient-from-position);
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgb(244 243 240 / 0));
 }
 html.light section[aria-label*="Hero"] .via-\[\#080808\]\/75 {
-  --tw-gradient-via: rgb(244 243 240 / 0.12) var(--tw-gradient-via-position);
+  --tw-gradient-via: rgb(244 243 240 / 0.05) var(--tw-gradient-via-position);
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-via), var(--tw-gradient-to);
 }
 
 /* Top + bottom fades */
 html.light section[aria-label*="Hero"] .from-\[\#080808\]\/60 {
-  --tw-gradient-from: rgb(244 243 240 / 0.18) var(--tw-gradient-from-position);
+  --tw-gradient-from: rgb(244 243 240 / 0.10) var(--tw-gradient-from-position);
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgb(244 243 240 / 0));
 }
 html.light section[aria-label*="Hero"] .from-\[\#080808\]\/70 {
-  --tw-gradient-from: rgb(244 243 240 / 0.22) var(--tw-gradient-from-position);
+  --tw-gradient-from: rgb(244 243 240 / 0.12) var(--tw-gradient-from-position);
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgb(244 243 240 / 0));
 }
 
 /* Accent stays red */
 html.light section[aria-label*="Hero"] .text-\[\#CC310E\] { color: #CC310E; }
 
-/* ── Text block backdrop ──────────────
-   Solid warm pill behind headline+copy
-   so dark text reads on dark video.
-──────────────────────────────────────── */
-html.light .hero-content {
-  background: rgba(244, 243, 240, 0.18);
-  backdrop-filter: blur(18px) saturate(1.4);
-  -webkit-backdrop-filter: blur(18px) saturate(1.4);
-  border: 1px solid rgba(244, 243, 240, 0.35);
+/* ── Hero text block glass card ── */
+html.light .hero-text-block {
+  background: rgba(244, 243, 240, 0.12);
+  backdrop-filter: blur(20px) saturate(1.5);
+  -webkit-backdrop-filter: blur(20px) saturate(1.5);
+  border: 1px solid rgba(244, 243, 240, 0.28);
   border-radius: 6px;
   padding: 2.5rem 2.5rem 3rem;
+  display: inline-block;
   max-width: 520px;
-  margin-left: 0;
-  width: fit-content;
 }
 
 @media (max-width: 767px) {
-  html.light .hero-content {
+  html.light .hero-text-block {
     padding: 1.75rem 1.5rem 2rem;
-    max-width: calc(100% - 3rem);
+    max-width: calc(100vw - 3rem);
     border-radius: 4px;
+    display: block;
   }
 }
 
