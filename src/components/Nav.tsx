@@ -57,8 +57,8 @@ function ThemeToggle() {
     >
       {/* Sliding red circle — same size & position as icon slots */}
       <motion.div
-        className="absolute top-[3px] w-[24px] h-[24px] rounded-full bg-[#CC310E]"
-        animate={{ left: isDark ? 3 : 35 }}
+        className="absolute top-[3px] left-[3px] w-[24px] h-[24px] rounded-full bg-[#CC310E]"
+        animate={{ x: isDark ? 0 : 32 }}
         transition={{ type: "spring", stiffness: 400, damping: 30 }}
       />
 
