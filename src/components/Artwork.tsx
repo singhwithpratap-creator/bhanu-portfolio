@@ -5,12 +5,12 @@ import { useRef, useState } from "react";
 import type { PanInfo } from "framer-motion";
 
 const SKETCHES = [
-  "/images/sketches/sketch-01.png",
-  "/images/sketches/sketch-02.png",
-  "/images/sketches/sketch-03.png",
-  "/images/sketches/sketch-04.png",
-  "/images/sketches/sketch-05.png",
-  "/images/sketches/sketch-06.png",
+  "/images/Sketches/sketch-01.png",
+  "/images/Sketches/sketch-02.png",
+  "/images/Sketches/sketch-03.png",
+  "/images/Sketches/sketch-04.png",
+  "/images/Sketches/sketch-05.png",
+  "/images/Sketches/sketch-06.png",
 ];
 
 // Subtle handmade tilts — each card feels placed, not positioned
