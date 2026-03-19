@@ -166,36 +166,57 @@ html.light .backdrop-blur-xl { backdrop-filter: blur(24px) saturate(1.2); }
 
 /* ══════════════════════════════════════
    HERO — light mode
-   Warm translucent overlays replace the
-   dark ones so the video still shows.
-   Text is dark (handled by global rules).
-   Left side has a stronger warm wash for
-   text legibility; right side is mostly
-   transparent so the character shows.
+   Very thin warm tints (~20%) so the
+   video breathes. Solid warm backdrop
+   behind the text block keeps type legible.
 ═══════════════════════════════════════ */
 
-/* Left-side overlay: slightly stronger so dark text pops */
+/* Left-to-right overlay: barely-there warm tint */
 html.light section[aria-label*="Hero"] .from-\[\#080808\] {
-  --tw-gradient-from: rgb(244 243 240 / 0.92) var(--tw-gradient-from-position);
+  --tw-gradient-from: rgb(244 243 240 / 0.22) var(--tw-gradient-from-position);
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgb(244 243 240 / 0));
 }
 html.light section[aria-label*="Hero"] .via-\[\#080808\]\/75 {
-  --tw-gradient-via: rgb(244 243 240 / 0.55) var(--tw-gradient-via-position);
+  --tw-gradient-via: rgb(244 243 240 / 0.12) var(--tw-gradient-via-position);
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-via), var(--tw-gradient-to);
 }
 
-/* Top + bottom fade */
+/* Top + bottom fades */
 html.light section[aria-label*="Hero"] .from-\[\#080808\]\/60 {
-  --tw-gradient-from: rgb(244 243 240 / 0.55) var(--tw-gradient-from-position);
+  --tw-gradient-from: rgb(244 243 240 / 0.18) var(--tw-gradient-from-position);
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgb(244 243 240 / 0));
 }
 html.light section[aria-label*="Hero"] .from-\[\#080808\]\/70 {
-  --tw-gradient-from: rgb(244 243 240 / 0.65) var(--tw-gradient-from-position);
+  --tw-gradient-from: rgb(244 243 240 / 0.22) var(--tw-gradient-from-position);
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgb(244 243 240 / 0));
 }
 
-/* Text: dark in light mode (global rule handles this, just ensure CC310E stays) */
+/* Accent stays red */
 html.light section[aria-label*="Hero"] .text-\[\#CC310E\] { color: #CC310E; }
+
+/* ── Text block backdrop ──────────────
+   Solid warm pill behind headline+copy
+   so dark text reads on dark video.
+──────────────────────────────────────── */
+html.light .hero-content {
+  /* Frosted warm card behind the entire text column */
+  background: rgba(244, 243, 240, 0.82);
+  backdrop-filter: blur(14px) saturate(1.3);
+  -webkit-backdrop-filter: blur(14px) saturate(1.3);
+  border-radius: 4px;
+  padding: 2.5rem 2.5rem 3rem;
+  max-width: 680px;
+  margin-left: 0;
+}
+
+/* Remove extra padding on mobile (outer div already has px-6) */
+@media (max-width: 767px) {
+  html.light .hero-content {
+    padding: 1.75rem 1.5rem 2rem;
+    max-width: 100%;
+    border-radius: 2px;
+  }
+}
 
 /* ── Buttons: white text stays white on red bg ── */
 html.light .bg-\[\#CC310E\] .text-white { color: #ffffff; }

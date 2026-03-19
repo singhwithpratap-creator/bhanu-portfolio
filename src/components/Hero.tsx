@@ -68,7 +68,7 @@ export default function Hero() {
       />
 
       {/* Content - z-10 above all overlays */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12 w-full pt-16">
+      <div className="hero-content relative z-10 max-w-7xl mx-auto px-6 lg:px-12 w-full pt-16">
         {/* Label */}
         <motion.p
           {...fadeUp(0.3)}
