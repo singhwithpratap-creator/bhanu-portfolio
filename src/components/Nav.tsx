@@ -55,7 +55,7 @@ function ThemeToggle() {
       {/* Sliding highlight */}
       <motion.div
         className="absolute w-[26px] h-[26px] rounded-full bg-[#CC310E]"
-        animate={{ x: isDark ? 3 : 33 }}
+        animate={{ x: isDark ? 3 : 29 }}
         transition={{ type: "spring", stiffness: 400, damping: 30 }}
         style={{ borderRadius: "9999px" }}
       />
