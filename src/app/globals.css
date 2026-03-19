@@ -13,6 +13,24 @@
 }
 
 /* ═══════════════════════════════════════
+   MUTED TEXT — BRIGHTNESS + GLOW
+   Lifts all #888888 and #555555 text
+   site-wide without touching components
+═══════════════════════════════════════ */
+html:not(.light) .text-\[\#888888\] {
+  color: #BBBBBB !important;
+  text-shadow: 0 0 10px rgba(200, 200, 200, 0.18);
+}
+html:not(.light) .text-\[\#888888\]\/70 {
+  color: rgba(185, 185, 185, 0.85) !important;
+  text-shadow: 0 0 8px rgba(200, 200, 200, 0.15);
+}
+html:not(.light) .text-\[\#555555\] {
+  color: #AAAAAA !important;
+  text-shadow: 0 0 10px rgba(200, 200, 200, 0.18);
+}
+
+/* ═══════════════════════════════════════
    CSS VARIABLES — Dark (default)
 ═══════════════════════════════════════ */
 :root {
