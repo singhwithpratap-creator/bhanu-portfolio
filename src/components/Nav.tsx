@@ -13,12 +13,36 @@ const NAV_LINKS = [
   { label: "TXC Visual Identity ↗", href: "https://drive.google.com/file/d/1c3Il6Ds7Bd8CQFVrsdCrijjy3vR9M2gh/view?usp=drive_link", external: true },
 ];
 
+function MoonIcon({ active }: { active: boolean }) {
+  return (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={active ? "#ffffff" : "currentColor"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+    </svg>
+  );
+}
+
+function SunIcon({ active }: { active: boolean }) {
+  return (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={active ? "#ffffff" : "currentColor"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="12" r="5" />
+      <line x1="12" y1="1" x2="12" y2="3" />
+      <line x1="12" y1="21" x2="12" y2="23" />
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+      <line x1="1" y1="12" x2="3" y2="12" />
+      <line x1="21" y1="12" x2="23" y2="12" />
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+    </svg>
+  );
+}
+
 function ThemeToggle() {
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => setMounted(true), []);
-  if (!mounted) return <div className="w-10 h-6" />;
+  if (!mounted) return <div className="w-[64px] h-[32px]" />;
 
   const isDark = theme === "dark";
 
@@ -26,53 +50,25 @@ function ThemeToggle() {
     <button
       onClick={() => setTheme(isDark ? "light" : "dark")}
       aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
-      className="relative flex items-center w-[44px] h-[24px] rounded-full border border-[#1F1F1F] bg-[#111111] transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#CC310E]"
-      style={{ padding: "3px" }}
+      className="relative flex items-center w-[64px] h-[32px] rounded-full border border-[#1F1F1F] bg-[#111111] p-[3px] transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#CC310E]"
     >
-      {/* Track fill */}
+      {/* Sliding highlight */}
       <motion.div
-        className="absolute inset-0 rounded-full"
-        animate={{ backgroundColor: isDark ? "#111111" : "#F0EFEC" }}
-        transition={{ duration: 0.3 }}
+        className="absolute w-[26px] h-[26px] rounded-full bg-[#CC310E]"
+        animate={{ x: isDark ? 3 : 33 }}
+        transition={{ type: "spring", stiffness: 400, damping: 30 }}
         style={{ borderRadius: "9999px" }}
       />
 
-      {/* Thumb */}
-      <motion.div
-        className="relative z-10 w-[18px] h-[18px] rounded-full flex items-center justify-center text-[9px]"
-        animate={{
-          x: isDark ? 0 : 20,
-          backgroundColor: isDark ? "#CC310E" : "#CC310E",
-        }}
-        transition={{ type: "spring", stiffness: 400, damping: 30 }}
-        style={{ borderRadius: "9999px" }}
-      >
-        <AnimatePresence mode="wait">
-          {isDark ? (
-            <motion.span
-              key="moon"
-              initial={{ opacity: 0, rotate: -30 }}
-              animate={{ opacity: 1, rotate: 0 }}
-              exit={{ opacity: 0, rotate: 30 }}
-              transition={{ duration: 0.15 }}
-              className="leading-none select-none"
-            >
-              ☽
-            </motion.span>
-          ) : (
-            <motion.span
-              key="sun"
-              initial={{ opacity: 0, rotate: 30 }}
-              animate={{ opacity: 1, rotate: 0 }}
-              exit={{ opacity: 0, rotate: -30 }}
-              transition={{ duration: 0.15 }}
-              className="leading-none select-none"
-            >
-              ☀
-            </motion.span>
-          )}
-        </AnimatePresence>
-      </motion.div>
+      {/* Moon — left */}
+      <span className="relative z-10 w-[26px] h-[26px] flex items-center justify-center text-[#888888]">
+        <MoonIcon active={isDark} />
+      </span>
+
+      {/* Sun — right */}
+      <span className="relative z-10 w-[26px] h-[26px] flex items-center justify-center text-[#888888]">
+        <SunIcon active={!isDark} />
+      </span>
     </button>
   );
 }
