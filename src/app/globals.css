@@ -263,3 +263,17 @@ html.light [style*="box-shadow"] {
 
 /* ── Hamburger lines (mobile nav) ── */
 html.light nav span.bg-\[\#F5F5F5\] { background-color: #0A0A0A; }
+
+/* Nav links — visible in light mode */
+html.light .nav-link {
+  color: #1A1A1A !important;
+  text-shadow: none;
+}
+html.light .nav-link:hover {
+  color: #CC310E !important;
+  text-shadow: none;
+}
+/* Nav container text colour in light mode */
+html.light nav .text-\[\#C8C8C8\] {
+  color: #1A1A1A !important;
+}
