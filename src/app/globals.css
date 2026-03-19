@@ -29,6 +29,10 @@ html:not(.light) .text-\[\#555555\] {
   color: #AAAAAA !important;
   text-shadow: 0 0 10px rgba(200, 200, 200, 0.18);
 }
+html:not(.light) .text-\[\#444444\] {
+  color: #AAAAAA !important;
+  text-shadow: 0 0 10px rgba(200, 200, 200, 0.18);
+}
 html:not(.light) .text-\[\#CC310E\] {
   color: #FF4D20 !important;
   text-shadow: 0 0 12px rgba(255, 77, 32, 0.45), 0 0 24px rgba(255, 77, 32, 0.2);
