@@ -53,12 +53,12 @@ export default function CaseStudyLayout(props: CaseStudyProps) {
               src={props.heroImage}
               alt={props.title}
               fill
-              className="object-contain opacity-70"
+              className="object-contain opacity-50"
               unoptimized
               priority
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-[#080808]/40 via-transparent to-[#080808]" />
-            <div className="absolute inset-0 bg-gradient-to-r from-[#080808] via-transparent to-[#080808]/50" />
+            <div className="absolute inset-0 bg-gradient-to-b from-[#080808]/20 via-transparent to-[#080808]" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#080808]/60 via-transparent to-[#080808]/25" />
           </div>
 
           <div className="relative z-10 h-full flex items-end pb-16 px-6 lg:px-12 max-w-7xl mx-auto w-full">
