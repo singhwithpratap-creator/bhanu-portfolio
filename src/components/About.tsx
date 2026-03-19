@@ -75,6 +75,37 @@ export default function About() {
               </div>
             ))}
           </div>
+
+          {/* Design Tools */}
+          <div className="mt-6">
+            <p className="font-mono text-[10px] text-[#888888] uppercase tracking-[0.25em] mb-3">
+              Design Tools
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {[
+                "Figma",
+                "Adobe Illustrator",
+                "Photoshop",
+                "InDesign",
+                "After Effects",
+                "Premiere Pro",
+                "Miro",
+                "Mural",
+                "SQL",
+                "HTML",
+                "CSS",
+                "Pencil & Ink",
+                "Claude",
+              ].map((tool) => (
+                <span
+                  key={tool}
+                  className="font-mono text-[10px] text-[#888888] border border-[#1F1F1F] bg-[#111111] px-3 py-1.5 uppercase tracking-widest hover:border-[#CC310E]/40 hover:text-[#F5F5F5] transition-all duration-200"
+                >
+                  {tool}
+                </span>
+              ))}
+            </div>
+          </div>
         </motion.div>
 
         {/* Right - Content */}
@@ -187,41 +218,6 @@ export default function About() {
             </div>
           </motion.div>
 
-          {/* Design Tools */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.5 }}
-            className="mt-8"
-          >
-            <p className="font-mono text-[10px] text-[#888888] uppercase tracking-[0.25em] mb-4">
-              Design Tools
-            </p>
-            <div className="flex flex-wrap gap-2">
-              {[
-                "Figma",
-                "Adobe Illustrator",
-                "Photoshop",
-                "InDesign",
-                "After Effects",
-                "Premiere Pro",
-                "Miro",
-                "Mural",
-                "SQL",
-                "HTML",
-                "CSS",
-                "Pencil & Ink",
-                "Claude",
-              ].map((tool) => (
-                <span
-                  key={tool}
-                  className="font-mono text-[10px] text-[#888888] border border-[#1F1F1F] bg-[#111111] px-3 py-1.5 uppercase tracking-widest hover:border-[#CC310E]/40 hover:text-[#F5F5F5] transition-all duration-200"
-                >
-                  {tool}
-                </span>
-              ))}
-            </div>
-          </motion.div>
         </div>
       </div>
     </section>
