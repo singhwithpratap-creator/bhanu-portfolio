@@ -1,0 +1,1871 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FinSight — Personal Finance Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+/* ============================================
+   FINSIGHT — PERSONAL FINANCE DASHBOARD
+   Clean & Minimal Theme
+   ============================================ */
+
+/* -- Reset -- */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* -- Design Tokens -- */
+:root {
+  --sidebar-w: 260px;
+  --radius: 12px;
+  --radius-sm: 8px;
+
+  --bg-base: #F8F9FB;
+  --bg-card: #FFFFFF;
+  --bg-sidebar: #FFFFFF;
+  --border: #E5E7EB;
+  --border-soft: #F0F1F3;
+
+  --accent: #0D9488;
+  --accent-light: #14B8A6;
+  --accent-bg: rgba(13, 148, 136, 0.06);
+  --accent-border: rgba(13, 148, 136, 0.15);
+
+  --text-primary: #111827;
+  --text-secondary: #6B7280;
+  --text-muted: #9CA3AF;
+
+  --green: #10B981;
+  --green-bg: rgba(16, 185, 129, 0.08);
+  --red: #EF4444;
+  --red-bg: rgba(239, 68, 68, 0.08);
+  --amber: #F59E0B;
+  --amber-bg: rgba(245, 158, 11, 0.08);
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 1px 3px rgba(0, 0, 0, 0.04), 0 4px 12px rgba(0, 0, 0, 0.03);
+
+  --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+/* -- Base -- */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font);
+  background: var(--bg-base);
+  color: var(--text-primary);
+  display: flex;
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ============================================
+   SIDEBAR
+   ============================================ */
+.sidebar {
+  width: var(--sidebar-w);
+  min-height: 100vh;
+  background: var(--bg-sidebar);
+  border-right: 1px solid var(--border);
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  padding: 24px 16px;
+  transition: transform 0.3s ease;
+}
+
+.sidebar-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 8px;
+  margin-bottom: 32px;
+}
+
+.logo-text {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.3px;
+}
+
+/* -- Nav Items -- */
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.15s ease;
+  position: relative;
+}
+
+.nav-item:hover {
+  color: var(--text-primary);
+  background: var(--bg-base);
+}
+
+.nav-item.active {
+  color: var(--accent);
+  background: var(--accent-bg);
+}
+
+.nav-item.active::before {
+  content: '';
+  position: absolute;
+  left: -16px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 24px;
+  background: var(--accent);
+  border-radius: 0 3px 3px 0;
+}
+
+.nav-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+/* -- User Card in Sidebar Footer -- */
+.sidebar-footer {
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+}
+
+.user-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px;
+  border-radius: var(--radius-sm);
+}
+
+.user-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--accent-bg);
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.user-email {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* -- Mobile Menu -- */
+.mobile-menu-btn {
+  display: none;
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  z-index: 150;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--bg-card);
+  color: var(--text-primary);
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-sm);
+}
+
+.sidebar-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 90;
+  backdrop-filter: blur(2px);
+}
+
+.sidebar-overlay.active {
+  display: block;
+}
+
+/* ============================================
+   MAIN CONTENT
+   ============================================ */
+.main-content {
+  margin-left: var(--sidebar-w);
+  flex: 1;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  max-width: 1200px;
+}
+
+/* ============================================
+   TOP BAR
+   ============================================ */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.greeting {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.5px;
+}
+
+.topbar-date {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.topbar-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+/* ============================================
+   DASHBOARD SECTIONS
+   ============================================ */
+.dashboard-section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  scroll-margin-top: 24px;
+}
+
+.section-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.3px;
+}
+
+/* ============================================
+   SUMMARY CARDS
+   ============================================ */
+.summary-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.summary-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  transition: box-shadow 0.2s ease;
+}
+
+.summary-card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.summary-card.accent {
+  border-color: var(--accent-border);
+  background: linear-gradient(135deg, var(--bg-card) 0%, rgba(13, 148, 136, 0.03) 100%);
+}
+
+.summary-label {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.summary-value {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.5px;
+  line-height: 1.2;
+}
+
+.summary-change {
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.summary-change.positive {
+  color: var(--green);
+}
+
+.summary-change.negative {
+  color: var(--red);
+}
+
+.summary-sub {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+/* ============================================
+   CARDS
+   ============================================ */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  transition: box-shadow 0.2s ease;
+}
+
+.card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.card-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+/* -- Chart Filters -- */
+.chart-filters {
+  display: flex;
+  gap: 4px;
+  background: var(--bg-base);
+  border-radius: 8px;
+  padding: 3px;
+}
+
+.filter-btn {
+  padding: 5px 12px;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: var(--font);
+  transition: all 0.15s ease;
+}
+
+.filter-btn:hover {
+  color: var(--text-primary);
+}
+
+.filter-btn.active {
+  background: var(--bg-card);
+  color: var(--text-primary);
+  box-shadow: var(--shadow-sm);
+}
+
+/* -- Chart Container -- */
+.chart-container {
+  position: relative;
+}
+
+.chart-container canvas {
+  width: 100% !important;
+}
+
+.doughnut-container {
+  max-width: 260px;
+  margin: 0 auto;
+  padding: 8px 0;
+}
+
+/* -- Chart Legend -- */
+.chart-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 16px;
+  justify-content: center;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.legend-color {
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+
+.chart-legend-inline {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.legend-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-left: 10px;
+}
+
+.legend-dot:first-child {
+  margin-left: 0;
+}
+
+/* ============================================
+   SECTION GRID
+   ============================================ */
+.section-grid {
+  display: grid;
+  gap: 20px;
+}
+
+.section-grid.cols-2 {
+  grid-template-columns: 1fr 1fr;
+}
+
+/* ============================================
+   DATA TABLES
+   ============================================ */
+.table-wrapper {
+  overflow-x: auto;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.data-table th {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+}
+
+.data-table td {
+  padding: 12px;
+  font-size: 13px;
+  color: var(--text-primary);
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.data-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.data-table tbody tr:hover {
+  background: var(--bg-base);
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-green {
+  color: var(--green);
+}
+
+.text-red {
+  color: var(--red);
+}
+
+.text-muted {
+  color: var(--text-muted);
+}
+
+.holding-symbol {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.holding-name {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.category-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 500;
+  background: var(--bg-base);
+  color: var(--text-secondary);
+}
+
+/* ============================================
+   BUDGET
+   ============================================ */
+.budget-overview-card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.budget-overview {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.budget-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.budget-stat-label {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.budget-stat-value {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.3px;
+}
+
+.budget-stat-value.positive {
+  color: var(--green);
+}
+
+/* -- Progress Bar -- */
+.progress-bar {
+  width: 100%;
+  height: 6px;
+  background: var(--border-soft);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.progress-bar.large {
+  height: 10px;
+  border-radius: 5px;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: inherit;
+  background: var(--accent);
+  transition: width 0.8s ease;
+}
+
+.progress-fill.healthy {
+  background: var(--green);
+}
+
+.progress-fill.warning {
+  background: var(--amber);
+}
+
+.progress-fill.danger {
+  background: var(--red);
+}
+
+.progress-label {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* -- Budget Categories Grid -- */
+.budget-categories {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.budget-category-card {
+  padding: 16px 20px;
+}
+
+.budget-cat-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.budget-cat-icon {
+  font-size: 18px;
+  width: 24px;
+  text-align: center;
+}
+
+.budget-cat-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+  flex: 1;
+}
+
+.budget-cat-amounts {
+  font-size: 12px;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.budget-cat-percent {
+  display: block;
+  margin-top: 6px;
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+/* ============================================
+   ACCOUNTS GRID
+   ============================================ */
+.accounts-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.account-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: box-shadow 0.2s ease;
+}
+
+.account-card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.account-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.account-icon {
+  font-size: 24px;
+}
+
+.account-type-badge {
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.account-type-badge.bank {
+  background: rgba(59, 130, 246, 0.1);
+  color: #3B82F6;
+}
+
+.account-type-badge.investment {
+  background: rgba(16, 185, 129, 0.1);
+  color: #10B981;
+}
+
+.account-type-badge.credit {
+  background: rgba(239, 68, 68, 0.1);
+  color: #EF4444;
+}
+
+.account-type-badge.loan {
+  background: rgba(245, 158, 11, 0.1);
+  color: #F59E0B;
+}
+
+.account-type-badge.crypto {
+  background: rgba(139, 92, 246, 0.1);
+  color: #8B5CF6;
+}
+
+.account-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.account-institution {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: -8px;
+}
+
+.account-balance {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.3px;
+}
+
+.account-balance.negative {
+  color: var(--red);
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .main-content {
+    padding: 24px;
+  }
+
+  .summary-cards {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .section-grid.cols-2 {
+    grid-template-columns: 1fr;
+  }
+
+  .budget-categories {
+    grid-template-columns: 1fr;
+  }
+
+  .accounts-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .budget-overview {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .sidebar {
+    transform: translateX(-100%);
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
+    box-shadow: 4px 0 24px rgba(0, 0, 0, 0.1);
+  }
+
+  .mobile-menu-btn {
+    display: flex;
+  }
+
+  .main-content {
+    margin-left: 0;
+    padding: 72px 20px 32px;
+    gap: 28px;
+  }
+
+  .summary-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .budget-overview {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .accounts-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .greeting {
+    font-size: 20px;
+  }
+
+  .summary-value {
+    font-size: 24px;
+  }
+
+  .budget-stat-value {
+    font-size: 20px;
+  }
+
+  .topbar-right {
+    display: none;
+  }
+
+  .doughnut-container {
+    max-width: 220px;
+  }
+}
+
+/* Small mobile */
+@media (max-width: 480px) {
+  .main-content {
+    padding: 68px 16px 24px;
+    gap: 24px;
+  }
+
+  .card {
+    padding: 16px;
+  }
+
+  .topbar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+  }
+
+  .chart-filters {
+    margin-top: 12px;
+  }
+
+  .card-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+}
+  </style>
+</head>
+<body>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+        <rect width="28" height="28" rx="8" fill="#0D9488"/>
+        <path d="M8 20V12h3v8H8zm4.5 0V8h3v12h-3zM17 20v-6h3v6h-3z" fill="#fff"/>
+      </svg>
+      <span class="logo-text">FinSight</span>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a href="#net-worth" class="nav-item active" data-section="net-worth">
+        <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/>
+        </svg>
+        <span class="nav-text">Net Worth</span>
+      </a>
+      <a href="#portfolio" class="nav-item" data-section="portfolio">
+        <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+        </svg>
+        <span class="nav-text">Investments</span>
+      </a>
+      <a href="#budget" class="nav-item" data-section="budget">
+        <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="5" width="20" height="14" rx="2"/>
+          <line x1="2" y1="10" x2="22" y2="10"/>
+        </svg>
+        <span class="nav-text">Budget</span>
+      </a>
+      <a href="#spending" class="nav-item" data-section="spending">
+        <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21.21 15.89A10 10 0 118 2.83"/><path d="M22 12A10 10 0 0012 2v10z"/>
+        </svg>
+        <span class="nav-text">Spending</span>
+      </a>
+      <a href="#accounts" class="nav-item" data-section="accounts">
+        <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/>
+        </svg>
+        <span class="nav-text">Accounts</span>
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="user-card">
+        <div class="user-avatar">P</div>
+        <div class="user-info">
+          <span class="user-name">Pratap</span>
+          <span class="user-email">pratap@email.com</span>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MOBILE MENU BUTTON -->
+  <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+      <line x1="3" y1="6" x2="21" y2="6"/>
+      <line x1="3" y1="12" x2="21" y2="12"/>
+      <line x1="3" y1="18" x2="21" y2="18"/>
+    </svg>
+  </button>
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <!-- MAIN CONTENT -->
+  <main class="main-content">
+
+    <!-- TOP BAR -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <h1 class="greeting">Good morning, Pratap</h1>
+        <p class="topbar-date">Sunday, March 2, 2026</p>
+      </div>
+      <div class="topbar-right">
+        <div class="topbar-avatar">P</div>
+      </div>
+    </header>
+
+    <!-- NET WORTH SECTION -->
+    <section id="net-worth" class="dashboard-section">
+      <h2 class="section-title">Net Worth Overview</h2>
+
+      <div class="summary-cards">
+        <div class="summary-card accent">
+          <span class="summary-label">Total Net Worth</span>
+          <span class="summary-value" id="netWorthValue"></span>
+          <span class="summary-change positive" id="netWorthChange"></span>
+        </div>
+        <div class="summary-card">
+          <span class="summary-label">Total Assets</span>
+          <span class="summary-value" id="totalAssets"></span>
+          <span class="summary-sub">across 6 accounts</span>
+        </div>
+        <div class="summary-card">
+          <span class="summary-label">Total Liabilities</span>
+          <span class="summary-value" id="totalLiabilities"></span>
+          <span class="summary-sub">across 4 accounts</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Assets vs Liabilities</h3>
+        </div>
+        <div class="chart-container">
+          <canvas id="assetsLiabilitiesChart"></canvas>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Net Worth Over Time</h3>
+          <div class="chart-filters">
+            <button class="filter-btn active" data-range="6m">6M</button>
+            <button class="filter-btn" data-range="1y">1Y</button>
+            <button class="filter-btn" data-range="all">All</button>
+          </div>
+        </div>
+        <div class="chart-container">
+          <canvas id="netWorthTrendChart"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <!-- INVESTMENT PORTFOLIO SECTION -->
+    <section id="portfolio" class="dashboard-section">
+      <h2 class="section-title">Investment Portfolio</h2>
+
+      <div class="summary-cards">
+        <div class="summary-card accent">
+          <span class="summary-label">Portfolio Value</span>
+          <span class="summary-value" id="portfolioValue"></span>
+          <span class="summary-sub" id="portfolioReturn"></span>
+        </div>
+        <div class="summary-card">
+          <span class="summary-label">Today's Change</span>
+          <span class="summary-value" id="todayChange"></span>
+          <span class="summary-change positive" id="todayChangePercent"></span>
+        </div>
+        <div class="summary-card">
+          <span class="summary-label">Total Return</span>
+          <span class="summary-value" id="totalReturn"></span>
+          <span class="summary-change positive" id="totalReturnPercent"></span>
+        </div>
+      </div>
+
+      <div class="section-grid cols-2">
+        <div class="card">
+          <h3 class="card-title">Asset Allocation</h3>
+          <div class="chart-container doughnut-container">
+            <canvas id="allocationChart"></canvas>
+          </div>
+          <div class="chart-legend" id="allocationLegend"></div>
+        </div>
+        <div class="card">
+          <h3 class="card-title">Holdings</h3>
+          <div class="table-wrapper">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Asset</th>
+                  <th class="text-right">Value</th>
+                  <th class="text-right">Change</th>
+                </tr>
+              </thead>
+              <tbody id="holdingsTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Portfolio Performance</h3>
+          <div class="chart-legend-inline">
+            <span class="legend-dot" style="background:#0D9488"></span> Portfolio
+            <span class="legend-dot" style="background:#D1D5DB"></span> Benchmark
+          </div>
+        </div>
+        <div class="chart-container">
+          <canvas id="portfolioPerformanceChart"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <!-- BUDGET TRACKER SECTION -->
+    <section id="budget" class="dashboard-section">
+      <h2 class="section-title">Budget Tracker</h2>
+
+      <div class="card budget-overview-card">
+        <div class="budget-overview">
+          <div class="budget-stat">
+            <span class="budget-stat-label">Monthly Budget</span>
+            <span class="budget-stat-value" id="monthlyBudget"></span>
+          </div>
+          <div class="budget-stat">
+            <span class="budget-stat-label">Spent So Far</span>
+            <span class="budget-stat-value" id="totalSpent"></span>
+          </div>
+          <div class="budget-stat">
+            <span class="budget-stat-label">Remaining</span>
+            <span class="budget-stat-value positive" id="budgetRemaining"></span>
+          </div>
+        </div>
+        <div class="progress-bar large">
+          <div class="progress-fill" id="overallProgressBar"></div>
+        </div>
+        <span class="progress-label" id="overallProgressLabel"></span>
+      </div>
+
+      <div class="budget-categories" id="budgetCategories"></div>
+    </section>
+
+    <!-- SPENDING ANALYTICS SECTION -->
+    <section id="spending" class="dashboard-section">
+      <h2 class="section-title">Spending Analytics</h2>
+
+      <div class="section-grid cols-2">
+        <div class="card">
+          <h3 class="card-title">Spending by Category</h3>
+          <div class="chart-container doughnut-container">
+            <canvas id="spendingCategoryChart"></canvas>
+          </div>
+          <div class="chart-legend" id="spendingLegend"></div>
+        </div>
+        <div class="card">
+          <h3 class="card-title">Monthly Spending Trends</h3>
+          <div class="chart-container">
+            <canvas id="monthlySpendingChart"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Recent Transactions</h3>
+        </div>
+        <div class="table-wrapper">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Category</th>
+                <th class="text-right">Amount</th>
+              </tr>
+            </thead>
+            <tbody id="transactionsTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ACCOUNTS SECTION -->
+    <section id="accounts" class="dashboard-section">
+      <h2 class="section-title">Accounts</h2>
+      <div class="accounts-grid" id="accountsGrid"></div>
+    </section>
+
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <script>
+/* ============================================
+   FINSIGHT — MOCK DATA
+   ============================================ */
+
+window.FinanceData = {
+
+  user: {
+    name: 'Pratap',
+    initials: 'P',
+  },
+
+  // -- Net Worth --
+  netWorth: {
+    total: 284520,
+    changePercent: 3.2,
+    assets: {
+      total: 412800,
+      breakdown: [
+        { name: 'Checking Account', value: 12400 },
+        { name: 'Savings Account', value: 45200 },
+        { name: 'Investment Portfolio', value: 187600 },
+        { name: 'Retirement (RRSP)', value: 98400 },
+        { name: 'Real Estate Equity', value: 52000 },
+        { name: 'Crypto', value: 17200 },
+      ]
+    },
+    liabilities: {
+      total: 128280,
+      breakdown: [
+        { name: 'Mortgage', value: 98000 },
+        { name: 'Student Loans', value: 18200 },
+        { name: 'Credit Card', value: 4080 },
+        { name: 'Car Loan', value: 8000 },
+      ]
+    },
+    trend: {
+      labels: ['Apr 25','May 25','Jun 25','Jul 25','Aug 25','Sep 25',
+               'Oct 25','Nov 25','Dec 25','Jan 26','Feb 26','Mar 26'],
+      values: [248000,251400,256800,259200,261000,264500,
+               268900,272100,275800,279400,281200,284520],
+    }
+  },
+
+  // -- Portfolio --
+  portfolio: {
+    totalValue: 187600,
+    todayChange: { amount: 1240, percent: 0.66 },
+    totalReturn: { amount: 34200, percent: 22.3 },
+    allocation: [
+      { name: 'US Stocks', value: 78800, percent: 42, color: '#3B82F6' },
+      { name: 'Intl Stocks', value: 28140, percent: 15, color: '#6366F1' },
+      { name: 'Bonds', value: 37520, percent: 20, color: '#10B981' },
+      { name: 'Crypto', value: 17200, percent: 9.2, color: '#F59E0B' },
+      { name: 'REITs', value: 13160, percent: 7, color: '#EC4899' },
+      { name: 'Cash', value: 12780, percent: 6.8, color: '#9CA3AF' },
+    ],
+    holdings: [
+      { symbol: 'VOO', name: 'Vanguard S&P 500', shares: 55, price: 542.10, value: 29816, change: 0.5 },
+      { symbol: 'VTI', name: 'Vanguard Total Stock', shares: 42, price: 284.50, value: 11949, change: 1.2 },
+      { symbol: 'MSFT', name: 'Microsoft Corp', shares: 18, price: 468.20, value: 8428, change: 0.8 },
+      { symbol: 'AAPL', name: 'Apple Inc', shares: 25, price: 248.30, value: 6208, change: -0.4 },
+      { symbol: 'BTC', name: 'Bitcoin', shares: 0.18, price: 95556, value: 17200, change: 2.1 },
+      { symbol: 'BND', name: 'Vanguard Total Bond', shares: 120, price: 72.40, value: 8688, change: -0.1 },
+    ],
+    performance: {
+      labels: ['Apr 25','May 25','Jun 25','Jul 25','Aug 25','Sep 25',
+               'Oct 25','Nov 25','Dec 25','Jan 26','Feb 26','Mar 26'],
+      portfolio: [153400,156200,160800,162400,158900,164200,169800,174500,178200,182400,185100,187600],
+      benchmark: [150000,153100,156400,158200,155800,160100,163800,167200,170400,173800,176200,178900],
+    }
+  },
+
+  // -- Budget --
+  budget: {
+    monthlyBudget: 5200,
+    totalSpent: 3847,
+    categories: [
+      { name: 'Housing', budget: 1800, spent: 1800, icon: '\u{1F3E0}', color: '#3B82F6' },
+      { name: 'Food & Dining', budget: 800, spent: 620, icon: '\u{1F37D}\uFE0F', color: '#10B981' },
+      { name: 'Transportation', budget: 400, spent: 310, icon: '\u{1F697}', color: '#6366F1' },
+      { name: 'Utilities', budget: 300, spent: 275, icon: '\u{1F4A1}', color: '#F59E0B' },
+      { name: 'Entertainment', budget: 250, spent: 180, icon: '\u{1F3AC}', color: '#EC4899' },
+      { name: 'Shopping', budget: 350, spent: 290, icon: '\u{1F6CD}\uFE0F', color: '#F97316' },
+      { name: 'Health & Fitness', budget: 200, spent: 120, icon: '\u{1F4AA}', color: '#0D9488' },
+      { name: 'Subscriptions', budget: 100, spent: 92, icon: '\u{1F4F1}', color: '#8B5CF6' },
+      { name: 'Personal', budget: 200, spent: 85, icon: '\u2728', color: '#6B7280' },
+      { name: 'Savings Goal', budget: 800, spent: 75, icon: '\u{1F3AF}', color: '#14B8A6' },
+    ]
+  },
+
+  // -- Spending Analytics --
+  spending: {
+    byCategory: [
+      { name: 'Housing', amount: 1800, color: '#3B82F6' },
+      { name: 'Food & Dining', amount: 620, color: '#10B981' },
+      { name: 'Transportation', amount: 310, color: '#6366F1' },
+      { name: 'Utilities', amount: 275, color: '#F59E0B' },
+      { name: 'Shopping', amount: 290, color: '#F97316' },
+      { name: 'Entertainment', amount: 180, color: '#EC4899' },
+      { name: 'Health', amount: 120, color: '#0D9488' },
+      { name: 'Other', amount: 252, color: '#9CA3AF' },
+    ],
+    monthlyTrends: {
+      labels: ['Oct','Nov','Dec','Jan','Feb','Mar'],
+      values: [4850, 5120, 5640, 4920, 4380, 3847],
+    },
+    recentTransactions: [
+      { date: '2026-03-02', description: 'Whole Foods Market', category: 'Food & Dining', amount: -87.43 },
+      { date: '2026-03-01', description: 'Netflix Subscription', category: 'Subscriptions', amount: -17.99 },
+      { date: '2026-03-01', description: 'Shell Gas Station', category: 'Transportation', amount: -52.30 },
+      { date: '2026-02-28', description: 'Salary Deposit', category: 'Income', amount: 6200.00 },
+      { date: '2026-02-28', description: 'Mortgage Payment', category: 'Housing', amount: -1800.00 },
+      { date: '2026-02-27', description: 'Amazon', category: 'Shopping', amount: -124.50 },
+      { date: '2026-02-27', description: 'GoodLife Fitness', category: 'Health & Fitness', amount: -49.99 },
+      { date: '2026-02-26', description: 'Uber Eats', category: 'Food & Dining', amount: -34.25 },
+      { date: '2026-02-25', description: 'Hydro One', category: 'Utilities', amount: -142.00 },
+      { date: '2026-02-24', description: 'Cineplex Theatres', category: 'Entertainment', amount: -28.50 },
+    ]
+  },
+
+  // -- Accounts --
+  accounts: [
+    { name: 'Chequing Account', institution: 'RBC Royal Bank', type: 'bank', balance: 12400, icon: '\u{1F3E6}' },
+    { name: 'High Interest Savings', institution: 'EQ Bank', type: 'bank', balance: 45200, icon: '\u{1F4B0}' },
+    { name: 'TFSA Investment', institution: 'Wealthsimple', type: 'investment', balance: 89200, icon: '\u{1F4C8}' },
+    { name: 'RRSP', institution: 'RBC Direct Investing', type: 'investment', balance: 98400, icon: '\u{1F3E6}' },
+    { name: 'Visa Infinite', institution: 'RBC', type: 'credit', balance: -4080, icon: '\u{1F4B3}' },
+    { name: 'Mortgage', institution: 'RBC', type: 'loan', balance: -98000, icon: '\u{1F3E0}' },
+    { name: 'Student Loan', institution: 'NSLSC', type: 'loan', balance: -18200, icon: '\u{1F393}' },
+    { name: 'Crypto Wallet', institution: 'Coinbase', type: 'crypto', balance: 17200, icon: '\u20BF' },
+  ]
+};
+  </script>
+
+  <script>
+/* ============================================
+   FINSIGHT — CHART RENDERING (Chart.js)
+   ============================================ */
+
+(function () {
+  'use strict';
+  var D = window.FinanceData;
+
+  // -- Global Chart.js defaults --
+  Chart.defaults.color = '#9CA3AF';
+  Chart.defaults.font.family = "'Inter', sans-serif";
+  Chart.defaults.font.size = 12;
+  Chart.defaults.font.weight = 400;
+  Chart.defaults.plugins.legend.display = false;
+
+  var GRID_COLOR = 'rgba(0, 0, 0, 0.04)';
+
+  var TOOLTIP = {
+    backgroundColor: '#FFFFFF',
+    borderColor: '#E5E7EB',
+    borderWidth: 1,
+    titleColor: '#111827',
+    bodyColor: '#6B7280',
+    titleFont: { weight: 600 },
+    padding: 12,
+    cornerRadius: 8,
+    boxPadding: 4,
+    displayColors: false,
+  };
+
+  function dollarLabel(ctx) {
+    return '$' + ctx.parsed.y.toLocaleString();
+  }
+
+  function dollarTick(value) {
+    if (value >= 1000) return '$' + (value / 1000).toFixed(0) + 'k';
+    return '$' + value;
+  }
+
+  var SCALES = {
+    x: {
+      grid: { color: GRID_COLOR, drawTicks: false },
+      border: { display: false },
+      ticks: { padding: 8 },
+    },
+    y: {
+      grid: { color: GRID_COLOR, drawTicks: false },
+      border: { display: false },
+      ticks: { padding: 8, callback: dollarTick },
+    },
+  };
+
+  // 1. Net Worth Trend — Line chart
+  function initNetWorthTrendChart() {
+    var ctx = document.getElementById('netWorthTrendChart');
+    if (!ctx) return;
+    var data = D.netWorth.trend;
+
+    new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: data.labels,
+        datasets: [{
+          label: 'Net Worth',
+          data: data.values,
+          borderColor: '#0D9488',
+          backgroundColor: createGradient(ctx, 'rgba(13,148,136,0.12)', 'rgba(13,148,136,0)'),
+          borderWidth: 2.5,
+          pointRadius: 0,
+          pointHoverRadius: 5,
+          pointHoverBackgroundColor: '#0D9488',
+          pointHoverBorderColor: '#fff',
+          pointHoverBorderWidth: 2,
+          fill: true,
+          tension: 0.4,
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: true,
+        aspectRatio: 2.5,
+        interaction: { mode: 'index', intersect: false },
+        plugins: {
+          tooltip: Object.assign({}, TOOLTIP, {
+            callbacks: { label: dollarLabel }
+          }),
+        },
+        scales: SCALES,
+      }
+    });
+  }
+
+  // 2. Assets vs Liabilities — Horizontal Bar
+  function initAssetsLiabilitiesChart() {
+    var ctx = document.getElementById('assetsLiabilitiesChart');
+    if (!ctx) return;
+
+    var assetItems = D.netWorth.assets.breakdown;
+    var liabilityItems = D.netWorth.liabilities.breakdown;
+
+    var labels = assetItems.map(function (a) { return a.name; })
+                  .concat(liabilityItems.map(function (l) { return l.name; }));
+    var values = assetItems.map(function (a) { return a.value; })
+                  .concat(liabilityItems.map(function (l) { return -l.value; }));
+    var colors = assetItems.map(function () { return '#0D9488'; })
+                  .concat(liabilityItems.map(function () { return '#EF4444'; }));
+
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: labels,
+        datasets: [{
+          data: values,
+          backgroundColor: colors,
+          borderRadius: 4,
+          barThickness: 20,
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: true,
+        aspectRatio: 1.4,
+        indexAxis: 'y',
+        plugins: {
+          tooltip: Object.assign({}, TOOLTIP, {
+            callbacks: {
+              label: function (ctx) {
+                return '$' + Math.abs(ctx.parsed.x).toLocaleString();
+              }
+            }
+          }),
+        },
+        scales: {
+          x: {
+            grid: { color: GRID_COLOR, drawTicks: false },
+            border: { display: false },
+            ticks: {
+              padding: 8,
+              callback: function (v) {
+                return '$' + Math.abs(v / 1000).toFixed(0) + 'k';
+              }
+            },
+          },
+          y: {
+            grid: { display: false },
+            border: { display: false },
+            ticks: { padding: 8, font: { size: 11 } },
+          },
+        },
+      }
+    });
+  }
+
+  // 3. Asset Allocation — Doughnut
+  function initAllocationChart() {
+    var ctx = document.getElementById('allocationChart');
+    if (!ctx) return;
+    var data = D.portfolio.allocation;
+
+    new Chart(ctx, {
+      type: 'doughnut',
+      data: {
+        labels: data.map(function (d) { return d.name; }),
+        datasets: [{
+          data: data.map(function (d) { return d.value; }),
+          backgroundColor: data.map(function (d) { return d.color; }),
+          borderWidth: 0,
+          hoverOffset: 6,
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: true,
+        cutout: '70%',
+        plugins: {
+          tooltip: Object.assign({}, TOOLTIP, {
+            displayColors: true,
+            callbacks: {
+              label: function (ctx) {
+                return ' $' + ctx.parsed.toLocaleString() + ' (' + data[ctx.dataIndex].percent + '%)';
+              }
+            }
+          }),
+        },
+      }
+    });
+
+    // Build HTML legend
+    var legend = document.getElementById('allocationLegend');
+    legend.innerHTML = data.map(function (d) {
+      return '<span class="legend-item">' +
+        '<span class="legend-color" style="background:' + d.color + '"></span>' +
+        d.name + ' ' + d.percent + '%' +
+        '</span>';
+    }).join('');
+  }
+
+  // 4. Portfolio Performance — Dual Line
+  function initPortfolioPerformanceChart() {
+    var ctx = document.getElementById('portfolioPerformanceChart');
+    if (!ctx) return;
+    var data = D.portfolio.performance;
+
+    new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: data.labels,
+        datasets: [
+          {
+            label: 'Portfolio',
+            data: data.portfolio,
+            borderColor: '#0D9488',
+            backgroundColor: 'transparent',
+            borderWidth: 2.5,
+            pointRadius: 0,
+            pointHoverRadius: 5,
+            pointHoverBackgroundColor: '#0D9488',
+            tension: 0.4,
+          },
+          {
+            label: 'Benchmark',
+            data: data.benchmark,
+            borderColor: '#D1D5DB',
+            backgroundColor: 'transparent',
+            borderWidth: 2,
+            borderDash: [6, 4],
+            pointRadius: 0,
+            pointHoverRadius: 4,
+            pointHoverBackgroundColor: '#D1D5DB',
+            tension: 0.4,
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: true,
+        aspectRatio: 2.5,
+        interaction: { mode: 'index', intersect: false },
+        plugins: {
+          tooltip: Object.assign({}, TOOLTIP, {
+            displayColors: true,
+            callbacks: { label: dollarLabel }
+          }),
+        },
+        scales: SCALES,
+      }
+    });
+  }
+
+  // 5. Spending by Category — Doughnut
+  function initSpendingCategoryChart() {
+    var ctx = document.getElementById('spendingCategoryChart');
+    if (!ctx) return;
+    var data = D.spending.byCategory;
+
+    new Chart(ctx, {
+      type: 'doughnut',
+      data: {
+        labels: data.map(function (d) { return d.name; }),
+        datasets: [{
+          data: data.map(function (d) { return d.amount; }),
+          backgroundColor: data.map(function (d) { return d.color; }),
+          borderWidth: 0,
+          hoverOffset: 6,
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: true,
+        cutout: '70%',
+        plugins: {
+          tooltip: Object.assign({}, TOOLTIP, {
+            displayColors: true,
+            callbacks: {
+              label: function (ctx) {
+                return ' $' + ctx.parsed.toLocaleString();
+              }
+            }
+          }),
+        },
+      }
+    });
+
+    // Build HTML legend
+    var legend = document.getElementById('spendingLegend');
+    legend.innerHTML = data.map(function (d) {
+      return '<span class="legend-item">' +
+        '<span class="legend-color" style="background:' + d.color + '"></span>' +
+        d.name + ' $' + d.amount.toLocaleString() +
+        '</span>';
+    }).join('');
+  }
+
+  // 6. Monthly Spending Trends — Bar chart
+  function initMonthlySpendingChart() {
+    var ctx = document.getElementById('monthlySpendingChart');
+    if (!ctx) return;
+    var data = D.spending.monthlyTrends;
+
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: data.labels,
+        datasets: [{
+          label: 'Spending',
+          data: data.values,
+          backgroundColor: data.values.map(function (v, i) {
+            return i === data.values.length - 1 ? '#0D9488' : '#E5E7EB';
+          }),
+          borderRadius: 6,
+          barThickness: 32,
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: true,
+        aspectRatio: 1.8,
+        plugins: {
+          tooltip: Object.assign({}, TOOLTIP, {
+            callbacks: { label: dollarLabel }
+          }),
+        },
+        scales: {
+          x: {
+            grid: { display: false },
+            border: { display: false },
+            ticks: { padding: 8 },
+          },
+          y: {
+            grid: { color: GRID_COLOR, drawTicks: false },
+            border: { display: false },
+            ticks: { padding: 8, callback: dollarTick },
+            beginAtZero: true,
+          },
+        },
+      }
+    });
+  }
+
+  // -- Gradient helper --
+  function createGradient(canvas, colorTop, colorBottom) {
+    var el = canvas.getContext ? canvas : document.getElementById(canvas);
+    var ctx = el.getContext('2d');
+    var gradient = ctx.createLinearGradient(0, 0, 0, 300);
+    gradient.addColorStop(0, colorTop);
+    gradient.addColorStop(1, colorBottom);
+    return gradient;
+  }
+
+  // -- Initialize all charts on DOM ready --
+  document.addEventListener('DOMContentLoaded', function () {
+    initNetWorthTrendChart();
+    initAssetsLiabilitiesChart();
+    initAllocationChart();
+    initPortfolioPerformanceChart();
+    initSpendingCategoryChart();
+    initMonthlySpendingChart();
+  });
+})();
+  </script>
+
+  <script>
+/* ============================================
+   FINSIGHT — APP LOGIC
+   DOM population, navigation, mobile menu
+   ============================================ */
+
+(function () {
+  'use strict';
+  var D = window.FinanceData;
+
+  // -- Utility: format currency --
+  function fmt(amount, decimals) {
+    var abs = Math.abs(amount);
+    var str = abs.toLocaleString('en-US', {
+      minimumFractionDigits: decimals || 0,
+      maximumFractionDigits: decimals || 0,
+    });
+    var prefix = amount < 0 ? '-$' : '$';
+    return prefix + str;
+  }
+
+  // -- Set greeting and date --
+  function initGreeting() {
+    var hour = new Date().getHours();
+    var greeting = 'Good morning';
+    if (hour >= 12 && hour < 17) greeting = 'Good afternoon';
+    else if (hour >= 17) greeting = 'Good evening';
+    document.querySelector('.greeting').textContent = greeting + ', ' + D.user.name;
+
+    var today = new Date();
+    var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    document.querySelector('.topbar-date').textContent = today.toLocaleDateString('en-US', options);
+  }
+
+  // -- Populate Net Worth summary cards --
+  function renderNetWorthSummary() {
+    document.getElementById('netWorthValue').textContent = fmt(D.netWorth.total);
+    document.getElementById('netWorthChange').textContent = '+' + D.netWorth.changePercent + '% this month';
+    document.getElementById('totalAssets').textContent = fmt(D.netWorth.assets.total);
+    document.getElementById('totalLiabilities').textContent = fmt(D.netWorth.liabilities.total);
+  }
+
+  // -- Populate Portfolio summary cards --
+  function renderPortfolioSummary() {
+    document.getElementById('portfolioValue').textContent = fmt(D.portfolio.totalValue);
+    document.getElementById('portfolioReturn').textContent = '+' + fmt(D.portfolio.totalReturn.amount) + ' all time';
+    document.getElementById('todayChange').textContent = '+' + fmt(D.portfolio.todayChange.amount);
+    document.getElementById('todayChangePercent').textContent = '+' + D.portfolio.todayChange.percent + '%';
+    document.getElementById('totalReturn').textContent = '+' + fmt(D.portfolio.totalReturn.amount);
+    document.getElementById('totalReturnPercent').textContent = '+' + D.portfolio.totalReturn.percent + '%';
+  }
+
+  // -- Populate Holdings table --
+  function renderHoldings() {
+    var tbody = document.getElementById('holdingsTableBody');
+    tbody.innerHTML = D.portfolio.holdings.map(function (h) {
+      var changeClass = h.change >= 0 ? 'text-green' : 'text-red';
+      var changeSign = h.change >= 0 ? '+' : '';
+      return '<tr>' +
+        '<td><span class="holding-symbol">' + h.symbol + '</span><br><span class="holding-name">' + h.name + '</span></td>' +
+        '<td class="text-right">' + fmt(h.value) + '</td>' +
+        '<td class="text-right ' + changeClass + '">' + changeSign + h.change + '%</td>' +
+        '</tr>';
+    }).join('');
+  }
+
+  // -- Populate Budget section --
+  function renderBudget() {
+    var spent = D.budget.totalSpent;
+    var budget = D.budget.monthlyBudget;
+    var remaining = budget - spent;
+    var percent = Math.round((spent / budget) * 100);
+
+    document.getElementById('monthlyBudget').textContent = fmt(budget);
+    document.getElementById('totalSpent').textContent = fmt(spent);
+    document.getElementById('budgetRemaining').textContent = fmt(remaining);
+
+    var bar = document.getElementById('overallProgressBar');
+    bar.style.width = percent + '%';
+    if (percent >= 90) bar.className = 'progress-fill danger';
+    else if (percent >= 75) bar.className = 'progress-fill warning';
+    else bar.className = 'progress-fill healthy';
+
+    document.getElementById('overallProgressLabel').textContent = percent + '% of budget used';
+
+    var container = document.getElementById('budgetCategories');
+    container.innerHTML = D.budget.categories.map(function (cat) {
+      var p = Math.round((cat.spent / cat.budget) * 100);
+      var status = 'healthy';
+      if (p >= 100) status = 'danger';
+      else if (p >= 75) status = 'warning';
+
+      return '<div class="budget-category-card card">' +
+        '<div class="budget-cat-header">' +
+          '<span class="budget-cat-icon">' + cat.icon + '</span>' +
+          '<span class="budget-cat-name">' + cat.name + '</span>' +
+          '<span class="budget-cat-amounts">' + fmt(cat.spent) + ' / ' + fmt(cat.budget) + '</span>' +
+        '</div>' +
+        '<div class="progress-bar"><div class="progress-fill ' + status + '" style="width:' + Math.min(p, 100) + '%"></div></div>' +
+        '<span class="budget-cat-percent">' + p + '% used</span>' +
+      '</div>';
+    }).join('');
+  }
+
+  // -- Populate Transactions table --
+  function renderTransactions() {
+    var tbody = document.getElementById('transactionsTableBody');
+    tbody.innerHTML = D.spending.recentTransactions.map(function (t) {
+      var amountClass = t.amount >= 0 ? 'text-green' : '';
+      var amountStr = t.amount >= 0 ? '+' + fmt(t.amount, 2) : fmt(t.amount, 2);
+      var dateStr = new Date(t.date + 'T00:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+      return '<tr>' +
+        '<td class="text-muted">' + dateStr + '</td>' +
+        '<td>' + t.description + '</td>' +
+        '<td><span class="category-badge">' + t.category + '</span></td>' +
+        '<td class="text-right ' + amountClass + '">' + amountStr + '</td>' +
+        '</tr>';
+    }).join('');
+  }
+
+  // -- Populate Accounts grid --
+  function renderAccounts() {
+    var container = document.getElementById('accountsGrid');
+    container.innerHTML = D.accounts.map(function (a) {
+      var balanceClass = a.balance < 0 ? 'negative' : '';
+      return '<div class="account-card">' +
+        '<div class="account-card-top">' +
+          '<span class="account-icon">' + a.icon + '</span>' +
+          '<span class="account-type-badge ' + a.type + '">' + a.type + '</span>' +
+        '</div>' +
+        '<span class="account-name">' + a.name + '</span>' +
+        '<span class="account-institution">' + a.institution + '</span>' +
+        '<span class="account-balance ' + balanceClass + '">' + fmt(a.balance) + '</span>' +
+      '</div>';
+    }).join('');
+  }
+
+  // -- Sidebar navigation --
+  function initNavigation() {
+    var navItems = document.querySelectorAll('.nav-item');
+    var sections = document.querySelectorAll('.dashboard-section');
+
+    navItems.forEach(function (item) {
+      item.addEventListener('click', function (e) {
+        e.preventDefault();
+        var targetId = item.getAttribute('data-section');
+        var target = document.getElementById(targetId);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+        // Close mobile sidebar
+        document.getElementById('sidebar').classList.remove('open');
+        document.getElementById('sidebarOverlay').classList.remove('active');
+      });
+    });
+
+    // Track active section with IntersectionObserver
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          navItems.forEach(function (n) { n.classList.remove('active'); });
+          var active = document.querySelector('[data-section="' + entry.target.id + '"]');
+          if (active) active.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-20% 0px -60% 0px' });
+
+    sections.forEach(function (section) { observer.observe(section); });
+  }
+
+  // -- Mobile sidebar toggle --
+  function initMobileMenu() {
+    var btn = document.getElementById('mobileMenuBtn');
+    var sidebar = document.getElementById('sidebar');
+    var overlay = document.getElementById('sidebarOverlay');
+
+    btn.addEventListener('click', function () {
+      sidebar.classList.toggle('open');
+      overlay.classList.toggle('active');
+    });
+
+    overlay.addEventListener('click', function () {
+      sidebar.classList.remove('open');
+      overlay.classList.remove('active');
+    });
+  }
+
+  // -- Chart filter buttons (active toggle) --
+  function initFilterButtons() {
+    document.querySelectorAll('.chart-filters').forEach(function (group) {
+      group.querySelectorAll('.filter-btn').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          group.querySelectorAll('.filter-btn').forEach(function (b) { b.classList.remove('active'); });
+          btn.classList.add('active');
+        });
+      });
+    });
+  }
+
+  // -- Init --
+  document.addEventListener('DOMContentLoaded', function () {
+    initGreeting();
+    renderNetWorthSummary();
+    renderPortfolioSummary();
+    renderHoldings();
+    renderBudget();
+    renderTransactions();
+    renderAccounts();
+    initNavigation();
+    initMobileMenu();
+    initFilterButtons();
+  });
+})();
+  </script>
+</body>
+</html>
