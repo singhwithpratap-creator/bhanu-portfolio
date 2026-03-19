@@ -121,15 +121,15 @@ export default function Nav() {
           </Link>
 
           {/* Desktop links */}
-          <div className="hidden md:flex items-center gap-8 font-mono text-xs text-[#888888] uppercase tracking-[0.15em]">
-            <Link href="/#work" className="hover:text-[#F5F5F5] transition-colors duration-200">Work</Link>
-            <Link href="/#about" className="hover:text-[#F5F5F5] transition-colors duration-200">About</Link>
-            <Link href="/#contact" className="hover:text-[#F5F5F5] transition-colors duration-200">Contact</Link>
+          <div className="hidden md:flex items-center gap-8 font-mono text-xs text-[#C8C8C8] uppercase tracking-[0.15em]">
+            <Link href="/#work" className="nav-link hover:text-white transition-colors duration-200">Work</Link>
+            <Link href="/#about" className="nav-link hover:text-white transition-colors duration-200">About</Link>
+            <Link href="/#contact" className="nav-link hover:text-white transition-colors duration-200">Contact</Link>
             <a
               href="https://drive.google.com/file/d/1c3Il6Ds7Bd8CQFVrsdCrijjy3vR9M2gh/view?usp=drive_link"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-[#F5F5F5] transition-colors duration-200"
+              className="nav-link hover:text-white transition-colors duration-200"
             >
               TXC Visual Identity ↗
             </a>
@@ -199,7 +199,7 @@ export default function Nav() {
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={close}
-                      className="font-display text-3xl font-bold text-[#888888] hover:text-[#F5F5F5] transition-colors duration-200"
+                      className="nav-link font-display text-3xl font-bold text-[#C8C8C8] hover:text-white transition-colors duration-200"
                     >
                       {link.label}
                     </a>
@@ -207,7 +207,7 @@ export default function Nav() {
                     <Link
                       href={link.href}
                       onClick={close}
-                      className="font-display text-3xl font-bold text-[#888888] hover:text-[#F5F5F5] transition-colors duration-200"
+                      className="nav-link font-display text-3xl font-bold text-[#C8C8C8] hover:text-white transition-colors duration-200"
                     >
                       {link.label}
                     </Link>
