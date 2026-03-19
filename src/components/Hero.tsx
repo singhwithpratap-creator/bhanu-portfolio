@@ -24,7 +24,7 @@ export default function Hero() {
   });
 
   // Video opacity: full at top, fades out as you scroll away
-  const videoOpacity = useTransform(scrollYProgress, [0, 0.6], [0.55, 0]);
+  const videoOpacity = useTransform(scrollYProgress, [0, 0.6], [0.45, 0]);
   // Parallax: video drifts up as you scroll
   const videoY = useTransform(scrollYProgress, [0, 1], ["0%", "18%"]);
 
