@@ -22,12 +22,18 @@ const capabilities = [
   { label: "Developer Handoff", desc: "Zeplin · Inspect · Specs" },
 ];
 
+// Pixel-based loop: card min-width 200px + gap 12px
+const CARD_W = 200;
+const GAP = 12;
+const SET_W = capabilities.length * (CARD_W + GAP);
+
+// Duplicate for seamless infinite loop
+const ROW_A = [...capabilities, ...capabilities];
+const ROW_B = [...capabilities, ...capabilities];
+
 export default function Skills() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
-
-  // Duplicate for seamless loop
-  const items = [...capabilities, ...capabilities];
 
   return (
     <section
@@ -54,27 +60,31 @@ export default function Skills() {
         </h2>
       </motion.div>
 
-      {/* Horizontal scroll strip */}
-      <div className="relative">
+      {/* Scrolling rows */}
+      <div className="relative" aria-hidden="true">
         {/* Left fade */}
         <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-[#080808] to-transparent z-10 pointer-events-none" />
         {/* Right fade */}
         <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-[#080808] to-transparent z-10 pointer-events-none" />
 
+        {/* Row 1 — scrolls left */}
         <div className="overflow-hidden py-3">
           <motion.div
-            className="flex gap-3 w-max"
-            animate={{ x: ["0%", "-50%"] }}
+            className="flex"
+            style={{ gap: GAP }}
+            animate={{ x: [0, -SET_W] }}
             transition={{
               duration: 40,
               ease: "linear",
               repeat: Infinity,
+              repeatType: "loop",
             }}
           >
-            {items.map((cap, i) => (
+            {ROW_A.map((cap, i) => (
               <div
                 key={i}
-                className="group flex-shrink-0 border border-[#1F1F1F] bg-[#111111] hover:border-[#CC310E]/40 hover:bg-[#111111] transition-all duration-300 px-5 py-4 min-w-[200px]"
+                className="group flex-shrink-0 border border-[#1F1F1F] bg-[#111111] hover:border-[#CC310E]/40 hover:bg-[#111111] transition-all duration-300 px-5 py-4"
+                style={{ minWidth: CARD_W }}
               >
                 <p className="font-mono text-xs text-[#F5F5F5] uppercase tracking-[0.15em] mb-1 group-hover:text-[#CC310E] transition-colors duration-200">
                   {cap.label}
@@ -87,21 +97,24 @@ export default function Skills() {
           </motion.div>
         </div>
 
-        {/* Second row - reverse */}
+        {/* Row 2 — scrolls right */}
         <div className="overflow-hidden py-3">
           <motion.div
-            className="flex gap-3 w-max"
-            animate={{ x: ["-50%", "0%"] }}
+            className="flex"
+            style={{ gap: GAP }}
+            animate={{ x: [-SET_W, 0] }}
             transition={{
               duration: 40,
               ease: "linear",
               repeat: Infinity,
+              repeatType: "loop",
             }}
           >
-            {items.map((cap, i) => (
+            {ROW_B.map((cap, i) => (
               <div
                 key={i}
-                className="group flex-shrink-0 border border-[#1F1F1F] bg-[#111111] hover:border-[#CC310E]/40 transition-all duration-300 px-5 py-4 min-w-[200px]"
+                className="group flex-shrink-0 border border-[#1F1F1F] bg-[#111111] hover:border-[#CC310E]/40 transition-all duration-300 px-5 py-4"
+                style={{ minWidth: CARD_W }}
               >
                 <p className="font-mono text-xs text-[#888888] uppercase tracking-[0.15em] mb-1 group-hover:text-[#F5F5F5] transition-colors duration-200">
                   {cap.label}

@@ -86,24 +86,27 @@ export default function Hero() {
         </motion.p>
 
         {/* Main headline */}
-        <div className="overflow-hidden mb-1">
-          <motion.h1
-            {...fadeUp(0.5)}
-            className="font-display font-bold leading-[0.88] tracking-tight text-[#F5F5F5]"
-            style={{ fontSize: "clamp(72px, 11vw, 150px)" }}
-          >
-            Bhanu
-          </motion.h1>
-        </div>
-        <div className="overflow-hidden">
-          <motion.h1
-            {...fadeUp(0.65)}
-            className="font-display font-bold leading-[0.88] tracking-tight text-[#F5F5F5]"
-            style={{ fontSize: "clamp(72px, 11vw, 150px)" }}
-          >
-            Parmar<span className="text-[#CC310E]">.</span>
-          </motion.h1>
-        </div>
+        <h1
+          className="font-display font-bold leading-[0.88] tracking-tight text-[#F5F5F5]"
+          style={{ fontSize: "clamp(72px, 11vw, 150px)" }}
+        >
+          <div className="overflow-hidden mb-1">
+            <motion.span
+              {...fadeUp(0.5)}
+              className="block"
+            >
+              Bhanu
+            </motion.span>
+          </div>
+          <div className="overflow-hidden">
+            <motion.span
+              {...fadeUp(0.65)}
+              className="block"
+            >
+              Parmar<span className="text-[#CC310E]">.</span>
+            </motion.span>
+          </div>
+        </h1>
 
         {/* Tagline */}
         <motion.div {...fadeUp(0.85)} className="mt-8 flex flex-col gap-2">

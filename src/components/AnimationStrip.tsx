@@ -36,7 +36,7 @@ const SET_W = ITEMS.length * (CARD_W + GAP);
 
 export default function AnimationStrip() {
   return (
-    <div className="relative overflow-hidden border-b border-[#1F1F1F] bg-[#080808] py-5">
+    <div className="relative overflow-hidden border-b border-[#1F1F1F] bg-[#080808] py-5" aria-hidden="true" role="presentation">
       {/* Edge fades */}
       <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-[#080808] to-transparent z-10 pointer-events-none" />
       <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-[#080808] to-transparent z-10 pointer-events-none" />

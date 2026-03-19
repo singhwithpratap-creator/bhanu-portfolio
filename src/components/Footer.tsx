@@ -7,7 +7,7 @@ export default function Footer() {
             BP<span className="text-[#CC310E]">.</span>
           </span>
           <span className="font-mono text-[10px] text-[#888888] uppercase tracking-widest">
-            © 2025 Bhanu Parmar
+            © 2026 Bhanu Parmar
           </span>
         </div>
         <p className="font-mono text-[10px] text-[#888888] uppercase tracking-widest">

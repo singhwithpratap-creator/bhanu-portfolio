@@ -16,8 +16,8 @@ const SKETCHES = [
 // Subtle handmade tilts — each card feels placed, not positioned
 const TILTS = [-2.2, 1.6, -1.4, 2.0, -1.8, 2.6];
 
-const CARD_W = 300;
-const CARD_GAP = 20;
+const CARD_W = 280;
+const CARD_GAP = 16;
 const STEP = CARD_W + CARD_GAP;
 
 const EASE: [number, number, number, number] = [0.25, 0.4, 0.25, 1];
@@ -68,8 +68,8 @@ export default function Artwork() {
           Art beyond the brief.
         </h2>
         <p className="text-[#888888] mt-4 max-w-lg leading-relaxed">
-          Outside the grid system, I draw. Anime sketch artist — pencil, ink,
-          and a lifelong obsession with the genre.
+          Outside the grid system, I draw. Pencil and ink, anime characters,
+          a lifelong obsession with the genre.
         </p>
       </motion.div>
 
@@ -112,7 +112,7 @@ export default function Artwork() {
             initial={{ opacity: 0, x: 24 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.75, delay: 0.25, ease: EASE }}
-            className="flex flex-col gap-6"
+            className="flex flex-col gap-6 pt-2 lg:pt-0"
           >
             <p className="font-mono text-[10px] text-[#CC310E] uppercase tracking-[0.25em]">
               The origin story
@@ -160,7 +160,7 @@ export default function Artwork() {
             drag="x"
             dragConstraints={{
               left: -(SKETCHES.length - 1) * STEP,
-              right: 0,
+              right: STEP,
             }}
             dragElastic={0.08}
             onDragEnd={handleDragEnd}

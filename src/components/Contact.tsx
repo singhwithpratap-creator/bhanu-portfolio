@@ -19,7 +19,7 @@ export default function Contact() {
         transition={{ duration: 0.5 }}
         className="font-mono text-xs text-[#CC310E] uppercase tracking-[0.3em] mb-12"
       >
-        [ 04 - Let&apos;s Talk ]
+        [ 05 - Let&apos;s Talk ]
       </motion.p>
 
       <motion.h2
