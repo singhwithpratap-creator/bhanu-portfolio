@@ -82,12 +82,14 @@ export default function Hero() {
 
           {/* Main headline — float wrapper starts after fade-in */}
           <motion.div
-            animate={{ y: [0, -10, 0] }}
+            initial={{ y: 0 }}
+            animate={{ y: -12 }}
             transition={{
-              duration: 6,
+              duration: 3,
               repeat: Infinity,
+              repeatType: "mirror",
               ease: "easeInOut",
-              delay: 1.4,
+              delay: 1.2,
             }}
           >
             <h1
