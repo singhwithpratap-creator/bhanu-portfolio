@@ -227,12 +227,8 @@ html.light section[aria-label*="Hero"] .from-\[\#080808\]\/70 {
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgb(244 243 240 / 0));
 }
 
-/* Accent in hero: deeper red + shadow so it reads over light video */
-html.light section[aria-label*="Hero"] .text-\[\#CC310E\] {
-  color: #8B1A00 !important;
-  text-shadow: 0 1px 3px rgba(255,255,255,0.6);
-  font-weight: 700;
-}
+/* Accent stays red */
+html.light section[aria-label*="Hero"] .text-\[\#CC310E\] { color: #CC310E; }
 
 /* ── Toronto subline: boost opacity so it reads over video ── */
 html.light section[aria-label*="Hero"] .text-\[\#888888\]\/70 {
