@@ -84,6 +84,8 @@ function ProjectCard({
             />
             {/* Hover overlay */}
             <div className="absolute inset-0 bg-[#CC310E]/0 group-hover:bg-[#CC310E]/5 transition-colors duration-500" />
+            {/* Red bottom border — matches About profile pic */}
+            <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-[#CC310E] via-[#d94a1f] to-transparent" />
             {/* Number badge */}
             <div className="absolute top-4 left-4 font-mono text-[10px] text-[#CC310E] bg-[#080808]/90 px-2.5 py-1 border border-[#CC310E]/20 tracking-widest">
               {project.number}
