@@ -1,33 +1,32 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 
 const RED     = "#CC310E";
-const OUTLINE = "#3A0800";
+const OUTLINE = "#2A0500";
 
-// Classic pixel-art arrow cursor
-// 0 = empty, 1 = outline (dark), 2 = fill (red)
+// Clean pixel-art arrow cursor
+// 0 = transparent, 1 = dark outline, 2 = red fill
+// Hotspot is top-left (0,0)
 const GRID = [
-  [1,0,0,0,0,0,0,0,0,0,0],
-  [1,1,0,0,0,0,0,0,0,0,0],
-  [1,2,1,0,0,0,0,0,0,0,0],
-  [1,2,2,1,0,0,0,0,0,0,0],
-  [1,2,2,2,1,0,0,0,0,0,0],
-  [1,2,2,2,2,1,0,0,0,0,0],
-  [1,2,2,2,2,2,1,0,0,0,0],
-  [1,2,2,2,2,2,2,1,0,0,0],
-  [1,2,2,2,2,2,2,2,1,0,0],
-  [1,2,2,2,2,1,1,1,1,0,0],
-  [1,2,2,2,1,0,1,2,2,1,0],
-  [1,2,2,1,0,0,0,1,2,2,1],
-  [1,2,1,0,0,0,0,0,1,2,1],
-  [1,1,0,0,0,0,0,0,0,1,1],
+  [1,0,0,0,0,0,0],
+  [1,1,0,0,0,0,0],
+  [1,2,1,0,0,0,0],
+  [1,2,2,1,0,0,0],
+  [1,2,2,2,1,0,0],
+  [1,2,2,2,2,1,0],
+  [1,2,2,2,2,2,1],
+  [1,2,2,2,2,2,1],
+  [1,2,2,2,1,1,0],
+  [1,2,2,1,0,0,0],
+  [1,2,1,0,0,0,0],
+  [1,1,0,0,0,0,0],
 ];
 
-const PX = 4; // pixel size — bigger = chunkier
-const CW = 11 * PX;
-const CH = GRID.length * PX;
+const PX = 5; // size of each pixel block
+const CW  = 7 * PX;
+const CH  = GRID.length * PX;
 
 function PixelArrow({ isPointer }: { isPointer: boolean }) {
   return (
@@ -37,8 +36,7 @@ function PixelArrow({ isPointer }: { isPointer: boolean }) {
       viewBox={`0 0 ${CW} ${CH}`}
       style={{
         transform: isPointer ? "scale(1.15)" : "scale(1)",
-        transition: "transform 0.2s ease",
-        imageRendering: "pixelated",
+        transition: "transform 0.15s ease",
       }}
       shapeRendering="crispEdges"
     >
@@ -66,11 +64,10 @@ export default function Cursor() {
   const [isPointer, setIsPointer] = useState(false);
   const [isHidden, setIsHidden]   = useState(true);
 
-  // Raw mouse position
   const rawX = useMotionValue(-200);
   const rawY = useMotionValue(-200);
 
-  // Spring-smoothed values — high damping = buttery smooth
+  // Very smooth spring — high damping, medium stiffness
   const x = useSpring(rawX, { stiffness: 260, damping: 38, mass: 0.25 });
   const y = useSpring(rawY, { stiffness: 260, damping: 38, mass: 0.25 });
 
