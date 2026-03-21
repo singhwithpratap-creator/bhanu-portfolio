@@ -66,8 +66,8 @@ export default function ParticleCanvas() {
 
         // Soft glow
         const grd = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.radius * 2.5);
-        grd.addColorStop(0, `rgba(204, 49, 14, ${p.opacity})`);
-        grd.addColorStop(1, `rgba(204, 49, 14, 0)`);
+        grd.addColorStop(0, `rgba(0, 200, 255, ${p.opacity})`);
+        grd.addColorStop(1, `rgba(0, 200, 255, 0)`);
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.radius * 2.5, 0, Math.PI * 2);
         ctx.fillStyle = grd;
@@ -76,7 +76,7 @@ export default function ParticleCanvas() {
         // Core dot
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(204, 49, 14, ${Math.min(p.opacity + 0.2, 0.65)})`;
+        ctx.fillStyle = `rgba(0, 200, 255, ${Math.min(p.opacity + 0.2, 0.65)})`;
         ctx.fill();
       });
 
@@ -91,7 +91,7 @@ export default function ParticleCanvas() {
             ctx.beginPath();
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = `rgba(204, 49, 14, ${lineOpacity})`;
+            ctx.strokeStyle = `rgba(0, 200, 255, ${lineOpacity})`;
             ctx.lineWidth = 0.4;
             ctx.stroke();
           }
