@@ -3,6 +3,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import Link from "next/link";
 import { useRef } from "react";
+import ParticleCanvas from "./ParticleCanvas";
 
 const EASE: [number, number, number, number] = [0.25, 0.4, 0.25, 1];
 
@@ -55,6 +56,8 @@ export default function Hero() {
         {/* Top vignette for nav area */}
         <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-[#080808] to-transparent" />
 
+        {/* Particle system */}
+        <ParticleCanvas />
       </div>
 
       {/* Floating accent lines */}
