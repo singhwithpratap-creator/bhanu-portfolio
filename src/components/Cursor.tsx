@@ -1,122 +1,121 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { motion, useMotionValue, useSpring } from "framer-motion";
 
-// Pixel art cursor — 1 = filled pink square, 0 = empty
-// Classic arrow cursor shape in pixel grid
-const PIXEL_SIZE = 3;
-const PINK = "#FF2D8B";
+const RED     = "#CC310E";
+const OUTLINE = "#3A0800";
+
+// Classic pixel-art arrow cursor
+// 0 = empty, 1 = outline (dark), 2 = fill (red)
 const GRID = [
   [1,0,0,0,0,0,0,0,0,0,0],
   [1,1,0,0,0,0,0,0,0,0,0],
-  [1,1,1,0,0,0,0,0,0,0,0],
-  [1,1,1,1,0,0,0,0,0,0,0],
-  [1,1,1,1,1,0,0,0,0,0,0],
-  [1,1,1,1,1,1,0,0,0,0,0],
-  [1,1,1,1,1,1,1,0,0,0,0],
-  [1,1,1,1,1,1,1,1,0,0,0],
-  [1,1,1,1,1,1,0,0,0,0,0],
-  [1,1,0,1,1,1,1,0,0,0,0],
-  [1,0,0,0,1,1,1,1,0,0,0],
-  [0,0,0,0,0,1,1,1,1,0,0],
-  [0,0,0,0,0,0,1,1,1,1,0],
-  [0,0,0,0,0,0,0,1,1,1,1],
+  [1,2,1,0,0,0,0,0,0,0,0],
+  [1,2,2,1,0,0,0,0,0,0,0],
+  [1,2,2,2,1,0,0,0,0,0,0],
+  [1,2,2,2,2,1,0,0,0,0,0],
+  [1,2,2,2,2,2,1,0,0,0,0],
+  [1,2,2,2,2,2,2,1,0,0,0],
+  [1,2,2,2,2,2,2,2,1,0,0],
+  [1,2,2,2,2,1,1,1,1,0,0],
+  [1,2,2,2,1,0,1,2,2,1,0],
+  [1,2,2,1,0,0,0,1,2,2,1],
+  [1,2,1,0,0,0,0,0,1,2,1],
+  [1,1,0,0,0,0,0,0,0,1,1],
 ];
 
-const W = 11 * PIXEL_SIZE;
-const H = GRID.length * PIXEL_SIZE;
+const PX = 4; // pixel size — bigger = chunkier
+const CW = 11 * PX;
+const CH = GRID.length * PX;
 
-function PixelCursor({ isPointer }: { isPointer: boolean }) {
+function PixelArrow({ isPointer }: { isPointer: boolean }) {
   return (
     <svg
-      width={W}
-      height={H}
-      viewBox={`0 0 ${W} ${H}`}
+      width={CW}
+      height={CH}
+      viewBox={`0 0 ${CW} ${CH}`}
       style={{
-        transform: isPointer ? "scale(1.2)" : "scale(1)",
-        transition: "transform 0.15s ease",
+        transform: isPointer ? "scale(1.15)" : "scale(1)",
+        transition: "transform 0.2s ease",
         imageRendering: "pixelated",
       }}
+      shapeRendering="crispEdges"
     >
       {GRID.map((row, y) =>
-        row.map((cell, x) =>
-          cell ? (
+        row.map((cell, x) => {
+          if (!cell) return null;
+          return (
             <rect
               key={`${x}-${y}`}
-              x={x * PIXEL_SIZE}
-              y={y * PIXEL_SIZE}
-              width={PIXEL_SIZE}
-              height={PIXEL_SIZE}
-              fill={PINK}
+              x={x * PX}
+              y={y * PX}
+              width={PX}
+              height={PX}
+              fill={cell === 1 ? OUTLINE : RED}
             />
-          ) : null
-        )
+          );
+        })
       )}
     </svg>
   );
 }
 
 export default function Cursor() {
-  const [position, setPosition] = useState({ x: -100, y: -100 });
+  const [isMobile, setIsMobile]   = useState(true);
   const [isPointer, setIsPointer] = useState(false);
-  const [isHidden, setIsHidden] = useState(true);
-  const [isMobile, setIsMobile] = useState(true);
+  const [isHidden, setIsHidden]   = useState(true);
+
+  // Raw mouse position
+  const rawX = useMotionValue(-200);
+  const rawY = useMotionValue(-200);
+
+  // Spring-smoothed values — high damping = buttery smooth
+  const x = useSpring(rawX, { stiffness: 260, damping: 38, mass: 0.25 });
+  const y = useSpring(rawY, { stiffness: 260, damping: 38, mass: 0.25 });
 
   useEffect(() => {
-    // Disable on touch/mobile devices
     const isTouch = window.matchMedia("(pointer: coarse)").matches;
     setIsMobile(isTouch);
     if (isTouch) return;
 
-    // Hide the native cursor
     document.body.style.cursor = "none";
 
-    const onMouseMove = (e: MouseEvent) => {
-      setPosition({ x: e.clientX, y: e.clientY });
+    const onMove = (e: MouseEvent) => {
+      rawX.set(e.clientX);
+      rawY.set(e.clientY);
       setIsHidden(false);
-      const target = e.target as HTMLElement;
+      const t = e.target as HTMLElement;
       setIsPointer(
-        window.getComputedStyle(target).cursor === "pointer" ||
-          target.tagName === "A" ||
-          target.tagName === "BUTTON" ||
-          !!target.closest("a") ||
-          !!target.closest("button")
+        window.getComputedStyle(t).cursor === "pointer" ||
+        t.tagName === "A" || t.tagName === "BUTTON" ||
+        !!t.closest("a") || !!t.closest("button")
       );
     };
-    const onMouseLeave = () => setIsHidden(true);
-    const onMouseEnter = () => setIsHidden(false);
 
-    window.addEventListener("mousemove", onMouseMove);
-    document.addEventListener("mouseleave", onMouseLeave);
-    document.addEventListener("mouseenter", onMouseEnter);
+    const onLeave = () => setIsHidden(true);
+    const onEnter = () => setIsHidden(false);
+
+    window.addEventListener("mousemove", onMove);
+    document.addEventListener("mouseleave", onLeave);
+    document.addEventListener("mouseenter", onEnter);
 
     return () => {
       document.body.style.cursor = "";
-      window.removeEventListener("mousemove", onMouseMove);
-      document.removeEventListener("mouseleave", onMouseLeave);
-      document.removeEventListener("mouseenter", onMouseEnter);
+      window.removeEventListener("mousemove", onMove);
+      document.removeEventListener("mouseleave", onLeave);
+      document.removeEventListener("mouseenter", onEnter);
     };
-  }, []);
+  }, [rawX, rawY]);
 
   if (isMobile) return null;
 
   return (
     <motion.div
       className="fixed top-0 left-0 z-[9999] pointer-events-none"
-      animate={{
-        x: position.x,
-        y: position.y,
-        opacity: isHidden ? 0 : 1,
-      }}
-      transition={{
-        type: "spring",
-        damping: 35,
-        stiffness: 350,
-        mass: 0.4,
-      }}
+      style={{ x, y, opacity: isHidden ? 0 : 1 }}
     >
-      <PixelCursor isPointer={isPointer} />
+      <PixelArrow isPointer={isPointer} />
     </motion.div>
   );
 }
