@@ -10,27 +10,25 @@ import { motion, useMotionValue, useSpring } from "framer-motion";
 //                tail back → junction → top-right → back to tip
 const CURSOR_POINTS = "1,1 1,15 4,11 7,18 9,17 6,10 11,10";
 
+const SCALE      = 2;    // display scale — change this to resize
+const SCALE_HOVER = 2.3;
+
 function PixelArrow({ isPointer }: { isPointer: boolean }) {
+  const sc = isPointer ? SCALE_HOVER : SCALE;
   return (
     <svg
-      width={11}
-      height={18}
+      width={Math.round(11 * sc)}
+      height={Math.round(18 * sc)}
       viewBox="0 0 11 18"
       shapeRendering="crispEdges"
-      style={{
-        display: "block",
-        transform: `scale(${isPointer ? 3.6 : 3}) `,
-        transformOrigin: "0 0",
-        transition: "transform 0.15s ease",
-        imageRendering: "pixelated",
-      }}
+      style={{ display: "block", transition: "width 0.15s ease, height 0.15s ease" }}
     >
-      {/* Dark outline — slightly expanded behind the fill */}
+      {/* Dark outline */}
       <polygon
         points={CURSOR_POINTS}
         fill="none"
         stroke="#2A0500"
-        strokeWidth={2.2}
+        strokeWidth={1.2}
         strokeLinejoin="miter"
       />
       {/* Red fill */}
