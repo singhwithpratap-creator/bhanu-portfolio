@@ -14,7 +14,7 @@ const projects = [
     subtitle: "Website Design & Experience",
     tags: ["UX Design", "Web", "Design System"],
     href: "/work/ibm-conference",
-    image: "/images/cs01-thumb.png",
+    image: "/images/cs01-thumb.gif",
     year: "2024",
     accent: "Enterprise Web",
   },
@@ -80,6 +80,7 @@ function ProjectCard({
               src={project.image}
               alt={project.title}
               fill
+              unoptimized={project.image.endsWith(".gif")}
               className={`object-cover transition-transform duration-700 group-hover:scale-[1.04] opacity-80 group-hover:opacity-100 ${"objectPosition" in project && project.objectPosition === "center" ? "object-center" : "object-top"}`}
             />
             {/* Hover overlay */}
