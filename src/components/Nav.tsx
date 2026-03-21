@@ -135,7 +135,7 @@ export default function Nav() {
               href="/bhanu-resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-4 py-1.5 border border-[#CC310E] text-[#CC310E] hover:bg-[#CC310E] hover:text-white transition-all duration-200 text-xs"
+              className="px-4 py-1.5 bg-[#CC310E] text-white hover:bg-[#a8280c] transition-all duration-200 text-xs font-mono tracking-widest"
             >
               Resume ↗
             </a>
