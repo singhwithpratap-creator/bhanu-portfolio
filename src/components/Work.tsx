@@ -21,7 +21,7 @@ const projects = [
   {
     number: "02",
     title: "Creative Advertising",
-    subtitle: "CandyFunhouse Campaign",
+    subtitle: "Visual Design and Campaigns",
     tags: ["Brand", "Advertising", "Midjourney"],
     href: "/work/creative-advertising",
     image: "/images/cs04-thumb.png",
