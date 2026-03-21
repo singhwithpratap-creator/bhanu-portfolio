@@ -1,56 +1,30 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 
-// Classic arrow cursor drawn as a polygon at 1:1 scale
-// then CSS-scaled 3× so it looks chunky and pixelated
-//
-// Points trace:  tip → down-left edge → V-split → tail tip →
-//                tail back → junction → top-right → back to tip
-const CURSOR_POINTS = "1,1 1,15 4,11 7,18 9,17 6,10 11,10";
-
-const SCALE      = 2;    // display scale — change this to resize
-const SCALE_HOVER = 2.3;
-
-function PixelArrow({ isPointer }: { isPointer: boolean }) {
-  const sc = isPointer ? SCALE_HOVER : SCALE;
-  return (
-    <svg
-      width={Math.round(11 * sc)}
-      height={Math.round(18 * sc)}
-      viewBox="0 0 11 18"
-      shapeRendering="crispEdges"
-      style={{ display: "block", transition: "width 0.15s ease, height 0.15s ease" }}
-    >
-      {/* Dark outline */}
-      <polygon
-        points={CURSOR_POINTS}
-        fill="none"
-        stroke="#2A0500"
-        strokeWidth={1.2}
-        strokeLinejoin="miter"
-      />
-      {/* Red fill */}
-      <polygon
-        points={CURSOR_POINTS}
-        fill="#CC310E"
-        stroke="none"
-      />
-    </svg>
-  );
-}
+// Polygon points for classic arrow cursor
+// viewBox has 2px padding on all sides to prevent stroke clipping
+const CURSOR_POINTS = "3,3 3,17 6,13 9,20 11,19 8,12 13,12";
+const VB = "0 0 15 22"; // viewBox with padding
+const NW = 15; // natural width
+const NH = 22; // natural height
+const SCALE = 2; // display scale
 
 export default function Cursor() {
-  const [isMobile, setIsMobile]   = useState(true);
-  const [isPointer, setIsPointer] = useState(false);
-  const [isHidden, setIsHidden]   = useState(true);
+  const [isMobile, setIsMobile] = useState(true);
 
-  const rawX = useMotionValue(-200);
-  const rawY = useMotionValue(-200);
+  // Use motion values for everything to avoid re-renders on mousemove
+  const rawX    = useMotionValue(-300);
+  const rawY    = useMotionValue(-300);
+  const opacity = useMotionValue(0);
 
-  const x = useSpring(rawX, { stiffness: 600, damping: 40, mass: 0.1 });
-  const y = useSpring(rawY, { stiffness: 600, damping: 40, mass: 0.1 });
+  // High stiffness + damping for fast, smooth tracking with no jitter
+  const x = useSpring(rawX, { stiffness: 800, damping: 50, mass: 0.08 });
+  const y = useSpring(rawY, { stiffness: 800, damping: 50, mass: 0.08 });
+
+  const isPointerRef = useRef(false);
+  const svgRef       = useRef<SVGSVGElement>(null);
 
   useEffect(() => {
     const isTouch = window.matchMedia("(pointer: coarse)").matches;
@@ -62,17 +36,27 @@ export default function Cursor() {
     const onMove = (e: MouseEvent) => {
       rawX.set(e.clientX);
       rawY.set(e.clientY);
-      setIsHidden(false);
+      opacity.set(1);
+
       const t = e.target as HTMLElement;
-      setIsPointer(
+      const ptr =
         window.getComputedStyle(t).cursor === "pointer" ||
         t.tagName === "A" || t.tagName === "BUTTON" ||
-        !!t.closest("a") || !!t.closest("button")
-      );
+        !!t.closest("a") || !!t.closest("button");
+
+      // Only update DOM if pointer state actually changed
+      if (ptr !== isPointerRef.current) {
+        isPointerRef.current = ptr;
+        if (svgRef.current) {
+          const s = ptr ? SCALE * 1.2 : SCALE;
+          svgRef.current.style.width  = `${NW * s}px`;
+          svgRef.current.style.height = `${NH * s}px`;
+        }
+      }
     };
 
-    const onLeave = () => setIsHidden(true);
-    const onEnter = () => setIsHidden(false);
+    const onLeave  = () => opacity.set(0);
+    const onEnter  = () => opacity.set(1);
 
     window.addEventListener("mousemove", onMove);
     document.addEventListener("mouseleave", onLeave);
@@ -84,16 +68,38 @@ export default function Cursor() {
       document.removeEventListener("mouseleave", onLeave);
       document.removeEventListener("mouseenter", onEnter);
     };
-  }, [rawX, rawY]);
+  }, [rawX, rawY, opacity]);
 
   if (isMobile) return null;
 
   return (
     <motion.div
       className="fixed top-0 left-0 z-[9999] pointer-events-none"
-      style={{ x, y, opacity: isHidden ? 0 : 1 }}
+      style={{ x, y, opacity }}
     >
-      <PixelArrow isPointer={isPointer} />
+      <svg
+        ref={svgRef}
+        width={NW * SCALE}
+        height={NH * SCALE}
+        viewBox={VB}
+        shapeRendering="crispEdges"
+        style={{ display: "block", transition: "width 0.15s ease, height 0.15s ease" }}
+      >
+        {/* Outline */}
+        <polygon
+          points={CURSOR_POINTS}
+          fill="none"
+          stroke="#2A0500"
+          strokeWidth={1.5}
+          strokeLinejoin="miter"
+        />
+        {/* Red fill */}
+        <polygon
+          points={CURSOR_POINTS}
+          fill="#CC310E"
+          stroke="none"
+        />
+      </svg>
     </motion.div>
   );
 }
