@@ -45,7 +45,7 @@ const projects = [
     subtitle: "Event App Design",
     tags: ["Product Design", "Mobile", "iOS"],
     href: "/work/ibm-mobile",
-    image: "/images/cs02-thumb.png",
+    image: "/images/cs04-thumb.png",
     year: "2024",
     accent: "Mobile App",
   },
