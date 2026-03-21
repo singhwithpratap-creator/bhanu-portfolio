@@ -24,7 +24,7 @@ const projects = [
     subtitle: "Visual Design and Campaigns",
     tags: ["Brand", "Advertising", "Midjourney"],
     href: "/work/creative-advertising",
-    image: "/images/cs04-thumb.png",
+    image: "/images/cs04/holiday-nerd.gif",
     year: "2024",
     accent: "Campaign",
     objectPosition: "center",
