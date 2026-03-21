@@ -31,15 +31,15 @@ export default function ParticleCanvas() {
     resize();
     window.addEventListener("resize", resize);
 
-    const COUNT = 70;
+    const COUNT = 45;
 
     const spawn = (): Particle => ({
       x: Math.random() * canvas.width,
       y: Math.random() * canvas.height,
-      vx: (Math.random() - 0.5) * 0.22,
-      vy: (Math.random() - 0.5) * 0.22,
-      radius: Math.random() * 2.2 + 0.8,
-      opacity: Math.random() * 0.45 + 0.2,
+      vx: (Math.random() - 0.5) * 0.15,
+      vy: (Math.random() - 0.5) * 0.15,
+      radius: Math.random() * 1.2 + 0.4,
+      opacity: Math.random() * 0.15 + 0.06,
       opacityDir: Math.random() > 0.5 ? 1 : -1,
     });
 
@@ -54,9 +54,9 @@ export default function ParticleCanvas() {
         p.y += p.vy;
 
         // Pulse opacity
-        p.opacity += p.opacityDir * 0.0012;
-        if (p.opacity >= 0.65) p.opacityDir = -1;
-        if (p.opacity <= 0.12) p.opacityDir = 1;
+        p.opacity += p.opacityDir * 0.0006;
+        if (p.opacity >= 0.22) p.opacityDir = -1;
+        if (p.opacity <= 0.04) p.opacityDir = 1;
 
         // Wrap edges
         if (p.x < -4) p.x = canvas.width + 4;
@@ -64,19 +64,19 @@ export default function ParticleCanvas() {
         if (p.y < -4) p.y = canvas.height + 4;
         if (p.y > canvas.height + 4) p.y = -4;
 
-        // Glow effect
-        const grd = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.radius * 3);
+        // Soft glow
+        const grd = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.radius * 2.5);
         grd.addColorStop(0, `rgba(204, 49, 14, ${p.opacity})`);
         grd.addColorStop(1, `rgba(204, 49, 14, 0)`);
         ctx.beginPath();
-        ctx.arc(p.x, p.y, p.radius * 3, 0, Math.PI * 2);
+        ctx.arc(p.x, p.y, p.radius * 2.5, 0, Math.PI * 2);
         ctx.fillStyle = grd;
         ctx.fill();
 
-        // Solid core
+        // Core dot
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(220, 80, 40, ${Math.min(p.opacity + 0.2, 1)})`;
+        ctx.fillStyle = `rgba(204, 49, 14, ${Math.min(p.opacity + 0.08, 0.3)})`;
         ctx.fill();
       });
 
@@ -86,13 +86,13 @@ export default function ParticleCanvas() {
           const dx = particles[i].x - particles[j].x;
           const dy = particles[i].y - particles[j].y;
           const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 110) {
-            const lineOpacity = (1 - dist / 110) * 0.18;
+          if (dist < 100) {
+            const lineOpacity = (1 - dist / 100) * 0.06;
             ctx.beginPath();
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
             ctx.strokeStyle = `rgba(204, 49, 14, ${lineOpacity})`;
-            ctx.lineWidth = 0.6;
+            ctx.lineWidth = 0.4;
             ctx.stroke();
           }
         }
