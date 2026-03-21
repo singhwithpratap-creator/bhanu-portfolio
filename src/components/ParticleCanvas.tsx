@@ -31,15 +31,15 @@ export default function ParticleCanvas() {
     resize();
     window.addEventListener("resize", resize);
 
-    const COUNT = 45;
+    const COUNT = 55;
 
     const spawn = (): Particle => ({
       x: Math.random() * canvas.width,
       y: Math.random() * canvas.height,
-      vx: (Math.random() - 0.5) * 0.15,
-      vy: (Math.random() - 0.5) * 0.15,
-      radius: Math.random() * 1.2 + 0.4,
-      opacity: Math.random() * 0.15 + 0.06,
+      vx: (Math.random() - 0.5) * 0.18,
+      vy: (Math.random() - 0.5) * 0.18,
+      radius: Math.random() * 1.6 + 0.8,
+      opacity: Math.random() * 0.25 + 0.18,
       opacityDir: Math.random() > 0.5 ? 1 : -1,
     });
 
@@ -54,9 +54,9 @@ export default function ParticleCanvas() {
         p.y += p.vy;
 
         // Pulse opacity
-        p.opacity += p.opacityDir * 0.0006;
-        if (p.opacity >= 0.22) p.opacityDir = -1;
-        if (p.opacity <= 0.04) p.opacityDir = 1;
+        p.opacity += p.opacityDir * 0.001;
+        if (p.opacity >= 0.45) p.opacityDir = -1;
+        if (p.opacity <= 0.1) p.opacityDir = 1;
 
         // Wrap edges
         if (p.x < -4) p.x = canvas.width + 4;
@@ -76,7 +76,7 @@ export default function ParticleCanvas() {
         // Core dot
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(204, 49, 14, ${Math.min(p.opacity + 0.08, 0.3)})`;
+        ctx.fillStyle = `rgba(204, 49, 14, ${Math.min(p.opacity + 0.2, 0.65)})`;
         ctx.fill();
       });
 
@@ -87,7 +87,7 @@ export default function ParticleCanvas() {
           const dy = particles[i].y - particles[j].y;
           const dist = Math.sqrt(dx * dx + dy * dy);
           if (dist < 100) {
-            const lineOpacity = (1 - dist / 100) * 0.06;
+            const lineOpacity = (1 - dist / 100) * 0.12;
             ctx.beginPath();
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
