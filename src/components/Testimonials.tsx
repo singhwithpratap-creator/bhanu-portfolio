@@ -1,0 +1,211 @@
+"use client";
+
+import { motion, useInView } from "framer-motion";
+import { useRef, useState } from "react";
+
+const testimonials = [
+  {
+    quote:
+      "Bhanu has a rare ability to bridge the gap between design thinking and technical execution. He delivered design systems that our developers actually loved using — consistent, accessible, and built with real product thinking. One of the most thorough UX designers I've worked with.",
+    author: "Priya Mehta",
+    title: "Senior Product Manager",
+    company: "IBM",
+    initials: "PM",
+    accent: "#CC310E",
+  },
+  {
+    quote:
+      "Working with Bhanu on the TechXchange conference experience was exceptional. He took an incredibly complex, multi-track event and turned it into an intuitive digital experience. His eye for visual hierarchy and his instinct for what users actually need is sharp.",
+    author: "James Colton",
+    title: "Design Lead",
+    company: "IBM iX",
+    initials: "JC",
+    accent: "#CC310E",
+  },
+  {
+    quote:
+      "Bhanu brought a level of craft and intentionality that elevated the whole team. Beyond his strong Figma skills, he asked the right questions, pushed back when something wasn't in the user's best interest, and always delivered on time. I'd work with him again without hesitation.",
+    author: "Sara Okonkwo",
+    title: "UX Research Manager",
+    company: "IBM",
+    initials: "SO",
+    accent: "#CC310E",
+  },
+];
+
+function QuoteIcon() {
+  return (
+    <svg
+      width="32"
+      height="24"
+      viewBox="0 0 32 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+    >
+      <path
+        d="M0 24V14.4C0 10.56 0.96 7.28 2.88 4.56C4.88 1.84 7.68 0.16 11.28 0L12.48 2.16C9.92 2.8 7.96 4.08 6.6 6C5.32 7.84 4.68 9.92 4.68 12.24H9.6V24H0ZM19.2 24V14.4C19.2 10.56 20.16 7.28 22.08 4.56C24.08 1.84 26.88 0.16 30.48 0L31.68 2.16C29.12 2.8 27.16 4.08 25.8 6C24.52 7.84 23.88 9.92 23.88 12.24H28.8V24H19.2Z"
+        fill="#CC310E"
+        opacity="0.3"
+      />
+    </svg>
+  );
+}
+
+export default function Testimonials() {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-100px" });
+  const [active, setActive] = useState(0);
+
+  return (
+    <section
+      id="testimonials"
+      ref={ref}
+      className="py-24 border-b border-[#1F1F1F] overflow-hidden"
+      aria-label="Testimonials"
+    >
+      <div className="px-6 lg:px-12 max-w-7xl mx-auto">
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5 }}
+          className="mb-16"
+        >
+          <p className="font-mono text-xs text-[#CC310E] uppercase tracking-[0.3em] mb-3">
+            [ 04 — Testimonials ]
+          </p>
+          <h2
+            className="font-display font-bold text-[#F5F5F5]"
+            style={{ fontSize: "clamp(28px, 4vw, 44px)" }}
+          >
+            Words from the room.
+          </h2>
+        </motion.div>
+
+        {/* Large featured quote */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+          {/* Quote area */}
+          <motion.div
+            initial={{ opacity: 0, x: -24 }}
+            animate={inView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.15 }}
+            className="lg:col-span-8"
+          >
+            {/* Active testimonial */}
+            <div className="relative">
+              {/* Red accent bar */}
+              <div className="absolute -left-6 top-0 bottom-0 w-px bg-gradient-to-b from-[#CC310E] via-[#CC310E]/40 to-transparent" />
+
+              <div className="pl-6">
+                <QuoteIcon />
+
+                <div className="mt-6 overflow-hidden" style={{ minHeight: 180 }}>
+                  {testimonials.map((t, i) => (
+                    <motion.blockquote
+                      key={i}
+                      initial={false}
+                      animate={{
+                        opacity: active === i ? 1 : 0,
+                        y: active === i ? 0 : 12,
+                        position: active === i ? "relative" : "absolute",
+                      }}
+                      transition={{ duration: 0.45, ease: "easeOut" }}
+                      className={active === i ? "block" : "absolute inset-0 pointer-events-none"}
+                    >
+                      <p
+                        className="text-[#C8C8C8] leading-relaxed font-light"
+                        style={{ fontSize: "clamp(16px, 2vw, 22px)", lineHeight: 1.7 }}
+                      >
+                        &ldquo;{t.quote}&rdquo;
+                      </p>
+
+                      <footer className="mt-8 flex items-center gap-4">
+                        {/* Avatar */}
+                        <div className="w-10 h-10 flex-shrink-0 border border-[#CC310E]/40 bg-[#1A1A1A] flex items-center justify-center">
+                          <span className="font-mono text-xs text-[#CC310E] tracking-wider">
+                            {t.initials}
+                          </span>
+                        </div>
+                        <div>
+                          <p className="font-mono text-sm text-[#F5F5F5] tracking-wide">
+                            {t.author}
+                          </p>
+                          <p className="font-mono text-xs text-[#555555] mt-0.5">
+                            {t.title} · {t.company}
+                          </p>
+                        </div>
+                        {/* LinkedIn badge */}
+                        <div className="ml-auto">
+                          <svg
+                            width="18"
+                            height="18"
+                            viewBox="0 0 24 24"
+                            fill="#0A66C2"
+                            opacity={0.5}
+                            aria-hidden="true"
+                          >
+                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                          </svg>
+                        </div>
+                      </footer>
+                    </motion.blockquote>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Selector column */}
+          <motion.div
+            initial={{ opacity: 0, x: 24 }}
+            animate={inView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="lg:col-span-4 flex flex-col gap-3"
+          >
+            {testimonials.map((t, i) => (
+              <button
+                key={i}
+                onClick={() => setActive(i)}
+                className="group text-left border transition-all duration-300 px-5 py-4 focus:outline-none"
+                style={{
+                  borderColor: active === i ? "#CC310E" : "#1F1F1F",
+                  background: active === i ? "rgba(204,49,14,0.05)" : "#0D0D0D",
+                }}
+              >
+                <div className="flex items-center gap-3 mb-1">
+                  {/* Dot indicator */}
+                  <div
+                    className="w-1.5 h-1.5 rounded-full flex-shrink-0 transition-colors duration-300"
+                    style={{ background: active === i ? "#CC310E" : "#333" }}
+                  />
+                  <p className="font-mono text-xs tracking-widest uppercase transition-colors duration-300"
+                    style={{ color: active === i ? "#F5F5F5" : "#555555" }}>
+                    {t.author}
+                  </p>
+                </div>
+                <p className="font-mono text-[10px] pl-4.5"
+                  style={{ color: active === i ? "#888888" : "#333333" }}>
+                  {t.title} · {t.company}
+                </p>
+              </button>
+            ))}
+
+            {/* Replace me note */}
+            <p className="font-mono text-[10px] text-[#333333] mt-4 leading-relaxed border-l border-[#1F1F1F] pl-3">
+              ← Replace with your actual<br />LinkedIn recommendations
+            </p>
+          </motion.div>
+        </div>
+
+        {/* Bottom decorative line */}
+        <motion.div
+          initial={{ scaleX: 0 }}
+          animate={inView ? { scaleX: 1 } : {}}
+          transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
+          className="mt-20 h-px bg-gradient-to-r from-[#CC310E]/60 via-[#CC310E]/20 to-transparent origin-left"
+        />
+      </div>
+    </section>
+  );
+}
