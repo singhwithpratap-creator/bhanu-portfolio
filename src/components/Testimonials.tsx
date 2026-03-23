@@ -6,29 +6,29 @@ import { useRef, useState } from "react";
 const testimonials = [
   {
     quote:
-      "Bhanu has a rare ability to bridge the gap between design thinking and technical execution. He delivered design systems that our developers actually loved using — consistent, accessible, and built with real product thinking. One of the most thorough UX designers I've worked with.",
-    author: "Priya Mehta",
-    title: "Senior Product Manager",
+      "I had the pleasure of managing Bhanu during the IBM TechXchange program, where he consistently proved himself to be an incredibly reliable and dedicated designer. He follows creative direction thoughtfully, delivers high-quality work, and approaches every project with a strong desire to learn and grow. What stands out most about Bhanu is his mindset — he's proactive, curious, and always willing to support others on the team. I highly recommend him for teams that value collaboration, ownership, and continuous growth.",
+    author: "Jenny Sanchez",
+    title: "Design Lead, Creative Direction",
     company: "IBM",
-    initials: "PM",
+    initials: "JS",
     accent: "#CC310E",
   },
   {
     quote:
-      "Working with Bhanu on the TechXchange conference experience was exceptional. He took an incredibly complex, multi-track event and turned it into an intuitive digital experience. His eye for visual hierarchy and his instinct for what users actually need is sharp.",
-    author: "James Colton",
-    title: "Design Lead",
-    company: "IBM iX",
-    initials: "JC",
+      "Working with Bhanu while at IBM reminded me of my days working in creative agencies. He brings a thoughtful, professional demeanor you would expect at a company like IBM, but the creativity and risk-taking you usually have to seek from an external agency. His curiosity and natural drive to try new tools and techniques make him an asset for teams looking for fresh ideas and thinking. He's a great teammate — I hope to work with him again in the future!",
+    author: "Nick Ferry",
+    title: "Tech & B2B Marketing, Digital Strategy",
+    company: "Ex-IBM",
+    initials: "NF",
     accent: "#CC310E",
   },
   {
     quote:
-      "Bhanu brought a level of craft and intentionality that elevated the whole team. Beyond his strong Figma skills, he asked the right questions, pushed back when something wasn't in the user's best interest, and always delivered on time. I'd work with him again without hesitation.",
-    author: "Sara Okonkwo",
-    title: "UX Research Manager",
-    company: "IBM",
-    initials: "SO",
+      "I've had the pleasure of working with Bhanu on several high intensity design projects, and he has consistently impressed me with his exceptional talent and dedication. Bhanu has a remarkable vision for design — he not only understands the creative brief but also grasps the deeper concept behind every project, bringing ideas to life with precision and originality. Beyond his technical and creative strengths, Bhanu stands out for his kindness, professionalism, and excellent communication skills. Collaborating with him is effortless.",
+    author: "Sophia Antar",
+    title: "Senior Operations & Program Leader",
+    company: "SaaS / AI",
+    initials: "SA",
     accent: "#CC310E",
   },
 ];
@@ -191,9 +191,8 @@ export default function Testimonials() {
               </button>
             ))}
 
-            {/* Replace me note */}
             <p className="font-mono text-[10px] text-[#333333] mt-4 leading-relaxed border-l border-[#1F1F1F] pl-3">
-              ← Replace with your actual<br />LinkedIn recommendations
+              Via LinkedIn · November 2025
             </p>
           </motion.div>
         </div>
