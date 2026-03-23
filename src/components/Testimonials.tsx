@@ -2,6 +2,7 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
+import { useTheme } from "next-themes";
 
 const testimonials = [
   {
@@ -59,6 +60,8 @@ export default function Testimonials() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
   const [active, setActive] = useState(0);
+  const { resolvedTheme } = useTheme();
+  const isLight = resolvedTheme === "light";
 
   return (
     <section
@@ -117,24 +120,27 @@ export default function Testimonials() {
                       className={active === i ? "block" : "absolute inset-0 pointer-events-none"}
                     >
                       <p
-                        className="text-[#C8C8C8] leading-relaxed font-light"
-                        style={{ fontSize: "clamp(16px, 2vw, 22px)", lineHeight: 1.7 }}
+                        className="leading-relaxed font-light"
+                        style={{ fontSize: "clamp(16px, 2vw, 22px)", lineHeight: 1.7, color: isLight ? "#1A1A1A" : "#C8C8C8" }}
                       >
                         &ldquo;{t.quote}&rdquo;
                       </p>
 
                       <footer className="mt-8 flex items-center gap-4">
                         {/* Avatar */}
-                        <div className="w-10 h-10 flex-shrink-0 border border-[#CC310E]/40 bg-[#1A1A1A] flex items-center justify-center">
+                        <div
+                          className="w-10 h-10 flex-shrink-0 border border-[#CC310E]/40 flex items-center justify-center"
+                          style={{ background: isLight ? "#E8E6E4" : "#1A1A1A" }}
+                        >
                           <span className="font-mono text-xs text-[#CC310E] tracking-wider">
                             {t.initials}
                           </span>
                         </div>
                         <div>
-                          <p className="font-mono text-sm text-[#F5F5F5] tracking-wide">
+                          <p className="font-mono text-sm tracking-wide" style={{ color: isLight ? "#0A0A0A" : "#F5F5F5" }}>
                             {t.author}
                           </p>
-                          <p className="font-mono text-xs text-[#555555] mt-0.5">
+                          <p className="font-mono text-xs mt-0.5" style={{ color: isLight ? "#444444" : "#555555" }}>
                             {t.title} · {t.company}
                           </p>
                         </div>
@@ -176,23 +182,25 @@ export default function Testimonials() {
                 onClick={() => setActive(i)}
                 className="group text-left border transition-all duration-300 px-5 py-4 focus:outline-none"
                 style={{
-                  borderColor: active === i ? "#CC310E" : "#1F1F1F",
-                  background: active === i ? "rgba(204,49,14,0.05)" : "#0D0D0D",
+                  borderColor: active === i ? "#CC310E" : isLight ? "#D0CECC" : "#1F1F1F",
+                  background: active === i
+                    ? "rgba(204,49,14,0.06)"
+                    : isLight ? "#EBEBEA" : "#0D0D0D",
                 }}
               >
                 <div className="flex items-center gap-3 mb-1">
                   {/* Dot indicator */}
                   <div
                     className="w-1.5 h-1.5 rounded-full flex-shrink-0 transition-colors duration-300"
-                    style={{ background: active === i ? "#CC310E" : "#333" }}
+                    style={{ background: active === i ? "#CC310E" : isLight ? "#AAAAAA" : "#333" }}
                   />
                   <p className="font-mono text-xs tracking-widest uppercase transition-colors duration-300"
-                    style={{ color: active === i ? "#F5F5F5" : "#555555" }}>
+                    style={{ color: active === i ? (isLight ? "#0A0A0A" : "#F5F5F5") : isLight ? "#555555" : "#555555" }}>
                     {t.author}
                   </p>
                 </div>
                 <p className="font-mono text-[10px] pl-4.5"
-                  style={{ color: active === i ? "#888888" : "#333333" }}>
+                  style={{ color: active === i ? (isLight ? "#444444" : "#888888") : isLight ? "#888888" : "#333333" }}>
                   {t.title} · {t.company}
                 </p>
               </button>
