@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useInView } from "framer-motion";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { useTheme } from "next-themes";
 
 const testimonials = [
@@ -61,7 +61,9 @@ export default function Testimonials() {
   const inView = useInView(ref, { once: true, margin: "-100px" });
   const [active, setActive] = useState(0);
   const { resolvedTheme } = useTheme();
-  const isLight = resolvedTheme === "light";
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+  const isLight = mounted && resolvedTheme === "light";
 
   return (
     <section
@@ -180,6 +182,7 @@ export default function Testimonials() {
               <button
                 key={i}
                 onClick={() => setActive(i)}
+                data-active={active === i}
                 className="group text-left border transition-all duration-300 px-5 py-4 focus:outline-none"
                 style={{
                   borderColor: active === i ? "#CC310E" : isLight ? "#D0CECC" : "#1F1F1F",

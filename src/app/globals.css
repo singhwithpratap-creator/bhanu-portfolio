@@ -295,3 +295,23 @@ html.light .nav-link:hover {
 html.light nav .text-\[\#C8C8C8\] {
   color: #1A1A1A !important;
 }
+
+/* ── Testimonials light mode ── */
+html.light #testimonials button {
+  background-color: #EBEBEA !important;
+  border-color: #D0CECC !important;
+  color: #0A0A0A !important;
+}
+html.light #testimonials button[data-active="true"] {
+  background-color: rgba(204,49,14,0.06) !important;
+  border-color: #CC310E !important;
+}
+html.light #testimonials blockquote p {
+  color: #1A1A1A !important;
+}
+html.light #testimonials footer p {
+  color: #0A0A0A !important;
+}
+html.light #testimonials footer p.text-xs {
+  color: #444444 !important;
+}
