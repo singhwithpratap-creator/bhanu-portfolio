@@ -198,7 +198,7 @@ export default function Testimonials() {
               </button>
             ))}
 
-            <p className="font-mono text-[10px] text-[#333333] mt-4 leading-relaxed border-l border-[#1F1F1F] pl-3">
+            <p className="font-mono text-[10px] text-[#666666] mt-4 leading-relaxed border-l border-[#333333] pl-3">
               Via LinkedIn · November 2025
             </p>
           </motion.div>
