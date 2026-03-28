@@ -15,7 +15,7 @@ const projects = [
     tags: ["UX Design", "Web", "Design System"],
     href: "/work/ibm-conference",
     image: "/images/cs01-thumb.gif",
-    year: "2024",
+    year: "2025",
     accent: "Enterprise Web",
   },
   {
