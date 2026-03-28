@@ -340,8 +340,8 @@ export default function IBMConferencePage() {
           ),
         },
       ]}
-      nextHref="/work/ibm-mobile"
-      nextTitle="IBM TechXchange Mobile App"
+      nextHref="/work/creative-advertising"
+      nextTitle="Creative Advertising"
     />
   );
 }
