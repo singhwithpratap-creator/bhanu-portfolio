@@ -176,8 +176,8 @@ export default function CreativeAdvertisingPage() {
         { value: "5+", label: "Packaging categories" },
         { value: "2.8×", label: "CTR vs category benchmark" },
       ]}
-      nextHref="/work/ibm-conference"
-      nextTitle="IBM TechXchange Conference"
+      nextHref="/eam-casestudy.html"
+      nextTitle="Product Design: Enterprise Asset Management"
     />
   );
 }
