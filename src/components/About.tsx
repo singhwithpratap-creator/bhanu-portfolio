@@ -16,7 +16,7 @@ const aiTools = [
 const stats = [
   { value: "7+", label: "Years experience" },
   { value: "F100", label: "Enterprise clients" },
-  { value: "4★", label: "Industry awards" },
+  { value: "4🏆", label: "Industry awards" },
 ];
 
 export default function About() {
