@@ -8,6 +8,7 @@ import Image from "next/image";
 
 const aiTools = [
   { name: "Figma", role: "Design & Prototyping", icon: "◆" },
+  { name: "Adobe Creative Cloud", role: "Illustration & Motion", icon: "◧" },
   { name: "Midjourney", role: "Visual Ideation", icon: "◈" },
   { name: "Claude", role: "Design Strategy", icon: "◉" },
   { name: "Gemini", role: "Research & Analysis", icon: "◎" },
