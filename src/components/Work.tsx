@@ -47,7 +47,7 @@ const projects = [
     tags: ["Product Design", "Mobile", "iOS"],
     href: "/work/ibm-mobile",
     image: "/images/cs04-thumb.png",
-    year: "2024",
+    year: "2025",
     accent: "Mobile App",
   },
 ];
