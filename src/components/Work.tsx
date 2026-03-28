@@ -31,7 +31,7 @@ const projects = [
   },
   {
     number: "03",
-    title: "Product Design and optimization: Enterprise Asset Management",
+    title: "Product Design: Enterprise Asset Management",
     subtitle: "Enterprise Asset Management Redesign",
     tags: ["UX Design", "Enterprise SaaS", "AI"],
     href: "/eam-casestudy.html",
