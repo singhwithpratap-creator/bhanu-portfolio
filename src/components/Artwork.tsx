@@ -119,7 +119,7 @@ export default function Artwork() {
             </p>
 
             <p className="font-display text-2xl lg:text-3xl font-bold text-[#F5F5F5] leading-snug">
-              I've been kerning since kindergarten. (Okay, maybe not kerning.)
+              I&apos;ve been kerning since kindergarten. (Okay, maybe not kerning.)
             </p>
 
             <div className="space-y-4 text-[#888888] leading-relaxed">
