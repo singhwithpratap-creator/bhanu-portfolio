@@ -31,13 +31,13 @@ const projects = [
   },
   {
     number: "03",
-    title: "AI Assisted Product Design",
-    subtitle: "FinSight - Investment Dashboard",
-    tags: ["AI Workflow", "Product Design", "Claude AI"],
-    href: "/work/product-ai",
+    title: "AssetIQ EAM",
+    subtitle: "Enterprise Asset Management Redesign",
+    tags: ["UX Design", "Enterprise SaaS", "AI"],
+    href: "/eam-casestudy.html",
     image: "/images/cs03-thumb.png",
     year: "2025",
-    accent: "AI-Native",
+    accent: "Enterprise",
   },
   {
     number: "04",
