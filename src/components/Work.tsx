@@ -10,7 +10,7 @@ import Image from "next/image";
 const projects = [
   {
     number: "01",
-    title: "IBM TechXchange Conference",
+    title: "Program Website: IBM TechXchange",
     subtitle: "Website Design & Experience",
     tags: ["UX Design", "Web", "Design System"],
     href: "/work/ibm-conference",
@@ -31,17 +31,18 @@ const projects = [
   },
   {
     number: "03",
-    title: "AssetIQ EAM",
+    title: "Product Design and optimization: Enterprise Asset Management",
     subtitle: "Enterprise Asset Management Redesign",
     tags: ["UX Design", "Enterprise SaaS", "AI"],
     href: "/eam-casestudy.html",
     image: "/images/cs03-thumb.png",
     year: "2025",
     accent: "Enterprise",
+    objectFit: "contain",
   },
   {
     number: "04",
-    title: "IBM TechXchange Mobile",
+    title: "Mobile Application: IBM TechXchange",
     subtitle: "Event App Design",
     tags: ["Product Design", "Mobile", "iOS"],
     href: "/work/ibm-mobile",
@@ -81,7 +82,7 @@ function ProjectCard({
               alt={project.title}
               fill
               unoptimized={project.image.endsWith(".gif")}
-              className={`object-cover transition-transform duration-700 group-hover:scale-[1.04] opacity-80 group-hover:opacity-100 ${"objectPosition" in project && project.objectPosition === "center" ? "object-center" : "object-top"}`}
+              className={`transition-transform duration-700 group-hover:scale-[1.04] opacity-80 group-hover:opacity-100 ${"objectFit" in project && project.objectFit === "contain" ? "object-contain" : "object-cover"} ${"objectPosition" in project && project.objectPosition === "center" ? "object-center" : "object-top"}`}
             />
             {/* Hover overlay */}
             <div className="absolute inset-0 bg-[#CC310E]/0 group-hover:bg-[#CC310E]/5 transition-colors duration-500" />
@@ -101,7 +102,7 @@ function ProjectCard({
           <div className="p-6 border-t border-[#1F1F1F]">
             <div className="flex items-start justify-between mb-4">
               <div>
-                <h3 className="font-display text-lg font-bold text-[#F5F5F5] mb-1 group-hover:text-[#CC310E] transition-colors duration-300">
+                <h3 className="font-display font-bold text-[#F5F5F5] mb-1 group-hover:text-[#CC310E] transition-colors duration-300 leading-snug" style={{ fontSize: project.title.length > 30 ? "0.9rem" : "1.125rem" }}>
                   {project.title}
                 </h3>
                 <p className="text-[#888888] text-sm font-mono">
