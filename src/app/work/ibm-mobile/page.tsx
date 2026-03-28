@@ -156,8 +156,8 @@ export default function IBMMobilePage() {
         { value: "35%", label: "Fewer session no-shows" },
         { value: "WCAG AA", label: "Full accessibility compliance" },
       ]}
-      nextHref="/work/product-ai"
-      nextTitle="AI Assisted Product Design"
+      nextHref="/eam-casestudy.html"
+      nextTitle="Product Design: Enterprise Asset Management"
     />
   );
 }
