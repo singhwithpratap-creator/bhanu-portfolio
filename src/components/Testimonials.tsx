@@ -7,7 +7,7 @@ import { useTheme } from "next-themes";
 const testimonials = [
   {
     quote:
-      "I had the pleasure of managing Bhanu during the IBM TechXchange program, where he consistently proved himself to be an incredibly reliable and dedicated designer. He follows creative direction thoughtfully, delivers high-quality work, and approaches every project with a strong desire to learn and grow. What stands out most about Bhanu is his mindset — he's proactive, curious, and always willing to support others on the team. I highly recommend him for teams that value collaboration, ownership, and continuous growth.",
+      "I had the pleasure of managing Bhanu during the IBM TechXchange program, where he consistently proved himself to be an incredibly reliable and dedicated designer. He follows creative direction thoughtfully, delivers high-quality work, and approaches every project with a strong desire to learn and grow. What stands out most about Bhanu is his mindset: he's proactive, curious, and always willing to support others on the team. I highly recommend him for teams that value collaboration, ownership, and continuous growth.",
     author: "Jenny Sanchez",
     title: "Design Lead, Creative Direction",
     company: "IBM",
@@ -17,7 +17,7 @@ const testimonials = [
   },
   {
     quote:
-      "Working with Bhanu while at IBM reminded me of my days working in creative agencies. He brings a thoughtful, professional demeanor you would expect at a company like IBM, but the creativity and risk-taking you usually have to seek from an external agency. His curiosity and natural drive to try new tools and techniques make him an asset for teams looking for fresh ideas and thinking. He's a great teammate — I hope to work with him again in the future!",
+      "Working with Bhanu while at IBM reminded me of my days working in creative agencies. He brings a thoughtful, professional demeanor you would expect at a company like IBM, but the creativity and risk-taking you usually have to seek from an external agency. His curiosity and natural drive to try new tools and techniques make him an asset for teams looking for fresh ideas and thinking. He's a great teammate. I hope to work with him again in the future!",
     author: "Nick Ferry",
     title: "Tech & B2B Marketing, Digital Strategy",
     company: "Ex-IBM",
@@ -27,7 +27,7 @@ const testimonials = [
   },
   {
     quote:
-      "I've had the pleasure of working with Bhanu on several high intensity design projects, and he has consistently impressed me with his exceptional talent and dedication. Bhanu has a remarkable vision for design — he not only understands the creative brief but also grasps the deeper concept behind every project, bringing ideas to life with precision and originality. Beyond his technical and creative strengths, Bhanu stands out for his kindness, professionalism, and excellent communication skills. Collaborating with him is effortless.",
+      "I've had the pleasure of working with Bhanu on several high intensity design projects, and he has consistently impressed me with his exceptional talent and dedication. Bhanu has a remarkable vision for design. He not only understands the creative brief but also grasps the deeper concept behind every project, bringing ideas to life with precision and originality. Beyond his technical and creative strengths, Bhanu stands out for his kindness, professionalism, and excellent communication skills. Collaborating with him is effortless.",
     author: "Sophia Antar",
     title: "Senior Operations & Program Leader",
     company: "SaaS / AI",
@@ -81,7 +81,7 @@ export default function Testimonials() {
           className="mb-16"
         >
           <p className="font-mono text-xs text-[#CC310E] uppercase tracking-[0.3em] mb-3">
-            [ 04 — Testimonials ]
+            [ 04 · Testimonials ]
           </p>
           <h2
             className="font-display font-bold text-[#F5F5F5]"

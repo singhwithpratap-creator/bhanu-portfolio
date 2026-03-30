@@ -220,7 +220,7 @@ export default function ProductAIPage() {
                     <div className="w-3 h-3 rounded-full bg-[#F59E0B]/60" />
                     <div className="w-3 h-3 rounded-full bg-[#10B981]/60" />
                   </div>
-                  <span className="font-mono text-[10px] text-[#888888] ml-2">finsight.local — dashboard</span>
+                  <span className="font-mono text-[10px] text-[#888888] ml-2">finsight.local / dashboard</span>
                 </div>
                 <div className="relative" style={{ aspectRatio: "16/9" }}>
                   <img
@@ -248,7 +248,7 @@ export default function ProductAIPage() {
                   <div className="w-3 h-3 rounded-full bg-[#10B981]/60" />
                 </div>
                 <div className="flex-1 mx-4 bg-[#1a1a1a] border border-[#2a2a2a] rounded px-3 py-1 text-center">
-                  <span className="font-mono text-[10px] text-[#888888]">finsight — personal finance dashboard</span>
+                  <span className="font-mono text-[10px] text-[#888888]">finsight / personal finance dashboard</span>
                 </div>
               </div>
               <iframe
