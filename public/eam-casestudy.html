@@ -850,6 +850,20 @@ p + p { margin-top: 1.25em; }
   margin: 0 auto;
   padding: 0 32px;
 }
+@media (max-width: 600px) {
+  .prototype-header { flex-direction: column; align-items: flex-start; padding: 0 20px 32px; }
+  .prototype-frame-wrap { padding: 0 16px; }
+  .prototype-toolbar { flex-wrap: wrap; gap: 8px; }
+  .toolbar-url { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; min-width: 0; }
+  .toolbar-actions { display: none; }
+  .prototype-section { padding: 48px 0 0; }
+  .stat-grid { grid-template-columns: 1fr 1fr; }
+  .hero-meta { grid-template-columns: 1fr 1fr; }
+  .emotion-table { overflow-x: auto; display: block; }
+  .journey-table { overflow-x: auto; display: block; }
+  section { padding: 64px 0; }
+  .container, .container-wide { padding: 0 20px; }
+}
 .prototype-toolbar {
   background: #1A1D27;
   border: 1px solid rgba(255,255,255,0.08);
