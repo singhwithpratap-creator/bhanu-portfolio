@@ -33,11 +33,40 @@
   --max: 860px;
   --wide: 1100px;
 }
+/* ── DARK THEME OVERRIDE ── */
+:root {
+  --blue: #60A5FA;
+  --blue-light: #1E3A5F;
+  --blue-mid: #1E3A5F;
+  --text: #E8ECF1;
+  --text-2: #9CA3AF;
+  --text-3: #6B7280;
+  --border: #1F2937;
+  --bg: #0D1117;
+  --bg-2: #161B22;
+  --white: #080B10;
+  --green: #34D399;
+  --green-light: #064E3B;
+  --amber: #FCD34D;
+  --amber-light: #451A03;
+  --red: #F87171;
+  --red-light: #450A0A;
+}
+/* Fix rules that used --dark as text color */
+.quote-text { color: #E8ECF1 !important; }
+.emotion-row { background: #161B22 !important; }
+section.gray-section { background: #0D1117 !important; }
+section.blue-section { background: #1E3A5F !important; }
+.case-nav { background: rgba(8,11,16,0.95) !important; border-bottom-color: #1F2937 !important; }
+.hero-tag { color: #60A5FA !important; border-color: #1E3A5F !important; background: rgba(96,165,250,0.08) !important; }
+.meta-label { color: #6B7280 !important; }
+.progress-bar { background: #60A5FA !important; }
+
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; font-size: 16px; }
 body {
   font-family: var(--font-body);
-  background: var(--white);
+  background: #080B10;
   color: var(--text);
   line-height: 1.7;
   -webkit-font-smoothing: antialiased;
