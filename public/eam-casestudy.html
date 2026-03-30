@@ -52,15 +52,17 @@
   --red: #F87171;
   --red-light: #450A0A;
 }
-/* Fix rules that used --dark as text color */
+/* Fix hardcoded backgrounds not using CSS variables */
+.hero { background: linear-gradient(180deg, #0D1117 0%, #080B10 100%) !important; border-bottom-color: #1F2937 !important; }
+.hero::before { background: radial-gradient(circle, rgba(96,165,250,0.06) 0%, transparent 70%) !important; }
+.case-nav { background: rgba(8,11,16,0.95) !important; border-bottom-color: #1F2937 !important; }
+.progress-bar { background: #60A5FA !important; }
+.hero-tag { color: #60A5FA !important; border-color: #1E3A5F !important; background: rgba(96,165,250,0.08) !important; }
+.meta-label { color: #6B7280 !important; }
 .quote-text { color: #E8ECF1 !important; }
 .emotion-row { background: #161B22 !important; }
 section.gray-section { background: #0D1117 !important; }
 section.blue-section { background: #1E3A5F !important; }
-.case-nav { background: rgba(8,11,16,0.95) !important; border-bottom-color: #1F2937 !important; }
-.hero-tag { color: #60A5FA !important; border-color: #1E3A5F !important; background: rgba(96,165,250,0.08) !important; }
-.meta-label { color: #6B7280 !important; }
-.progress-bar { background: #60A5FA !important; }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; font-size: 16px; }
