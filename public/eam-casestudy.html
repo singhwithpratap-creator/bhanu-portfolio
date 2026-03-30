@@ -753,14 +753,15 @@ p + p { margin-top: 1.25em; }
 .test-metric-row {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: baseline;
+  gap: 12px;
   padding: 8px 0;
   border-bottom: 1px solid var(--border);
   font-size: 0.82rem;
 }
 .test-metric-row:last-child { border-bottom: none; }
-.test-metric-label { color: var(--text-2); }
-.test-metric-value { font-weight: 700; font-family: var(--font-mono); }
+.test-metric-label { color: var(--text-2); flex-shrink: 0; }
+.test-metric-value { font-weight: 700; font-family: var(--font-mono); text-align: right; }
 .test-metric-value.bad { color: var(--red); }
 .test-metric-value.good { color: var(--green); }
 
