@@ -9,7 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root {
-  --blue: #2563EB;
+  --blue: #CC310E;
   --blue-light: #EFF6FF;
   --blue-mid: #DBEAFE;
   --dark: #0F1117;
@@ -35,9 +35,9 @@
 }
 /* ── DARK THEME OVERRIDE ── */
 :root {
-  --blue: #60A5FA;
-  --blue-light: #1E3A5F;
-  --blue-mid: #1E3A5F;
+  --blue: #CC310E;
+  --blue-light: rgba(204,49,14,0.12);
+  --blue-mid: rgba(204,49,14,0.28);
   --text: #E8ECF1;
   --text-2: #9CA3AF;
   --text-3: #6B7280;
@@ -54,15 +54,17 @@
 }
 /* Fix hardcoded backgrounds not using CSS variables */
 .hero { background: linear-gradient(180deg, #0D1117 0%, #080B10 100%) !important; border-bottom-color: #1F2937 !important; }
-.hero::before { background: radial-gradient(circle, rgba(96,165,250,0.06) 0%, transparent 70%) !important; }
+.hero::before { background: radial-gradient(circle, rgba(204,49,14,0.06) 0%, transparent 70%) !important; }
 .case-nav { background: rgba(8,11,16,0.95) !important; border-bottom-color: #1F2937 !important; }
-.progress-bar { background: #60A5FA !important; }
-.hero-tag { color: #60A5FA !important; border-color: #1E3A5F !important; background: rgba(96,165,250,0.08) !important; }
+.progress-bar { background: #CC310E !important; }
+.hero-tag { color: #CC310E !important; border-color: rgba(204,49,14,0.4) !important; background: rgba(204,49,14,0.10) !important; }
 .meta-label { color: #6B7280 !important; }
 .quote-text { color: #E8ECF1 !important; }
 .emotion-row { background: #161B22 !important; }
 section.gray-section { background: #0D1117 !important; }
-section.blue-section { background: #1E3A5F !important; }
+section.blue-section { background: #1A0805 !important; }
+.dark-section .section-eyebrow { color: #CC310E !important; }
+.dark-section .section-eyebrow::before { background: #CC310E !important; }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; font-size: 16px; }
@@ -106,8 +108,8 @@ h1, h2, h3, h4 { font-family: var(--font-display); line-height: 1.15; }
   background: var(--blue);
   flex-shrink: 0;
 }
-.dark-section .section-eyebrow { color: #60A5FA; }
-.dark-section .section-eyebrow::before { background: #60A5FA; }
+.dark-section .section-eyebrow { color: #CC310E; }
+.dark-section .section-eyebrow::before { background: #CC310E; }
 .section-title {
   font-size: clamp(1.75rem, 4vw, 2.75rem);
   font-weight: 700;
@@ -155,7 +157,7 @@ p + p { margin-top: 1.25em; }
 }
 .nav-logo-mark {
   width: 28px; height: 28px;
-  background: linear-gradient(135deg, #2563EB, #06B6D4);
+  background: linear-gradient(135deg, #CC310E, #E05530);
   border-radius: 6px;
   display: flex; align-items: center; justify-content: center;
 }
@@ -183,7 +185,7 @@ p + p { margin-top: 1.25em; }
   border-radius: 8px;
   transition: all 0.2s;
 }
-.nav-cta:hover { background: #1D4ED8; color: #fff; }
+.nav-cta:hover { background: #A32510; color: #fff; }
 
 /* ── PROGRESS BAR ── */
 .progress-bar {
@@ -210,7 +212,7 @@ p + p { margin-top: 1.25em; }
   position: absolute;
   top: -100px; right: -200px;
   width: 600px; height: 600px;
-  background: radial-gradient(circle, rgba(37,99,235,0.06) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(204,49,14,0.06) 0%, transparent 70%);
   pointer-events: none;
 }
 .hero-tag {
@@ -295,7 +297,7 @@ p + p { margin-top: 1.25em; }
 }
 .dp-logo-mark {
   width: 24px; height: 24px;
-  background: linear-gradient(135deg,#2563EB,#06B6D4);
+  background: linear-gradient(135deg,#CC310E,#E05530);
   border-radius: 5px;
 }
 .dp-logo-text { font-family: var(--font-display); font-size: 0.85rem; font-weight: 700; color: #fff; }
@@ -305,9 +307,9 @@ p + p { margin-top: 1.25em; }
   margin-bottom: 2px; cursor: pointer;
   font-size: 0.75rem; color: rgba(255,255,255,0.5);
 }
-.dp-nav-item.active { background: rgba(59,130,246,0.15); color: #fff; }
+.dp-nav-item.active { background: rgba(204,49,14,0.15); color: #fff; }
 .dp-nav-dot { width: 14px; height: 14px; border-radius: 3px; background: rgba(255,255,255,0.1); flex-shrink: 0; }
-.dp-nav-dot.blue { background: rgba(59,130,246,0.6); }
+.dp-nav-dot.blue { background: rgba(204,49,14,0.6); }
 .dashboard-preview-main {
   flex: 1;
   background: #0F1117;
@@ -540,7 +542,7 @@ p + p { margin-top: 1.25em; }
 }
 .pain-card.red { background: var(--red-light); border: 1px solid rgba(220,38,38,0.15); }
 .pain-card.amber { background: var(--amber-light); border: 1px solid rgba(217,119,6,0.15); }
-.pain-card.blue { background: var(--blue-light); border: 1px solid rgba(37,99,235,0.15); }
+.pain-card.blue { background: var(--blue-light); border: 1px solid rgba(204,49,14,0.15); }
 .pain-pct {
   font-family: var(--font-display);
   font-size: 2rem;
@@ -802,7 +804,7 @@ p + p { margin-top: 1.25em; }
   letter-spacing: -0.04em;
   line-height: 1;
   margin-bottom: 8px;
-  background: linear-gradient(135deg, #60A5FA, #34D399);
+  background: linear-gradient(135deg, #CC310E, #34D399);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -891,7 +893,7 @@ p + p { margin-top: 1.25em; }
   transition: all 0.2s;
 }
 .toolbar-btn.primary { background: var(--blue); color: #fff; }
-.toolbar-btn.primary:hover { background: #1D4ED8; }
+.toolbar-btn.primary:hover { background: #A32510; }
 .toolbar-btn.ghost { background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.6); border: 1px solid rgba(255,255,255,0.1); }
 .toolbar-btn.ghost:hover { background: rgba(255,255,255,0.1); color: #fff; }
 
@@ -925,7 +927,7 @@ p + p { margin-top: 1.25em; }
 .annotation-num {
   font-family: var(--font-mono);
   font-size: 0.65rem;
-  color: #60A5FA;
+  color: #CC310E;
   margin-bottom: 6px;
 }
 .annotation-title { font-size: 0.82rem; font-weight: 600; color: #E8ECF1; margin-bottom: 4px; }
@@ -1073,14 +1075,14 @@ p + p { margin-top: 1.25em; }
                     <circle cx="32" cy="32" r="24" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="10"/>
                     <g transform="rotate(-90 32 32)">
                       <circle cx="32" cy="32" r="24" fill="none" stroke="#059669" stroke-width="10" stroke-dasharray="67.86 150.8" stroke-dashoffset="0"/>
-                      <circle cx="32" cy="32" r="24" fill="none" stroke="#2563EB" stroke-width="10" stroke-dasharray="45.24 150.8" stroke-dashoffset="-67.86"/>
+                      <circle cx="32" cy="32" r="24" fill="none" stroke="#CC310E" stroke-width="10" stroke-dasharray="45.24 150.8" stroke-dashoffset="-67.86"/>
                       <circle cx="32" cy="32" r="24" fill="none" stroke="#D97706" stroke-width="10" stroke-dasharray="22.62 150.8" stroke-dashoffset="-113.1"/>
                       <circle cx="32" cy="32" r="24" fill="none" stroke="#DC2626" stroke-width="10" stroke-dasharray="15.08 150.8" stroke-dashoffset="-135.72"/>
                     </g>
                   </svg>
                   <div class="dp-bars">
                     <div class="dp-bar-row"><div class="dp-bar-track"><div class="dp-bar-fill" style="width:45%;background:#059669"></div></div><div class="dp-bar-lbl" style="color:#059669">45%</div></div>
-                    <div class="dp-bar-row"><div class="dp-bar-track"><div class="dp-bar-fill" style="width:30%;background:#2563EB"></div></div><div class="dp-bar-lbl" style="color:#2563EB">30%</div></div>
+                    <div class="dp-bar-row"><div class="dp-bar-track"><div class="dp-bar-fill" style="width:30%;background:#CC310E"></div></div><div class="dp-bar-lbl" style="color:#CC310E">30%</div></div>
                     <div class="dp-bar-row"><div class="dp-bar-track"><div class="dp-bar-fill" style="width:15%;background:#D97706"></div></div><div class="dp-bar-lbl" style="color:#D97706">15%</div></div>
                     <div class="dp-bar-row"><div class="dp-bar-track"><div class="dp-bar-fill" style="width:10%;background:#DC2626"></div></div><div class="dp-bar-lbl" style="color:#DC2626">10%</div></div>
                   </div>
@@ -1514,7 +1516,7 @@ p + p { margin-top: 1.25em; }
           <div style="background:var(--white);border:1px solid var(--border);border-radius:8px;padding:14px 16px">
             <div style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--text-3);margin-bottom:8px;font-family:var(--font-mono)">Color Tokens</div>
             <div style="display:flex;gap:6px;flex-wrap:wrap">
-              <div style="width:28px;height:28px;border-radius:6px;background:#2563EB" title="--accent"></div>
+              <div style="width:28px;height:28px;border-radius:6px;background:#CC310E" title="--accent"></div>
               <div style="width:28px;height:28px;border-radius:6px;background:#059669" title="--success"></div>
               <div style="width:28px;height:28px;border-radius:6px;background:#D97706" title="--warning"></div>
               <div style="width:28px;height:28px;border-radius:6px;background:#DC2626" title="--critical"></div>
@@ -1704,7 +1706,7 @@ p + p { margin-top: 1.25em; }
     <div style="margin-top:48px;padding:32px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:16px">
       <div style="font-family:var(--font-mono);font-size:0.7rem;color:rgba(255,255,255,0.4);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:12px">Stakeholder Quote: Post-Launch Review</div>
       <div style="font-size:1.2rem;font-style:italic;color:#E8ECF1;line-height:1.7">"We've been trying to get our maintenance teams to adopt a digital system for six years. Within two weeks of launching AssetIQ, we had 94% of our field technicians logging work orders from their phones. That's never happened before."</div>
-      <div style="margin-top:12px;font-size:0.82rem;font-weight:600;color:#60A5FA;font-family:var(--font-mono)">VP of Operations, Meridian Industries · Post-launch review, Q3 2025</div>
+      <div style="margin-top:12px;font-size:0.82rem;font-weight:600;color:#CC310E;font-family:var(--font-mono)">VP of Operations, Meridian Industries · Post-launch review, Q3 2025</div>
     </div>
   </div>
 </section>
@@ -1740,7 +1742,7 @@ p + p { margin-top: 1.25em; }
 <div id="prototype" class="prototype-section">
   <div class="prototype-header">
     <div>
-      <div class="section-eyebrow" style="color:#60A5FA"><span style="background:#60A5FA"></span>Live Prototype</div>
+      <div class="section-eyebrow" style="color:#CC310E"><span style="background:#CC310E"></span>Live Prototype</div>
       <h2 class="section-title" style="color:#E8ECF1;margin-bottom:8px">Interactive dashboard prototype</h2>
       <p style="color:rgba(232,236,241,0.6);font-size:0.95rem;max-width:500px">This is the actual working prototype, fully interactive. Click any work order row, switch tabs, toggle dark mode, open the AI insights panel.</p>
     </div>
