@@ -54,7 +54,6 @@ html:not(.light) .text-\[\#CC310E\] {
    BASE STYLES
 ═══════════════════════════════════════ */
 * {
-  cursor: none !important;
   box-sizing: border-box;
 }
 

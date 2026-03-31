@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Playfair_Display, DM_Sans, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
-import Cursor from "@/components/Cursor";
 import Nav from "@/components/Nav";
 import { ThemeProvider } from "@/components/ThemeProvider";
 
@@ -69,7 +68,6 @@ export default function RootLayout({
     >
       <body>
         <ThemeProvider>
-          <Cursor />
           <Nav />
           {children}
         </ThemeProvider>
