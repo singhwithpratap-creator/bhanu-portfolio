@@ -115,7 +115,7 @@ export default function Hero() {
             <div className="flex items-center gap-3">
               <div className="w-6 h-px bg-[#CC310E]" aria-hidden="true" />
               <p className="font-mono text-sm text-[#888888] tracking-wide">
-                Visual Experience Designer.{" "}
+                Senior User Experience Designer.{" "}
                 <span className="text-[#F5F5F5]">AI-Native.</span>{" "}
                 Systems Thinker.
               </p>
