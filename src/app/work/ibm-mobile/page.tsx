@@ -45,7 +45,7 @@ const OpportunityCard = ({
     <p className="font-mono text-[11px] text-[#CC310E] uppercase tracking-widest mb-2">
       {area}
     </p>
-    <p className="text-[#AAAAAA] text-sm leading-relaxed">{description}</p>
+    <p className="text-[#888888] text-sm leading-relaxed">{description}</p>
   </div>
 );
 
@@ -145,7 +145,7 @@ export default function IBMMobilePage() {
                     <p className="font-mono text-[11px] text-[#CC310E] uppercase tracking-widest mb-2">
                       {p.weeks}
                     </p>
-                    <p className="font-mono text-[11px] text-[#AAAAAA] leading-relaxed hidden sm:block">
+                    <p className="font-mono text-[11px] text-[#888888] leading-relaxed hidden sm:block">
                       {p.desc}
                     </p>
                   </div>
@@ -169,7 +169,7 @@ export default function IBMMobilePage() {
                     <p className="font-display font-bold text-[#CC310E] text-3xl mb-2">
                       {s.value}
                     </p>
-                    <p className="font-mono text-[11px] text-[#AAAAAA] uppercase tracking-widest leading-relaxed whitespace-pre-line">
+                    <p className="font-mono text-[11px] text-[#888888] uppercase tracking-widest leading-relaxed whitespace-pre-line">
                       {s.label}
                     </p>
                   </div>
@@ -184,7 +184,7 @@ export default function IBMMobilePage() {
                   "Affinity-mapped 200+ qualitative feedback submissions from the prior year. Three systemic themes emerged: no fast schedule access, deep session discovery friction, and irrelevant push notifications.",
                   "Key behavioural insight from on-site shadowing: 80% of all app interactions happened in the first 90 minutes of each conference morning, the critical orientation window when attendees plan their day.",
                 ].map((item, i) => (
-                  <li key={i} className="flex items-start gap-3 text-[#AAAAAA] leading-relaxed text-sm">
+                  <li key={i} className="flex items-start gap-3 text-[#888888] leading-relaxed text-sm">
                     <span className="text-[#CC310E] mt-1 shrink-0">→</span>
                     <span>{item}</span>
                   </li>
@@ -199,7 +199,7 @@ export default function IBMMobilePage() {
                 <p className="font-display font-bold text-[#F5F5F5] text-2xl mb-2">
                   80% of interactions
                 </p>
-                <p className="text-[#AAAAAA] text-sm leading-relaxed">
+                <p className="text-[#888888] text-sm leading-relaxed">
                   happened in the first 90 minutes of each conference morning.
                   The app had to serve this window perfectly, or lose attendee
                   trust for the entire day.
@@ -207,7 +207,7 @@ export default function IBMMobilePage() {
                 {/* Visual bar chart */}
                 <div className="mt-5 space-y-3">
                   <div className="flex items-center gap-3">
-                    <span className="font-mono text-[11px] text-[#AAAAAA] w-28 shrink-0">
+                    <span className="font-mono text-[11px] text-[#888888] w-28 shrink-0">
                       Morning (90 min)
                     </span>
                     <div className="flex-1 h-2.5 bg-[#1F1F1F] rounded-sm overflow-hidden">
@@ -218,13 +218,13 @@ export default function IBMMobilePage() {
                     </span>
                   </div>
                   <div className="flex items-center gap-3">
-                    <span className="font-mono text-[11px] text-[#AAAAAA] w-28 shrink-0">
+                    <span className="font-mono text-[11px] text-[#888888] w-28 shrink-0">
                       Rest of day
                     </span>
                     <div className="flex-1 h-2.5 bg-[#1F1F1F] rounded-sm overflow-hidden">
                       <div className="h-full bg-[#383838] rounded-sm" style={{ width: "20%" }} />
                     </div>
-                    <span className="font-mono text-[11px] text-[#AAAAAA] w-8 text-right">
+                    <span className="font-mono text-[11px] text-[#888888] w-8 text-right">
                       20%
                     </span>
                   </div>
@@ -241,7 +241,7 @@ export default function IBMMobilePage() {
             "The app was not failing at features. It was failing at moments.",
           customContent: (
             <div className="space-y-4 mt-2">
-              <p className="text-[#AAAAAA] text-sm leading-relaxed">
+              <p className="text-[#888888] text-sm leading-relaxed">
                 Synthesizing all research revealed a consistent pattern: the right
                 features surfaced at the wrong moments. Five predictable, recurring
                 failure points mapped directly to attendee frustration.
@@ -259,7 +259,7 @@ export default function IBMMobilePage() {
                       <p className="text-[#F5F5F5] font-semibold text-sm mb-1.5">
                         {p.title}
                       </p>
-                      <p className="text-[#AAAAAA] text-sm leading-relaxed">
+                      <p className="text-[#888888] text-sm leading-relaxed">
                         {p.desc}
                       </p>
                     </div>
@@ -278,7 +278,7 @@ export default function IBMMobilePage() {
           customContent: (
             <div className="space-y-8 mt-2">
               <div>
-                <p className="font-mono text-[11px] text-[#AAAAAA] uppercase tracking-widest mb-4">
+                <p className="font-mono text-[11px] text-[#888888] uppercase tracking-widest mb-4">
                   How Might We Statements
                 </p>
                 <div className="grid grid-cols-1 gap-3">
@@ -291,7 +291,7 @@ export default function IBMMobilePage() {
               </div>
 
               <div>
-                <p className="font-mono text-[11px] text-[#AAAAAA] uppercase tracking-widest mb-4">
+                <p className="font-mono text-[11px] text-[#888888] uppercase tracking-widest mb-4">
                   Jobs to Be Done
                 </p>
                 <div className="space-y-3">
@@ -320,7 +320,7 @@ export default function IBMMobilePage() {
               </div>
 
               <div>
-                <p className="font-mono text-[11px] text-[#AAAAAA] uppercase tracking-widest mb-4">
+                <p className="font-mono text-[11px] text-[#888888] uppercase tracking-widest mb-4">
                   Opportunity Areas
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -393,7 +393,7 @@ export default function IBMMobilePage() {
                   "Weekly IBM Carbon design reviews established a shared component vocabulary before high-fidelity work began, cutting engineering handoff ambiguity significantly.",
                   "Ops alignment unlocked real-time venue capacity data, enabling the seats remaining feature that resolved the wasted walk pain point surfaced in research.",
                 ].map((item, i) => (
-                  <li key={i} className="flex items-start gap-3 text-[#AAAAAA] leading-relaxed text-sm">
+                  <li key={i} className="flex items-start gap-3 text-[#888888] leading-relaxed text-sm">
                     <span className="text-[#CC310E] mt-1 shrink-0">→</span>
                     <span>{item}</span>
                   </li>
@@ -410,7 +410,7 @@ export default function IBMMobilePage() {
             "My Event. Schedule. Favorites. Surveys. Notifications. Event Guide.",
           customContent: (
             <div className="space-y-4 mt-4">
-              <p className="text-[#AAAAAA] leading-relaxed text-sm">
+              <p className="text-[#888888] leading-relaxed text-sm">
                 The navigation was rebuilt around a persistent side drawer,
                 replacing a tab bar that mixed high- and low-frequency actions
                 without distinction. Six primary destinations in strict frequency
@@ -439,7 +439,7 @@ export default function IBMMobilePage() {
           highlight: "Your identity is the key — literally.",
           customContent: (
             <div className="space-y-4 mt-2">
-              <p className="text-[#AAAAAA] leading-relaxed text-sm">
+              <p className="text-[#888888] leading-relaxed text-sm">
                 The profile screen served dual purpose: personal identity hub and
                 conference access credential. QR Check-In was designed as a
                 primary action rather than buried in settings, because physical
@@ -469,7 +469,7 @@ export default function IBMMobilePage() {
                   "Each session card showed the time block, title, location, track tag, and Add to Schedule action without tapping into detail. The decision loop went from 4 taps to 2.",
                   "Conflicting sessions triggered a visual warning before confirming, preventing double-booking. Live capacity appeared on high-demand sessions so attendees could route intelligently.",
                 ].map((item, i) => (
-                  <li key={i} className="flex items-start gap-3 text-[#AAAAAA] leading-relaxed text-sm">
+                  <li key={i} className="flex items-start gap-3 text-[#888888] leading-relaxed text-sm">
                     <span className="text-[#CC310E] mt-1 shrink-0">→</span>
                     <span>{item}</span>
                   </li>
@@ -491,7 +491,7 @@ export default function IBMMobilePage() {
           highlight: "From maybe to added in two taps.",
           customContent: (
             <div className="space-y-4 mt-2">
-              <p className="text-[#AAAAAA] leading-relaxed text-sm">
+              <p className="text-[#888888] leading-relaxed text-sm">
                 Session detail pages balanced depth with scannability: speaker
                 photo and role, abstract, track tag, room location, and live
                 capacity. Capacity appeared here as the final decision gate before
@@ -530,13 +530,13 @@ export default function IBMMobilePage() {
                 ].map((tag) => (
                   <span
                     key={tag}
-                    className="font-mono text-[11px] text-[#AAAAAA] border border-[#1F1F1F] bg-[#111111] px-3 py-1.5 uppercase tracking-widest"
+                    className="font-mono text-[11px] text-[#888888] border border-[#1F1F1F] bg-[#111111] px-3 py-1.5 uppercase tracking-widest"
                   >
                     {tag}
                   </span>
                 ))}
               </div>
-              <p className="text-[#AAAAAA] leading-relaxed text-sm">
+              <p className="text-[#888888] leading-relaxed text-sm">
                 Every interaction was designed for real conference conditions:
                 bright ambient lighting, crowded hallways, one-handed use, and
                 intermittent connectivity. Post-event metrics confirmed the design
@@ -573,7 +573,7 @@ export default function IBMMobilePage() {
                           className="absolute inset-0 w-full h-full object-cover"
                         />
                       </div>
-                      <p className="font-mono text-[11px] text-[#AAAAAA] uppercase tracking-widest mt-2 text-center leading-relaxed">
+                      <p className="font-mono text-[11px] text-[#888888] uppercase tracking-widest mt-2 text-center leading-relaxed">
                         {img.caption}
                       </p>
                     </div>
