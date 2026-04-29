@@ -4,7 +4,7 @@ import CaseStudyLayout from "@/components/CaseStudyLayout";
 export const metadata: Metadata = {
   title: "IBM TechXchange Mobile App - Bhanu Parmar",
   description:
-    "iOS event companion app for IBM TechXchange — a 20-week end-to-end UX engagement designing for 5,000+ attendees across sessions, scheduling, and on-site navigation.",
+    "iOS event companion app for IBM TechXchange — a 20-week end-to-end UX engagement designing for 8,000+ attendees across sessions, scheduling, and on-site navigation.",
 };
 
 const MobileScreen = ({ src, caption }: { src: string; caption: string }) => (
@@ -49,6 +49,61 @@ const OpportunityCard = ({
   </div>
 );
 
+// Process phase strip
+const processPhases = [
+  { phase: "Discover", weeks: "Wk 1–4", desc: "Research & Stakeholder Alignment" },
+  { phase: "Define", weeks: "Wk 5–8", desc: "Problem Framing & HMW" },
+  { phase: "Ideate", weeks: "Wk 9–12", desc: "Design Sprint & Co-Creation" },
+  { phase: "Design", weeks: "Wk 13–18", desc: "IA, Interaction & Visual UI" },
+  { phase: "Deliver", weeks: "Wk 19–20", desc: "Handoff & Field Testing" },
+];
+
+// Research stat cards
+const researchStats = [
+  { value: "200+", label: "Feedback submissions\nanalyzed" },
+  { value: "12", label: "Stakeholders\ninterviewed" },
+  { value: "8", label: "Attendees\nshadowed on-site" },
+  { value: "6", label: "Enterprise apps\nbenchmarked" },
+];
+
+// Pain point cards
+const painPoints = [
+  {
+    num: "01",
+    title: "Lost Schedule",
+    desc: "Personal agenda unreachable within 3 taps — attendees defaulted to paper.",
+  },
+  {
+    num: "02",
+    title: "Buried Session Detail",
+    desc: "4–5 taps to reach session info. Attendees were already walking by the time they got there.",
+  },
+  {
+    num: "03",
+    title: "Notification Noise",
+    desc: "Blanket push alerts caused fatigue — time-critical alerts were dismissed as irrelevant.",
+  },
+  {
+    num: "04",
+    title: "Check-in in Settings",
+    desc: "QR check-in was 3 levels deep — the opposite of where it needed to be at a session door.",
+  },
+  {
+    num: "05",
+    title: "One-Size Architecture",
+    desc: "Three distinct personas (Specialist, Networker, Executive) — one flat, undifferentiated experience.",
+  },
+];
+
+// Sprint activities
+const sprintActivities = [
+  { label: "2-Day Design Sprint", detail: "140+ concepts generated" },
+  { label: "Crazy Eights", detail: "8 cross-functional participants" },
+  { label: "Card Sorting", detail: "20 real attendees" },
+  { label: "Carbon Design Review", detail: "Weekly — 6 sessions" },
+  { label: "Ops Feasibility Check", detail: "Live capacity feature unlocked" },
+];
+
 export default function IBMMobilePage() {
   return (
     <CaseStudyLayout
@@ -59,34 +114,159 @@ export default function IBMMobilePage() {
       role="Product Designer · UX Researcher · UI/UX · Brand & Governance"
       tools={["Figma", "Mural", "Photoshop", "IBM Carbon Design System"]}
       heroImage="/images/cs02-hero.png"
-      overview="The IBM TechXchange mobile app is the primary on-site companion for a global technical conference — enabling session scheduling, personalized agenda management, QR check-in, and real-time conference navigation across a multi-track, multi-day event with 5,000+ attendees. Over a 20-week engagement, I led end-to-end product design: from stakeholder research, journey mapping, and problem definition through cross-functional ideation, interaction design, IBM Carbon-compliant component system, and full developer handoff. The outcome was an app designed to be fast, focused, and usable under real conference conditions — crowded halls, loud environments, and users toggling between app and conversations."
-      challenge="A conference with 5,000+ attendees, 200+ sessions, and 4 simultaneous tracks across multiple venues produces overwhelming information density. The previous app experience buried the schedule, buried session details, and created friction at the exact moment attendees needed clarity most — the morning of each conference day. The real challenge was not a UI refresh: it was a systemic IA failure that needed to be solved through rigorous research, cross-functional collaboration, and deliberate problem framing before a single screen was designed."
+      overview="The IBM TechXchange mobile app is the primary on-site companion for a global technical conference — enabling session scheduling, personalized agenda management, QR check-in, and real-time conference navigation across a multi-track, multi-day event with 8,000+ attendees. Over a 20-week engagement, I led end-to-end product design: from stakeholder research, journey mapping, and problem definition through cross-functional ideation, interaction design, IBM Carbon-compliant component system, and full developer handoff."
+      challenge="A conference with 8,000+ attendees, 200+ sessions, and 4 simultaneous tracks across multiple venues produces overwhelming information density. The previous app experience buried the schedule, buried session details, and created friction at the exact moment attendees needed clarity most. The real challenge was not a UI refresh — it was a systemic IA failure that needed rigorous research, cross-functional collaboration, and deliberate problem framing before a single screen was designed."
       richSections={[
+        // ── PROCESS OVERVIEW ──────────────────────────────────────────────
+        {
+          label: "Design Process at a Glance",
+          highlight: "20 weeks. 5 phases. End-to-end ownership.",
+          customContent: (
+            <div className="mt-4">
+              <div className="grid grid-cols-5 gap-px bg-[#1F1F1F]">
+                {processPhases.map((p, i) => (
+                  <div
+                    key={p.phase}
+                    className="bg-[#111111] px-4 py-5 relative"
+                  >
+                    {/* Active indicator for first phase */}
+                    <div
+                      className={`absolute top-0 left-0 right-0 h-0.5 ${
+                        i === 0
+                          ? "bg-[#CC310E]"
+                          : i === 1
+                          ? "bg-[#CC310E]/60"
+                          : i === 2
+                          ? "bg-[#CC310E]/40"
+                          : i === 3
+                          ? "bg-[#CC310E]/25"
+                          : "bg-[#CC310E]/15"
+                      }`}
+                    />
+                    <p className="font-display font-bold text-[#F5F5F5] text-sm mb-0.5">
+                      {p.phase}
+                    </p>
+                    <p className="font-mono text-[9px] text-[#CC310E] uppercase tracking-widest mb-2">
+                      {p.weeks}
+                    </p>
+                    <p className="font-mono text-[9px] text-[#888888] leading-relaxed hidden sm:block">
+                      {p.desc}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ),
+        },
+
+        // ── 01 RESEARCH ───────────────────────────────────────────────────
         {
           label: "01 — Discovery & Multi-Method Research",
           highlight:
-            "Research revealed a systemic information architecture failure — not a design polish issue.",
-          content: [
-            "Conducted structured stakeholder interviews with IBM conference operations, marketing, and technical platform teams during the first 4 weeks to align on business objectives, event KPIs, attendee growth targets, and technical constraints of the existing mobile platform.",
-            "Facilitated Mural-based virtual journey-mapping workshops with 12 cross-functional stakeholders — operations leads, community managers, and past speakers — to build a high-fidelity end-to-end attendee journey across 6 phases: pre-registration, arrival, orientation, active conference days, networking, and post-event reflection.",
-            "Analyzed 200+ qualitative feedback submissions from the previous year's app using affinity mapping in Mural. Three systemic themes emerged with near-unanimous consistency: inability to access personal schedules quickly, deep session discovery friction, and notification irrelevance.",
-            "Shadowed 8 attendees during a pre-conference dry-run event to observe authentic mobile behaviour in a live conference setting. Critical behavioural insight: 80% of all app interactions occurred in the first 90 minutes of each conference morning — the 'orientation window' when attendees plan their day.",
-            "Benchmarked the experience against 6 comparable enterprise event apps (Salesforce Dreamforce, AWS re:Invent, Microsoft Ignite) to identify scheduling conventions, navigation patterns, and engagement mechanics that set baseline expectations for technical conference attendees.",
-          ],
+            "Research revealed a systemic IA failure — not a design polish issue.",
+          customContent: (
+            <div className="space-y-6 mt-2">
+              {/* Research stat row */}
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-[#1F1F1F]">
+                {researchStats.map((s) => (
+                  <div key={s.value} className="bg-[#111111] px-5 py-5 text-center">
+                    <p className="font-display font-bold text-[#CC310E] text-3xl mb-1">
+                      {s.value}
+                    </p>
+                    <p className="font-mono text-[9px] text-[#888888] uppercase tracking-widest leading-relaxed whitespace-pre-line">
+                      {s.label}
+                    </p>
+                  </div>
+                ))}
+              </div>
+
+              {/* Key findings */}
+              <ul className="space-y-3">
+                {[
+                  "Conducted stakeholder interviews with IBM conference operations, marketing, and technical teams across weeks 1–4 — aligning on business KPIs, attendee growth targets, and mobile platform constraints.",
+                  "Facilitated Mural journey-mapping workshops with 12 cross-functional stakeholders to map the full attendee experience across 6 phases: pre-registration → arrival → orientation → active days → networking → post-event.",
+                  "Affinity-mapped 200+ qualitative feedback submissions. Three systemic themes emerged: no fast schedule access, deep session discovery friction, and irrelevant push notifications.",
+                  "Key behavioural insight from on-site shadowing: 80% of all app interactions happened in the first 90 minutes of each conference morning — the critical 'orientation window' when attendees plan their day.",
+                ].map((item, i) => (
+                  <li key={i} className="flex items-start gap-3 text-[#888888] leading-relaxed text-sm">
+                    <span className="text-[#CC310E] mt-1 shrink-0">→</span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+
+              {/* 80% insight callout */}
+              <div className="border border-[#CC310E]/20 bg-[#CC310E]/5 px-6 py-5">
+                <p className="font-mono text-[10px] text-[#CC310E] uppercase tracking-widest mb-2">
+                  Key Insight — The Orientation Window
+                </p>
+                <p className="font-display font-bold text-[#F5F5F5] text-2xl mb-1">
+                  80% of interactions
+                </p>
+                <p className="text-[#888888] text-sm">
+                  happened in the first 90 minutes of each conference morning.
+                  The app had to serve this window perfectly — or lose attendee
+                  trust for the entire day.
+                </p>
+                {/* Visual bar */}
+                <div className="mt-4 space-y-2">
+                  <div className="flex items-center gap-3">
+                    <span className="font-mono text-[9px] text-[#888888] w-24 shrink-0">Morning (90 min)</span>
+                    <div className="flex-1 h-2 bg-[#1F1F1F] rounded-sm overflow-hidden">
+                      <div className="h-full bg-[#CC310E] rounded-sm" style={{ width: "80%" }} />
+                    </div>
+                    <span className="font-mono text-[10px] text-[#CC310E] w-8 text-right">80%</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <span className="font-mono text-[9px] text-[#888888] w-24 shrink-0">Rest of day</span>
+                    <div className="flex-1 h-2 bg-[#1F1F1F] rounded-sm overflow-hidden">
+                      <div className="h-full bg-[#1F1F1F] rounded-sm" style={{ width: "20%" }} />
+                    </div>
+                    <span className="font-mono text-[10px] text-[#888888] w-8 text-right">20%</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ),
         },
+
+        // ── 02 PROBLEM IDENTIFICATION ─────────────────────────────────────
         {
           label: "02 — Problem Identification",
           highlight:
             "The app was not failing at features. It was failing at moments.",
-          content: [
-            "Synthesizing all research methods revealed a consistent pattern: the app had the right features but surfaced them at the wrong moments in the attendee journey. The failure points were predictable, recurring, and resolvable.",
-            "Pain Point 1 — The Lost Schedule: Attendees could not locate their personal agenda within 3 taps. Without immediate schedule access during the morning rush, attendees defaulted to paper programs or conference staff — eroding trust in the digital product before Day 1 was over.",
-            "Pain Point 2 — Buried Session Detail: Session information required 4–5 taps from the home screen. By the time attendees reached a session detail page, they were already physically walking to the room — without key context: speaker background, remaining capacity, session prerequisites, or room number.",
-            "Pain Point 3 — Notification Irrelevance: Push notifications were broadcast on a blanket schedule, not tied to each attendee's saved sessions or track preferences. This caused notification fatigue and high dismiss rates — meaning time-critical alerts (session starting, room change, capacity warning) were ignored as noise.",
-            "Pain Point 4 — Check-in Buried in Settings: QR code check-in was three levels deep in account settings — the inverse of where it needed to be at a physical venue, where check-in happens at a session room door, in a moving crowd, under time pressure.",
-            "Pain Point 5 — One Architecture, Three Personas: The same flat experience was served to three fundamentally different user types: the Technical Specialist stacking 6 sessions per day, the Networker prioritizing community events, and the Executive needing keynote highlights and summary views. No persona's primary needs were fully met.",
-          ],
+          customContent: (
+            <div className="space-y-4 mt-2">
+              <p className="text-[#888888] text-sm leading-relaxed">
+                Synthesizing all research revealed a consistent pattern: the right
+                features surfaced at the wrong moments. Five predictable, recurring
+                failure points mapped directly to attendee frustration.
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                {painPoints.map((p) => (
+                  <div
+                    key={p.num}
+                    className="border border-[#1F1F1F] bg-[#111111] px-5 py-4 flex gap-4"
+                  >
+                    <span className="font-display font-bold text-[#CC310E] text-2xl leading-none mt-0.5 shrink-0">
+                      {p.num}
+                    </span>
+                    <div>
+                      <p className="text-[#F5F5F5] font-semibold text-sm mb-1">
+                        {p.title}
+                      </p>
+                      <p className="text-[#888888] text-xs leading-relaxed">
+                        {p.desc}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ),
         },
+
+        // ── 03 PROBLEM DEFINITION ─────────────────────────────────────────
         {
           label: "03 — Problem Definition",
           highlight:
@@ -98,11 +278,11 @@ export default function IBMMobilePage() {
                   How Might We Statements
                 </p>
                 <div className="grid grid-cols-1 gap-3">
-                  <HMWCard statement="Make the attendee's personal schedule the single first thing they see each conference morning — without requiring any navigation?" />
+                  <HMWCard statement="Make the attendee's personal schedule the single first thing they see each morning — without requiring any navigation?" />
                   <HMWCard statement="Surface critical session information (capacity, speaker, prerequisites) within the natural discovery flow, before an attendee commits to walking across a venue?" />
                   <HMWCard statement="Make QR check-in feel like an expected first action — not a setting buried three levels deep?" />
-                  <HMWCard statement="Personalize the notification experience to each attendee's saved agenda, eliminating broadcast noise and restoring trust in time-critical alerts?" />
-                  <HMWCard statement="Design an IA that serves all three persona types within one coherent architecture — without fragmenting the experience into separate modes?" />
+                  <HMWCard statement="Personalize notifications to each attendee's saved agenda, eliminating broadcast noise and restoring trust in time-critical alerts?" />
+                  <HMWCard statement="Design an IA that serves all three persona types within one coherent architecture — without fragmenting the experience?" />
                 </div>
               </div>
 
@@ -111,30 +291,30 @@ export default function IBMMobilePage() {
                   Jobs to Be Done
                 </p>
                 <div className="space-y-3">
-                  <div className="border-l-2 border-[#CC310E] pl-5 py-2">
-                    <p className="text-[#F5F5F5] text-sm leading-relaxed">
+                  {[
+                    {
+                      id: "JTBD 01 — Morning Orientation",
+                      text: "When I open the app on Day 1, I want to immediately see my schedule so I can reach my first session — even if I haven&apos;t touched the app since registration.",
+                    },
+                    {
+                      id: "JTBD 02 — In-the-Moment Decision",
+                      text: "When I discover a new session between talks, I want to evaluate it quickly (capacity, speaker, depth) so I can make a confident go/no-go before I start walking.",
+                    },
+                    {
+                      id: "JTBD 03 — Frictionless Check-In",
+                      text: "When I arrive at a session room, I want to show my QR code immediately — without hunting through menus while the queue behind me grows.",
+                    },
+                  ].map((j) => (
+                    <div key={j.id} className="border-l-2 border-[#CC310E] pl-5 py-2">
                       <span className="text-[#CC310E] font-mono text-[10px] uppercase tracking-widest block mb-1">
-                        JTBD 01 — Morning Orientation
+                        {j.id}
                       </span>
-                      When I open the conference app on the morning of Day 1, I want to immediately see my personal schedule so I can navigate to my first session without confusion or delay — even if I haven&apos;t touched the app since registration.
-                    </p>
-                  </div>
-                  <div className="border-l-2 border-[#CC310E] pl-5 py-2">
-                    <p className="text-[#F5F5F5] text-sm leading-relaxed">
-                      <span className="text-[#CC310E] font-mono text-[10px] uppercase tracking-widest block mb-1">
-                        JTBD 02 — In-the-Moment Session Decision
-                      </span>
-                      When I discover a new session in the schedule between talks, I want to evaluate it quickly (speaker credibility, remaining capacity, content depth) so I can make a confident go/no-go decision before I start walking across the venue.
-                    </p>
-                  </div>
-                  <div className="border-l-2 border-[#CC310E] pl-5 py-2">
-                    <p className="text-[#F5F5F5] text-sm leading-relaxed">
-                      <span className="text-[#CC310E] font-mono text-[10px] uppercase tracking-widest block mb-1">
-                        JTBD 03 — Frictionless Check-In
-                      </span>
-                      When I arrive at a session room, I want to check in immediately by showing my QR code — without hunting through menus while the person behind me is waiting and the session is about to start.
-                    </p>
-                  </div>
+                      <p
+                        className="text-[#F5F5F5] text-sm leading-relaxed"
+                        dangerouslySetInnerHTML={{ __html: j.text }}
+                      />
+                    </div>
+                  ))}
                 </div>
               </div>
 
@@ -145,54 +325,98 @@ export default function IBMMobilePage() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                   <OpportunityCard
                     area="IA Restructure"
-                    description="Rebuild information hierarchy entirely around the Golden Path: Open → Today's Schedule → Next Session → Check In. Every other surface organized from this core flow."
+                    description="Rebuild hierarchy around the Golden Path: Open → Today → Next Session → Check In."
                   />
                   <OpportunityCard
                     area="Profile as Hub"
-                    description="Elevate QR check-in and personal schedule to primary actions on the profile surface — not buried in settings or secondary flows."
+                    description="Elevate QR check-in and personal schedule to primary profile actions — not settings."
                   />
                   <OpportunityCard
                     area="Persona-Aware Navigation"
-                    description="Design a drawer hierarchy that naturally serves all three persona types (Specialist, Networker, Executive) within one coherent architecture."
+                    description="One drawer hierarchy serving Specialist, Networker, and Executive — coherently."
                   />
                   <OpportunityCard
                     area="Notification Personalization"
-                    description="Tie push notifications to saved agenda items rather than blanket event timelines — restoring trust in time-critical alerts by eliminating noise."
+                    description="Tie alerts to saved agenda items — eliminating broadcast noise, restoring trust."
                   />
                 </div>
               </div>
             </div>
           ),
         },
+
+        // ── 04 CROSS-FUNCTIONAL IDEATION ─────────────────────────────────
         {
           label: "04 — Cross-functional Collaboration & Ideation",
           highlight:
-            "The best design decisions came from a room with operations, engineering, and marketing — not from a single designer's desk.",
-          content: [
-            "Facilitated a structured 2-day design sprint in Mural with stakeholders from IBM conference operations, the mobile engineering team, IBM marketing, and community leads. The sprint focused on rapid ideation around the 'Golden Path' and generated 140+ distinct concept directions in 4 hours of structured sketching.",
-            "Ran a 'Crazy Eights' sketching session with 8 cross-functional participants, including non-designers. A key insight emerged from the operations team — not a designer: QR check-in at physical venues always happens at the door, in motion, often one-handed. That single operational observation elevated check-in from a utility to a primary profile action.",
-            "Conducted a card-sorting exercise with 20 conference attendees (recruited from the previous year's participant pool) to validate the proposed navigation taxonomy. The sort produced a clear frequency hierarchy that directly informed the final drawer structure: My Event, Schedule, Favorites, Surveys, Notifications, Event Guide.",
-            "Led weekly design reviews with the IBM Carbon design system team to ensure component choices and interaction patterns were consistent with IBM's enterprise design language — establishing a shared component vocabulary before high-fidelity work began, reducing handoff ambiguity and accelerating engineering velocity.",
-            "Aligned with conference operations on the technical feasibility of real-time session capacity data — a requirement surfaced in research as a critical attendee need. Operations confirmed that venue sensors could feed live counts to the app backend, enabling the 'seats remaining' feature that directly resolved the 'wasted walk' pain point identified in research.",
-          ],
+            "The best decisions came from operations, engineering, and marketing — not one designer's desk.",
+          customContent: (
+            <div className="space-y-6 mt-2">
+              {/* Sprint activity grid */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+                {sprintActivities.map((a) => (
+                  <div
+                    key={a.label}
+                    className="border border-[#1F1F1F] bg-[#111111] px-4 py-4"
+                  >
+                    <p className="text-[#F5F5F5] font-semibold text-sm mb-1">
+                      {a.label}
+                    </p>
+                    <p className="font-mono text-[10px] text-[#CC310E] uppercase tracking-widest">
+                      {a.detail}
+                    </p>
+                  </div>
+                ))}
+              </div>
+
+              {/* Key collaboration insight */}
+              <div className="border border-[#CC310E]/20 bg-[#CC310E]/5 px-6 py-5">
+                <p className="font-mono text-[10px] text-[#CC310E] uppercase tracking-widest mb-2">
+                  Key Collaboration Insight
+                </p>
+                <p className="text-[#F5F5F5] text-sm leading-relaxed">
+                  The most impactful design decision — elevating QR check-in to
+                  a primary profile action — came not from the design team but
+                  from a conference operations lead during a Crazy Eights session.
+                  Their observation:{" "}
+                  <span className="text-[#CC310E]">
+                    &quot;Check-in happens at the door, in motion, in a crowd.&quot;
+                  </span>{" "}
+                  That single sentence reframed the entire profile IA.
+                </p>
+              </div>
+
+              <ul className="space-y-3">
+                {[
+                  "Card sorting with 20 attendees validated the drawer structure: My Event, Schedule, Favorites, Surveys, Notifications, Event Guide — in exact frequency order.",
+                  "Weekly IBM Carbon design reviews established a shared component vocabulary before high-fidelity work began, cutting engineering handoff ambiguity significantly.",
+                  "Ops alignment unlocked real-time venue capacity data — enabling the 'seats remaining' feature that resolved the 'wasted walk' pain point surfaced in research.",
+                ].map((item, i) => (
+                  <li key={i} className="flex items-start gap-3 text-[#888888] leading-relaxed text-sm">
+                    <span className="text-[#CC310E] mt-1 shrink-0">→</span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ),
         },
+
+        // ── 05 NAVIGATION ARCHITECTURE ───────────────────────────────────
         {
           label: "05 — Navigation Architecture",
           highlight:
             "My Event. Schedule. Favorites. Surveys. Notifications. Event Guide.",
-          content:
-            "The navigation architecture was rebuilt around a persistent side drawer — replacing the previous tab bar that mixed high-frequency and low-frequency actions indiscriminately. The drawer exposed six primary destinations in strict frequency order, validated by the card-sorting research. This meant the two things attendees needed most — their personal agenda and the full session catalog — were always one swipe from any screen in the app. Low-frequency utility links (feedback, support, settings) moved to secondary levels, reducing visual noise in the primary space and shortening the decision path at the most critical moments.",
           customContent: (
             <div className="space-y-4 mt-4">
-              <p className="text-[#888888] leading-relaxed">
-                The navigation architecture was rebuilt around a persistent side
-                drawer — replacing the previous tab bar that mixed high-frequency
-                and low-frequency actions indiscriminately. The drawer exposed six
-                primary destinations in strict frequency order, validated by the
-                card-sorting research. Attendees could reach their personal agenda
-                or the full session catalog in one swipe from any screen. Low-
-                frequency links moved to secondary levels, reducing primary-space
-                noise.
+              <p className="text-[#888888] leading-relaxed text-sm">
+                The navigation was rebuilt around a persistent side drawer —
+                replacing a tab bar that mixed high- and low-frequency actions
+                indiscriminately. Six primary destinations in strict frequency
+                order (validated by card sorting) meant personal agenda and the
+                full session catalog were always one swipe away. Low-frequency
+                utility links moved to secondary levels, reducing noise at the
+                most critical moments.
               </p>
               <div className="grid grid-cols-2 gap-6 mt-4">
                 <MobileScreen
@@ -207,21 +431,20 @@ export default function IBMMobilePage() {
             </div>
           ),
         },
+
+        // ── 06 PROFILE ────────────────────────────────────────────────────
         {
           label: "06 — Profile & Identity",
           highlight: "Your identity is the key — literally.",
           customContent: (
             <div className="space-y-4 mt-2">
-              <p className="text-[#888888] leading-relaxed">
-                The profile screen served a dual purpose: personal identity hub
-                and conference access credential. The QR Code Check-In tile was
-                designed as a primary action — not buried in settings — because
-                physical check-in at session rooms was the most frequent
-                in-person interaction attendees had with the app. The profile
-                surface also exposed quick access to Notes, Session Catalog, and
-                Explore, creating a personal base camp attendees returned to
-                throughout the day. Avatar, name, and designation were prominent,
-                reinforcing a personalized — not generic — conference experience.
+              <p className="text-[#888888] leading-relaxed text-sm">
+                The profile screen served dual purpose: personal identity hub
+                and conference access credential. QR Check-In was designed as a
+                primary action — not buried in settings — because physical
+                check-in was the most frequent in-person app interaction.
+                Avatar, name, and designation reinforced a personalized, not
+                generic, conference experience.
               </p>
               <div className="flex justify-center mt-4">
                 <MobileScreen
@@ -232,6 +455,8 @@ export default function IBMMobilePage() {
             </div>
           ),
         },
+
+        // ── 07 SCHEDULE ───────────────────────────────────────────────────
         {
           label: "07 — Schedule & Agenda Management",
           highlight: "Monday, October 6. Your day, structured.",
@@ -239,12 +464,11 @@ export default function IBMMobilePage() {
             <div className="space-y-4 mt-2">
               <ul className="space-y-3">
                 {[
-                  "The Schedule view was the highest-frequency screen in the entire app — designed to give attendees a clear, scannable view of the current day the moment they opened it, with zero navigation required.",
-                  "Each session card surfaced: time block, session title, location, track tag, and an 'Add to Schedule' CTA — visible without tapping into session detail. This reduced the decision loop from 4 taps to 2.",
-                  "Sessions already in the attendee's personal agenda displayed a filled 'Added' state. Conflicting sessions triggered a visual warning before confirming, preventing the frustration of double-booking a time block.",
-                  "Live capacity data — validated with operations during the ideation phase — appeared on session cards for high-demand talks, enabling attendees to make informed routing decisions before committing to a walk across the venue.",
+                  "The Schedule view was the highest-frequency screen — designed to show the current day's agenda the moment the app opened, with zero navigation required.",
+                  "Each session card showed: time block, title, location, track tag, and 'Add to Schedule' — visible without tapping into detail. Decision loop: 4 taps → 2.",
+                  "Conflicting sessions triggered a visual warning before confirming — preventing double-booking frustration. Live capacity appeared on high-demand sessions.",
                 ].map((item, i) => (
-                  <li key={i} className="flex items-start gap-3 text-[#888888] leading-relaxed">
+                  <li key={i} className="flex items-start gap-3 text-[#888888] leading-relaxed text-sm">
                     <span className="text-[#CC310E] mt-1 shrink-0">→</span>
                     <span>{item}</span>
                   </li>
@@ -259,22 +483,20 @@ export default function IBMMobilePage() {
             </div>
           ),
         },
+
+        // ── 08 SESSION DETAIL ─────────────────────────────────────────────
         {
           label: "08 — Session Detail & Discovery",
           highlight: "From 'maybe' to 'added' in two taps.",
           customContent: (
             <div className="space-y-4 mt-2">
-              <p className="text-[#888888] leading-relaxed">
+              <p className="text-[#888888] leading-relaxed text-sm">
                 Session detail pages balanced depth with scannability — speaker
-                with role and photo, session abstract, track tag, room location,
-                and live capacity indicator. Capacity was surfaced here
-                specifically because it was the final decision gate before an
-                attendee started walking to a room. The{" "}
-                <span className="text-[#F5F5F5]">&apos;Add to Schedule&apos;</span> CTA
-                remained fixed at the bottom of the page regardless of scroll
-                depth, ensuring conversion was never blocked by content length.
-                This addressed the JTBD identified in research: in-the-moment
-                session decisions had to be fast, confident, and irreversible.
+                photo and role, abstract, track tag, room, and live capacity.
+                Capacity appeared here as the final decision gate before an
+                attendee started walking. The &apos;Add to Schedule&apos; CTA was fixed
+                at the bottom of the page regardless of scroll depth — conversion
+                was never blocked by content length.
               </p>
               <div className="grid grid-cols-2 gap-6 mt-4">
                 <MobileScreen
@@ -289,25 +511,37 @@ export default function IBMMobilePage() {
             </div>
           ),
         },
+
+        // ── 09 FIELD ─────────────────────────────────────────────────────
         {
           label: "09 — Conference Experience in the Field",
           highlight: "Designed for the real event — not a demo environment.",
           customContent: (
             <div className="space-y-4 mt-2">
-              <p className="text-[#888888] leading-relaxed">
-                Every interaction in the app was designed to function under
-                actual conference conditions: bright ambient lighting, crowded
-                hallways, one-handed use, and intermittent connectivity. All tap
-                targets exceeded 44×44pt. Text contrast met WCAG AA at minimum
-                across all screens. The IBM Carbon design system ensured
-                component consistency and reduced engineering rework during
-                handoff. The app launch experience communicated TechXchange
-                brand identity while loading the attendee&apos;s personalized data —
-                setting the tone for a conference that felt curated, not
-                generic. Post-event metrics confirmed the design decisions held
-                under real conditions: a 4.63/5 session satisfaction rating and
-                832 digital badges earned reflected genuine attendee engagement,
-                not passive participation.
+              {/* Accessibility + quality chips */}
+              <div className="flex flex-wrap gap-2 mb-2">
+                {[
+                  "44×44pt min tap targets",
+                  "WCAG AA contrast",
+                  "One-handed use",
+                  "Offline-ready",
+                  "IBM Carbon compliant",
+                ].map((tag) => (
+                  <span
+                    key={tag}
+                    className="font-mono text-[10px] text-[#888888] border border-[#1F1F1F] bg-[#111111] px-3 py-1.5 uppercase tracking-widest"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+              <p className="text-[#888888] leading-relaxed text-sm">
+                Every interaction was designed for real conference conditions:
+                bright ambient lighting, crowded hallways, one-handed use, and
+                intermittent connectivity. Post-event metrics confirmed the
+                design decisions held — a 4.63/5 session satisfaction rating and
+                832 digital badges earned reflected genuine engagement, not
+                passive participation.
               </p>
               <div className="mt-4 space-y-4">
                 <div className="flex justify-center">
