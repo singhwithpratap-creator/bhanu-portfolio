@@ -588,7 +588,6 @@ export default function IBMMobilePage() {
         { value: "4.63/5", label: "Session satisfaction rating" },
         { value: "6.6", label: "Avg. tech labs per attendee" },
         { value: "832", label: "Digital badges earned" },
-        { value: "4.6★", label: "App Store rating" },
       ]}
       nextHref="/work/creative-advertising"
       nextTitle="Creative Advertising & Visual Campaigns"
