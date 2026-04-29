@@ -295,6 +295,17 @@ html.light nav .text-\[\#C8C8C8\] {
   color: #1A1A1A !important;
 }
 
+/* ═══════════════════════════════════════
+   MOBILE ACCESSIBILITY
+   Bump sub-12px text to readable sizes
+   on small screens (< 640px)
+═══════════════════════════════════════ */
+@media (max-width: 640px) {
+  .text-\[10px\] {
+    font-size: 12px;
+  }
+}
+
 /* ── Testimonials light mode ── */
 html.light #testimonials button {
   background-color: #EBEBEA !important;

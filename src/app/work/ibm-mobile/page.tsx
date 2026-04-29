@@ -19,7 +19,7 @@ const MobileScreen = ({ src, caption }: { src: string; caption: string }) => (
         className="absolute inset-0 w-full h-full object-cover object-top"
       />
     </div>
-    <p className="font-mono text-[11px] text-[#888888] uppercase tracking-widest mt-2 text-center leading-relaxed">
+    <p className="font-mono text-xs text-[#888888] uppercase tracking-widest mt-2 text-center leading-relaxed">
       {caption}
     </p>
   </div>
@@ -27,7 +27,7 @@ const MobileScreen = ({ src, caption }: { src: string; caption: string }) => (
 
 const HMWCard = ({ statement }: { statement: string }) => (
   <div className="border border-[#CC310E]/20 bg-[#CC310E]/5 px-5 py-4">
-    <span className="font-mono text-[11px] text-[#CC310E] uppercase tracking-widest block mb-2">
+    <span className="font-mono text-xs text-[#CC310E] uppercase tracking-widest block mb-2">
       HMW
     </span>
     <p className="text-[#F5F5F5] text-sm leading-relaxed">{statement}</p>
@@ -42,7 +42,7 @@ const OpportunityCard = ({
   description: string;
 }) => (
   <div className="border border-[#1F1F1F] bg-[#111111] px-5 py-4">
-    <p className="font-mono text-[11px] text-[#CC310E] uppercase tracking-widest mb-2">
+    <p className="font-mono text-xs text-[#CC310E] uppercase tracking-widest mb-2">
       {area}
     </p>
     <p className="text-[#888888] text-sm leading-relaxed">{description}</p>
@@ -122,8 +122,8 @@ export default function IBMMobilePage() {
           label: "Design Process at a Glance",
           highlight: "20 weeks. 5 phases. End-to-end ownership.",
           customContent: (
-            <div className="mt-4">
-              <div className="grid grid-cols-5 gap-px bg-[#1F1F1F]">
+            <div className="mt-4 overflow-x-auto -mx-2 px-2 pb-1">
+              <div className="grid grid-cols-5 gap-px bg-[#1F1F1F] min-w-[440px]">
                 {processPhases.map((p, i) => (
                   <div key={p.phase} className="bg-[#111111] px-4 py-5 relative">
                     <div
@@ -142,10 +142,10 @@ export default function IBMMobilePage() {
                     <p className="font-display font-bold text-[#F5F5F5] text-sm mb-0.5">
                       {p.phase}
                     </p>
-                    <p className="font-mono text-[11px] text-[#CC310E] uppercase tracking-widest mb-2">
+                    <p className="font-mono text-xs text-[#CC310E] uppercase tracking-widest mb-2">
                       {p.weeks}
                     </p>
-                    <p className="font-mono text-[11px] text-[#888888] leading-relaxed hidden sm:block">
+                    <p className="font-mono text-xs text-[#888888] leading-relaxed hidden sm:block">
                       {p.desc}
                     </p>
                   </div>
@@ -169,7 +169,7 @@ export default function IBMMobilePage() {
                     <p className="font-display font-bold text-[#CC310E] text-3xl mb-2">
                       {s.value}
                     </p>
-                    <p className="font-mono text-[11px] text-[#888888] uppercase tracking-widest leading-relaxed whitespace-pre-line">
+                    <p className="font-mono text-xs text-[#888888] uppercase tracking-widest leading-relaxed whitespace-pre-line">
                       {s.label}
                     </p>
                   </div>
@@ -193,7 +193,7 @@ export default function IBMMobilePage() {
 
               {/* 80% insight callout */}
               <div className="border border-[#CC310E]/20 bg-[#CC310E]/5 px-6 py-5">
-                <p className="font-mono text-[11px] text-[#CC310E] uppercase tracking-widest mb-2">
+                <p className="font-mono text-xs text-[#CC310E] uppercase tracking-widest mb-2">
                   Key Insight: The Orientation Window
                 </p>
                 <p className="font-display font-bold text-[#F5F5F5] text-2xl mb-2">
@@ -207,24 +207,24 @@ export default function IBMMobilePage() {
                 {/* Visual bar chart */}
                 <div className="mt-5 space-y-3">
                   <div className="flex items-center gap-3">
-                    <span className="font-mono text-[11px] text-[#888888] w-28 shrink-0">
+                    <span className="font-mono text-xs text-[#888888] w-28 shrink-0">
                       Morning (90 min)
                     </span>
                     <div className="flex-1 h-2.5 bg-[#1F1F1F] rounded-sm overflow-hidden">
                       <div className="h-full bg-[#CC310E] rounded-sm" style={{ width: "80%" }} />
                     </div>
-                    <span className="font-mono text-[11px] text-[#CC310E] w-8 text-right font-bold">
+                    <span className="font-mono text-xs text-[#CC310E] w-8 text-right font-bold">
                       80%
                     </span>
                   </div>
                   <div className="flex items-center gap-3">
-                    <span className="font-mono text-[11px] text-[#888888] w-28 shrink-0">
+                    <span className="font-mono text-xs text-[#888888] w-28 shrink-0">
                       Rest of day
                     </span>
                     <div className="flex-1 h-2.5 bg-[#1F1F1F] rounded-sm overflow-hidden">
                       <div className="h-full bg-[#383838] rounded-sm" style={{ width: "20%" }} />
                     </div>
-                    <span className="font-mono text-[11px] text-[#888888] w-8 text-right">
+                    <span className="font-mono text-xs text-[#888888] w-8 text-right">
                       20%
                     </span>
                   </div>
@@ -278,7 +278,7 @@ export default function IBMMobilePage() {
           customContent: (
             <div className="space-y-8 mt-2">
               <div>
-                <p className="font-mono text-[11px] text-[#888888] uppercase tracking-widest mb-4">
+                <p className="font-mono text-xs text-[#888888] uppercase tracking-widest mb-4">
                   How Might We Statements
                 </p>
                 <div className="grid grid-cols-1 gap-3">
@@ -291,7 +291,7 @@ export default function IBMMobilePage() {
               </div>
 
               <div>
-                <p className="font-mono text-[11px] text-[#888888] uppercase tracking-widest mb-4">
+                <p className="font-mono text-xs text-[#888888] uppercase tracking-widest mb-4">
                   Jobs to Be Done
                 </p>
                 <div className="space-y-3">
@@ -310,7 +310,7 @@ export default function IBMMobilePage() {
                     },
                   ].map((j) => (
                     <div key={j.id} className="border-l-2 border-[#CC310E] pl-5 py-2">
-                      <span className="text-[#CC310E] font-mono text-[11px] uppercase tracking-widest block mb-1.5">
+                      <span className="text-[#CC310E] font-mono text-xs uppercase tracking-widest block mb-1.5">
                         {j.id}
                       </span>
                       <p className="text-[#F5F5F5] text-sm leading-relaxed">{j.text}</p>
@@ -320,7 +320,7 @@ export default function IBMMobilePage() {
               </div>
 
               <div>
-                <p className="font-mono text-[11px] text-[#888888] uppercase tracking-widest mb-4">
+                <p className="font-mono text-xs text-[#888888] uppercase tracking-widest mb-4">
                   Opportunity Areas
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -363,7 +363,7 @@ export default function IBMMobilePage() {
                     <p className="text-[#F5F5F5] font-semibold text-sm mb-1.5">
                       {a.label}
                     </p>
-                    <p className="font-mono text-[11px] text-[#CC310E] uppercase tracking-widest">
+                    <p className="font-mono text-xs text-[#CC310E] uppercase tracking-widest">
                       {a.detail}
                     </p>
                   </div>
@@ -372,7 +372,7 @@ export default function IBMMobilePage() {
 
               {/* Key collaboration insight */}
               <div className="border border-[#CC310E]/20 bg-[#CC310E]/5 px-6 py-5">
-                <p className="font-mono text-[11px] text-[#CC310E] uppercase tracking-widest mb-2">
+                <p className="font-mono text-xs text-[#CC310E] uppercase tracking-widest mb-2">
                   Key Collaboration Insight
                 </p>
                 <p className="text-[#F5F5F5] text-sm leading-relaxed">
@@ -419,7 +419,7 @@ export default function IBMMobilePage() {
                 utility links moved to secondary levels, reducing noise at the
                 most critical moments.
               </p>
-              <div className="grid grid-cols-2 gap-6 mt-4">
+              <div className="grid grid-cols-2 gap-3 sm:gap-6 mt-4">
                 <MobileScreen
                   src="/images/cs02-screen-02.png"
                   caption="Navigation drawer · My Event, Schedule, Favorites, Surveys, Notifications"
@@ -499,7 +499,7 @@ export default function IBMMobilePage() {
                 at the bottom of the page regardless of scroll depth, so conversion
                 was never blocked by content length.
               </p>
-              <div className="grid grid-cols-2 gap-6 mt-4">
+              <div className="grid grid-cols-2 gap-3 sm:gap-6 mt-4">
                 <MobileScreen
                   src="/images/cs02-screen-04.png"
                   caption="Session detail · speaker, abstract, capacity, and Add to Schedule"
@@ -530,7 +530,7 @@ export default function IBMMobilePage() {
                 ].map((tag) => (
                   <span
                     key={tag}
-                    className="font-mono text-[11px] text-[#888888] border border-[#1F1F1F] bg-[#111111] px-3 py-1.5 uppercase tracking-widest"
+                    className="font-mono text-xs text-[#888888] border border-[#1F1F1F] bg-[#111111] px-3 py-1.5 uppercase tracking-widest"
                   >
                     {tag}
                   </span>
@@ -573,7 +573,7 @@ export default function IBMMobilePage() {
                           className="absolute inset-0 w-full h-full object-cover"
                         />
                       </div>
-                      <p className="font-mono text-[11px] text-[#888888] uppercase tracking-widest mt-2 text-center leading-relaxed">
+                      <p className="font-mono text-xs text-[#888888] uppercase tracking-widest mt-2 text-center leading-relaxed">
                         {img.caption}
                       </p>
                     </div>
