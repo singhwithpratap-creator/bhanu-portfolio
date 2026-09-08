@@ -10,6 +10,17 @@ import Image from "next/image";
 const projects = [
   {
     number: "01",
+    title: "QuickSilver 2.0: KPI Dashboard Redesign",
+    subtitle: "Sanofi US Vaccines — Power BI Dashboard",
+    tags: ["Product Design", "Dashboard", "Enterprise"],
+    href: "/work/quicksilver",
+    image: "/images/cs05/cover-territory-hub.png",
+    year: "2026",
+    accent: "Dashboard",
+    objectFit: "contain",
+  },
+  {
+    number: "02",
     title: "Product Design: Enterprise Asset Management",
     subtitle: "Enterprise Asset Management Redesign",
     tags: ["UX Design", "Enterprise SaaS", "AI"],
@@ -20,7 +31,7 @@ const projects = [
     objectFit: "contain",
   },
   {
-    number: "02",
+    number: "03",
     title: "IBM TechXchange, Web and Digital Experience",
     subtitle: "Website Design & Experience",
     tags: ["UX Design", "Web", "Design System"],
@@ -30,7 +41,7 @@ const projects = [
     accent: "Enterprise Web",
   },
   {
-    number: "03",
+    number: "04",
     title: "Mobile Application: IBM TechXchange",
     subtitle: "Event App Design",
     tags: ["Product Design", "Mobile", "iOS"],
@@ -40,7 +51,7 @@ const projects = [
     accent: "Mobile App",
   },
   {
-    number: "04",
+    number: "05",
     title: "Creative Advertising",
     subtitle: "Visual Design and Campaigns",
     tags: ["Brand", "Advertising", "Midjourney"],
