@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import CaseStudyLayout from "@/components/CaseStudyLayout";
 import Image from "next/image";
+import React from "react";
 
 export const metadata: Metadata = {
   title: "QuickSilver 2.0 KPI Dashboard - Bhanu Parmar",
   description:
-    "Owned end-to-end UX for Sanofi's enterprise dashboard redesign — extracting business insights from 100+ stakeholders to transform an 11-page data warehouse into a decision-first tool.",
+    "Owned end-to-end UX for Sanofi's enterprise dashboard redesign — extracting business insights from 100+ stakeholders to transform an 11-page data warehouse into a decision-first tool, plus Mercury, an AI assistant layer.",
 };
 
 /* ── tiny reusable blocks ── */
@@ -46,6 +47,36 @@ function PrincipleCard({ icon, title, desc }: { icon: string; title: string; des
   );
 }
 
+function ShotGrid({ shots, cols = 2 }: { shots: { src: string; caption: string }[]; cols?: 2 | 3 | 4 }) {
+  const colClass = cols === 4 ? "grid-cols-2 md:grid-cols-4" : cols === 3 ? "grid-cols-1 md:grid-cols-3" : "grid-cols-1 md:grid-cols-2";
+  return (
+    <div className={`grid gap-3 my-6 ${colClass}`}>
+      {shots.map((s, i) => (
+        <div key={i}>
+          <div className="relative bg-[#111111] border border-[#1F1F1F] overflow-hidden" style={{ aspectRatio: "3/2" }}>
+            <Image src={s.src} alt={s.caption} fill className="object-contain" sizes="(min-width: 768px) 50vw, 100vw" />
+          </div>
+          <p className="font-mono text-[10px] text-[#888888] uppercase tracking-widest mt-2 text-center">{s.caption}</p>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function BodyText({ children }: { children: React.ReactNode }) {
+  return <p className="text-[#888888] leading-relaxed mb-4">{children}</p>;
+}
+
+function ConceptNote({ children }: { children: React.ReactNode }) {
+  return (
+    <p className="font-mono text-[10px] text-[#888888] uppercase tracking-widest border-l-2 border-[#CC310E] pl-3 my-6 leading-relaxed">
+      {children}
+    </p>
+  );
+}
+
+const M = "/images/cs05/mercury";
+
 export default function QuickSilverPage() {
   return (
     <CaseStudyLayout
@@ -54,9 +85,9 @@ export default function QuickSilverPage() {
       subtitle="KPI Dashboard Redesign — Sanofi US Vaccines"
       year="2026"
       role="UX & Product Designer (Sole Designer)"
-      tools={["Figma", "FigJam", "Power BI", "Snowflake", "Claude AI"]}
+      tools={["Figma", "FigJam", "Power BI", "Snowflake", "Claude AI", "AI / LLM UX"]}
       heroImage="/images/cs05/cover-territory-hub.png"
-      overview="As the sole UX designer, I took full ownership of transforming Sanofi's 11-page Power BI dashboard into a focused hub-and-spoke decision tool. I extracted business insights from 100+ stakeholders through facilitated workshops, contextual inquiry, and brainstorming sessions — then translated them into personas, user journeys, business questions, and a new information architecture grounded in progressive disclosure, mental model alignment, and cognitive load reduction."
+      overview="As the sole UX designer, I took full ownership of transforming Sanofi's 11-page Power BI dashboard into a focused hub-and-spoke decision tool. I extracted business insights from 100+ stakeholders through facilitated workshops, contextual inquiry, and brainstorming sessions — then translated them into personas, user journeys, business questions, and a new information architecture grounded in progressive disclosure, mental model alignment, and cognitive load reduction. On top of the new structure, I designed Mercury — an AI assistant that answers territory questions in plain language, shows where every number came from, and carries the same answer from desk to phone."
       challenge="An 11-page, 69-KPI data warehouse with no hierarchy, no progressive disclosure, and pages organized by database tables instead of user tasks. SAMs spent 26 manual steps every month assembling a critical customer document because the dashboard wasn't designed around their real workflow."
       metrics={[
         { value: "100+", label: "Stakeholders Consulted" },
@@ -204,9 +235,153 @@ export default function QuickSilverPage() {
           ],
         },
 
+        /* ───────── MERCURY: AI LAYER ───────── */
+        {
+          label: "13 — Mercury: An AI Assistant Inside the Dashboard",
+          highlight: "The redesign cut the clicks. Mercury cuts the stitching — one question, answered from the same numbers the dashboard shows.",
+          customContent: (
+            <div className="mb-6">
+              <BodyText>
+                Even after the redesign, a SAM preparing for a customer meeting still visited several pages and pieced the story together in their head. I designed Mercury, QuickSilver&rsquo;s AI assistant, so a SAM can ask a question the way they would say it — and get an answer grounded in their own territory data, with every number traced back to its page.
+              </BodyText>
+              <BodyText>
+                I told the design as one story in two acts: <span className="text-[#F5F5F5]">Act 1</span>, Jason at his desk; <span className="text-[#F5F5F5]">Act 2</span>, Jason on his phone ten minutes before meeting Ascension Health. A 9-step guided prototype walks reviewers through it.
+              </BodyText>
+              <ConceptNote>Concept · Illustrative data reused from the Territory Hub and Performance Overview mockups. PRT fields and alert details shown as placeholders.</ConceptNote>
+            </div>
+          ),
+          image: `${M}/01-meet-mercury.png`,
+          imageAlt: "Territory Hub with the Ask Mercury button and the first step of the guided walkthrough",
+          imageCaption: "Step 1 of 9: Ask Mercury lives next to Feedback on every page.",
+        },
+
+        {
+          label: "14 — Act 1 · Ask in Plain Language, Check the Work",
+          highlight: "Three rules shaped the chat panel: start from the user's filters, never show a blank box, always show the work.",
+          customContent: (
+            <>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-3 my-6">
+                <PrincipleCard icon="◎" title="Start From Their Filters" desc="A chip reads “Using your filters: Columbus OH · Jan – Sep 2023”. Mercury never guesses the territory or date range." />
+                <PrincipleCard icon="◈" title="No Blank Box" desc="Quick starters map to the core SAM business questions — accounts needing attention, year-over-year, flu pre-book." />
+                <PrincipleCard icon="◆" title="Show the Work" desc="Every answer opens with “How I read your request” and ends with source chips that link back to the page." />
+              </div>
+              <ShotGrid shots={[
+                { src: `${M}/02-ask-plain-language.png`, caption: "Quick starters + free-text question" },
+                { src: `${M}/03-answer-with-sources.png`, caption: "Answer with its reading, a table and sources" },
+              ]} />
+            </>
+          ),
+        },
+
+        {
+          label: "15 — Designing the Wait",
+          highlight: "A spinner tells you nothing. Mercury shows each check it runs, then streams the answer in.",
+          customContent: (
+            <>
+              <BodyText>
+                AI answers take a few seconds. I designed two states for that gap, and reused them everywhere the AI works: a <span className="text-[#F5F5F5]">thinking</span> state that lists real steps (&ldquo;Applied your filters → Checked Top 5 Health Systems → Checking Active Alerts&rdquo;), and a <span className="text-[#F5F5F5]">streaming</span> state where the reading appears first and the answer fills in. Users see the answer is built from their data — not invented.
+              </BodyText>
+              <ShotGrid shots={[
+                { src: `${M}/03a-thinking.png`, caption: "Chat · thinking steps" },
+                { src: `${M}/03b-streaming.png`, caption: "Chat · streaming reply" },
+                { src: `${M}/05a-generating.png`, caption: "Insights · generating with skeleton" },
+                { src: `${M}/05b-streaming.png`, caption: "Insights · rows streaming in" },
+              ]} />
+            </>
+          ),
+        },
+
+        {
+          label: "16 — Act 1 · Account Insights Where the Data Lives",
+          highlight: "One click adds an AI summary on the account page — so the SAM doesn't piece it together across five pages.",
+          customContent: (
+            <>
+              <ul className="space-y-3 mb-6">
+                {[
+                  "Status and confidence labels up front (Growing · Confidence: medium) — the AI says how sure it is.",
+                  "A two-to-three sentence account summary in plain language.",
+                  "What's driving it: five insights, each tagged with its source page.",
+                  "Suggested next steps, ranked by priority, each linking to the page where the SAM can act.",
+                  "A footer reminder to check each insight against its source before sharing.",
+                ].map((t, i) => (
+                  <li key={i} className="flex items-start gap-3 text-[#888888] leading-relaxed">
+                    <span className="text-[#CC310E] mt-1 shrink-0">→</span>
+                    <span>{t}</span>
+                  </li>
+                ))}
+              </ul>
+              <ShotGrid shots={[
+                { src: `${M}/04-insights-entry.png`, caption: "Generate account insights entry point" },
+                { src: `${M}/05-account-insights.png`, caption: "Summary, sourced drivers, ranked next steps" },
+              ]} />
+            </>
+          ),
+        },
+
+        {
+          label: "17 — From Insight to Action: Into the PRT",
+          highlight: "This is where AI meets the 26-step problem. Add to PRT draft drops the summary, insights and next steps in with one click.",
+          content:
+            "AI-written sections are marked in the draft so reviewers can tell them apart from what the SAM wrote. Everything else stays with the SAM to complete. A toast confirms the change and offers Undo — the AI never edits work silently. The draft opens in place or exports to PowerPoint.",
+          image: `${M}/06-insight-to-prt.png`,
+          imageAlt: "PRT draft panel with three AI sections marked Added and an undo toast",
+          imageCaption: "AI sections marked as Added; other PRT sections left To complete; Undo always available.",
+        },
+
+        {
+          label: "18 — Act 2 · From Desk to Customer Meeting",
+          highlight: "Ten minutes before the meeting, the same assistant on his phone. Two numbers, three bullets, one story across devices.",
+          customContent: (
+            <>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 my-6">
+                <PrincipleCard icon="◎" title="Starters Fit the Moment" desc="On mobile they change to: recap an account, any open issues, show my PRT draft." />
+                <PrincipleCard icon="◈" title="Messy Typing Is Fine" desc="“meeting ascension in 10 min, quick recap?” works. Nobody types perfectly on a phone." />
+                <PrincipleCard icon="◇" title="Same Story Everywhere" desc="The recap reuses the PRT draft insights and the same confidence label, so desk and phone never disagree." />
+                <PrincipleCard icon="◆" title="Follow-ups Keep Context" desc="“whats the alert about” needs no account name — and returns the alert plus a suggested talking point." />
+              </div>
+              <ShotGrid cols={3} shots={[
+                { src: `${M}/07-mobile-start.png`, caption: "Meeting-focused quick starters" },
+                { src: `${M}/08-mobile-recap.png`, caption: "Quick recap that fits a phone" },
+                { src: `${M}/09-mobile-alert.png`, caption: "Open alert + talking point" },
+              ]} />
+              <ShotGrid cols={4} shots={[
+                { src: `${M}/08a-mobile-thinking.png`, caption: "Recap · thinking" },
+                { src: `${M}/08b-mobile-streaming.png`, caption: "Recap · streaming" },
+                { src: `${M}/09a-mobile-thinking.png`, caption: "Follow-up · thinking" },
+                { src: `${M}/09b-mobile-streaming.png`, caption: "Follow-up · streaming" },
+              ]} />
+              <p className="font-display text-lg font-bold text-[#F5F5F5] leading-snug mt-6">
+                Jason walks in knowing the numbers, the open issue and a talking point — without opening five dashboard pages.
+              </p>
+            </>
+          ),
+        },
+
+        {
+          label: "19 — Trust Rules I Designed Into the AI",
+          highlight: "In a pharma sales tool, a confident wrong number is worse than no number. Every rule below makes the AI checkable.",
+          customContent: (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-[#1F1F1F] my-6">
+              {[
+                ["Use the user's own filters", "Filter chip on every panel and answer"],
+                ["Show how the question was read", "“How I read your request” block"],
+                ["Every number has a source", "Source chips + links to the page"],
+                ["Say how sure it is", "Status and confidence labels"],
+                ["Never edit work silently", "AI sections marked in the PRT, Undo"],
+                ["Remind before sharing", "Disclaimer under the input and in insights"],
+              ].map(([rule, how], i) => (
+                <div key={i} className="bg-[#111111] p-5">
+                  <p className="text-[#F5F5F5] text-sm font-bold mb-1">{rule}</p>
+                  <p className="text-[#888888] text-xs leading-relaxed">{how}</p>
+                </div>
+              ))}
+            </div>
+          ),
+        },
+
         /* ───────── CLICK COMPARISON ───────── */
         {
-          label: "13 — Impact: Task-by-Task Comparison",
+          label: "20 — Impact: Task-by-Task Comparison",
           highlight: "7 of 9 daily tasks answered on arrival. 2 tasks that were impossible now exist.",
           image: "/images/cs05/click-comparison.png",
           imageAlt: "Click comparison",
@@ -223,7 +398,7 @@ export default function QuickSilverPage() {
 
         /* ───────── CONSTRAINTS ───────── */
         {
-          label: "14 — Designing Within Enterprise Constraints",
+          label: "21 — Designing Within Enterprise Constraints",
           highlight: "Every interaction maps to a Power BI native capability.",
           content: [
             "Bookmarks for navigation, field parameters for dynamic columns, drillthrough for detail views, tooltip pages for hover detail — all Power BI native.",
@@ -236,7 +411,7 @@ export default function QuickSilverPage() {
 
         /* ───────── STRUCTURE ───────── */
         {
-          label: "15 — Nothing Is Deleted",
+          label: "22 — Nothing Is Deleted",
           highlight: "Every live page has an owner, a route, and a preview on the hub.",
           image: "/images/cs05/new-structure.png",
           imageAlt: "New structure mapping",
