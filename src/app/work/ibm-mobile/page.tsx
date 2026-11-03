@@ -436,7 +436,7 @@ export default function IBMMobilePage() {
         // ── 06 PROFILE ───────────────────────────────────────────────────
         {
           label: "06 · Profile & Identity",
-          highlight: "Your identity is the key — literally.",
+          highlight: "Your identity is the key. Literally.",
           customContent: (
             <div className="space-y-4 mt-2">
               <p className="text-[#888888] leading-relaxed text-sm">

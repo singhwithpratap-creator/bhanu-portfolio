@@ -11,7 +11,7 @@ const projects = [
   {
     number: "01",
     title: "QuickSilver 2.0: KPI Dashboard Redesign",
-    subtitle: "Sanofi US Vaccines — Power BI Dashboard",
+    subtitle: "Sanofi US Vaccines · Power BI Dashboard",
     tags: ["Product Design", "Dashboard", "Enterprise"],
     href: "/work/quicksilver",
     image: "/images/cs05/cover-territory-hub.png",
