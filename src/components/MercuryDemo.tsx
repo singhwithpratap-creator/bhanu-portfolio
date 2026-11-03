@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useCallback, useEffect, useRef, useState } from "react";
+import Image from "next/image";
 
 /* ─────────────────────────────────────────────────────────────
    Mercury: scripted, interactive prototype of QuickSilver's
@@ -214,7 +215,7 @@ function BlockView({ b, phone }: { b: Block; phone: boolean }) {
       return (
         <div className="border border-[#E6E1EF] rounded-lg overflow-hidden my-3 text-[12px]">
           <table className="w-full">
-            <thead className="bg-[#F6F3FA] text-[#555]">
+            <thead className="bg-[#F6F3FA] text-[#4A4A4A]">
               <tr>
                 {b.head.map((h, i) => (
                   <th key={h} className={`py-2 px-3 font-medium ${i === 0 ? "text-left" : "text-right"}`}>{h}</th>
@@ -250,7 +251,7 @@ function BlockView({ b, phone }: { b: Block; phone: boolean }) {
           {b.items.map((k) => (
             <div key={k.label} className="bg-[#F4F2F7] rounded-lg p-3">
               <p className={`font-semibold text-[#111] ${phone ? "text-xl" : "text-2xl"}`}>{k.value}</p>
-              <p className="text-[11px] text-[#555] mt-0.5">{k.label}</p>
+              <p className="text-[11px] text-[#4A4A4A] mt-0.5">{k.label}</p>
             </div>
           ))}
         </div>
@@ -288,7 +289,7 @@ function BlockView({ b, phone }: { b: Block; phone: boolean }) {
             {b.items.map((s, i) => (
               <div key={s.text} className="flex items-center justify-between gap-2 px-3 py-2">
                 <span className="flex items-center gap-2 text-[12px] text-[#222]">
-                  <span className="w-5 h-5 shrink-0 rounded-full bg-[#7A00E6] text-white text-[10px] flex items-center justify-center">{i + 1}</span>
+                  <span className="w-5 h-5 shrink-0 rounded-full bg-[#7A00E6] text-[#FFFFFF] text-[10px] flex items-center justify-center">{i + 1}</span>
                   {s.text}
                 </span>
                 <span className="text-[11px] text-[#7A00E6] whitespace-nowrap">{s.page} →</span>
@@ -303,7 +304,7 @@ function BlockView({ b, phone }: { b: Block; phone: boolean }) {
           <p className="bg-[#FCEBEE] text-[#D0213A] px-3 py-2 font-medium">● Open alert</p>
           {b.rows.map(([k, v]) => (
             <div key={k} className="flex gap-3 px-3 py-2 border-t border-[#F3E4E7]">
-              <span className="w-20 shrink-0 text-[#666]">{k}</span>
+              <span className="w-20 shrink-0 text-[#575757]">{k}</span>
               <span className="text-[#222] font-medium">{v}</span>
             </div>
           ))}
@@ -317,7 +318,7 @@ function BlockView({ b, phone }: { b: Block; phone: boolean }) {
         </div>
       );
     case "note":
-      return <p className="text-[11px] italic text-[#666] my-2">{b.text}</p>;
+      return <p className="text-[11px] italic text-[#575757] my-2">{b.text}</p>;
   }
 }
 
@@ -448,17 +449,17 @@ export default function MercuryDemo() {
 
   const panel = (
     <div
-      className={`flex flex-col bg-white text-[#111] overflow-hidden ${phone ? "h-full" : "h-[600px] rounded-xl border border-[#2A2A2A]"}`}
+      className={`flex flex-col bg-white text-[#111] overflow-hidden ${phone ? "h-full" : "h-full border-l border-[#D9D3E6] shadow-[-12px_0_32px_rgba(35,0,76,0.18)]"}`}
       style={{ fontFamily: '"Segoe UI", system-ui, -apple-system, sans-serif' }}
     >
       {/* Header */}
-      <div className={`flex items-center justify-between px-4 ${phone ? "pt-9 pb-3" : "py-3"} bg-gradient-to-r from-[#23004C] to-[#5A00B4] text-white`}>
+      <div className={`flex items-center justify-between px-4 ${phone ? "pt-9 pb-3" : "py-3"} bg-gradient-to-r from-[#23004C] to-[#5A00B4] text-[#FFFFFF]`}>
         <div className="flex items-center gap-2">
           <Sparkle className="w-5 h-5" />
           <span className="font-semibold text-[16px]">Mercury</span>
           <span className="text-[10px] font-bold border border-white/70 rounded px-1.5 py-px">AI</span>
         </div>
-        <button onClick={reset} className="text-white/80 hover:text-white text-[12px] flex items-center gap-1" aria-label="Start a new conversation">
+        <button onClick={reset} className="text-white/80 hover:text-[#FFFFFF] text-[12px] flex items-center gap-1" aria-label="Start a new conversation">
           <svg viewBox="0 0 24 24" className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
             <path d="M21 12a9 9 0 1 1-3-6.7M21 4v5h-5" />
           </svg>
@@ -474,7 +475,7 @@ export default function MercuryDemo() {
       <div ref={scroller} className="flex-1 overflow-y-auto px-4 py-4 space-y-4" aria-live="polite">
         {empty && (
           <div>
-            <p className="text-[11px] text-[#666] flex items-center gap-1">
+            <p className="text-[11px] text-[#575757] flex items-center gap-1">
               <Sparkle className="w-3.5 h-3.5 text-[#7A00E6]" /> Mercury
             </p>
             <p className="font-semibold text-[17px] mt-2">Hi, Jason!</p>
@@ -500,14 +501,14 @@ export default function MercuryDemo() {
           if (m.role === "user")
             return (
               <div key={i} className="flex flex-col items-end">
-                <span className="text-[10px] text-[#777] mb-1">You · just now</span>
+                <span className="text-[10px] text-[#5E5E5E] mb-1">You · just now</span>
                 <div className="bg-[#EFEDF3] rounded-2xl rounded-tr-sm px-3.5 py-2 text-[13px] max-w-[85%]">{m.text}</div>
               </div>
             );
           if (m.role === "fallback")
             return (
               <div key={i} className="text-[13px] text-[#333]">
-                <p className="text-[11px] text-[#666] flex items-center gap-1 mb-1">
+                <p className="text-[11px] text-[#575757] flex items-center gap-1 mb-1">
                   <Sparkle className="w-3.5 h-3.5 text-[#7A00E6]" /> Mercury
                 </p>
                 This prototype is scripted, so it answers a set of territory questions. Try one of these:
@@ -529,7 +530,7 @@ export default function MercuryDemo() {
                 </p>
                 <ul className="mt-2 space-y-1">
                   {sc.thinking.map((t, s) => (
-                    <li key={t} className={`text-[12px] flex gap-2 ${s < m.stepsDone ? "text-[#444]" : s === m.stepsDone ? "text-[#7A00E6] font-medium" : "text-[#AAA]"}`}>
+                    <li key={t} className={`text-[12px] flex gap-2 ${s < m.stepsDone ? "text-[#444]" : s === m.stepsDone ? "text-[#7A00E6] font-medium" : "text-[#8A8A8A]"}`}>
                       <span className="w-3">{s < m.stepsDone ? <span className="text-[#138A4B]">✓</span> : s === m.stepsDone ? "…" : ""}</span>
                       {s === m.stepsDone ? t.replace(/^Checked/, "Checking").replace(/^Pulled/, "Pulling").replace(/^Read /, "Reading ").replace(/^Used/, "Using").replace(/^Compared/, "Comparing").replace(/^Applied/, "Applying").replace(/^Found/, "Finding") : t}
                     </li>
@@ -540,7 +541,7 @@ export default function MercuryDemo() {
           const words = sc.answer.split(" ");
           return (
             <div key={i}>
-              <p className="text-[11px] text-[#666] flex items-center gap-1.5">
+              <p className="text-[11px] text-[#575757] flex items-center gap-1.5">
                 <Sparkle className="w-3.5 h-3.5 text-[#7A00E6]" /> Mercury <span className="text-[#BBB]">|</span>
                 <button onClick={() => setOpenReading((o) => ({ ...o, [i]: !o[i] }))} className="text-[#7A00E6] hover:underline" aria-expanded={openReading[i] ?? !phone}>
                   Reasoning {(openReading[i] ?? !phone) ? "▴" : "▾"}
@@ -565,7 +566,7 @@ export default function MercuryDemo() {
                     <BlockView key={j} b={b} phone={phone} />
                   ))}
                   <div className="flex flex-wrap items-center gap-1.5 mt-2">
-                    <span className="text-[11px] text-[#666]">Source:</span>
+                    <span className="text-[11px] text-[#575757]">Source:</span>
                     {sc.sources.map((s) => (
                       <SourceChip key={s} label={s} />
                     ))}
@@ -603,7 +604,7 @@ export default function MercuryDemo() {
             value={input}
             onChange={(e) => setInput(e.target.value)}
             placeholder={empty ? "Ask about your territory…" : "Ask a follow-up…"}
-            className="flex-1 bg-transparent outline-none text-[13px] text-[#111] placeholder:text-[#888]"
+            className="flex-1 bg-transparent outline-none text-[13px] text-[#111] placeholder:text-[#6B6B6B]"
             disabled={busy}
             autoComplete="off"
           />
@@ -613,7 +614,7 @@ export default function MercuryDemo() {
             </svg>
           </button>
         </div>
-        <p className="text-[10px] italic text-[#888] mt-1.5 px-1">AI-generated answers can be inaccurate. Check the source page before sharing.</p>
+        <p className="text-[10px] italic text-[#5E5E5E] mt-1.5 px-1">AI-generated answers can be inaccurate. Check the source page before sharing.</p>
       </form>
     </div>
   );
@@ -632,7 +633,7 @@ export default function MercuryDemo() {
               role="tab"
               aria-selected={mode === m}
               onClick={() => switchMode(m)}
-              className={`px-3 py-1.5 ${mode === m ? "bg-[#CC310E] text-white" : "text-[#888888] hover:text-[#F5F5F5]"}`}
+              className={`px-3 py-1.5 ${mode === m ? "bg-[#CC310E] text-[#FFFFFF]" : "text-[#888888] hover:text-[#F5F5F5]"}`}
             >
               {m === "desk" ? "Act 1 · Desk" : "Act 2 · Phone"}
             </button>
@@ -648,8 +649,18 @@ export default function MercuryDemo() {
           </div>
         </div>
       ) : (
-        <div className="bg-[#111111] border border-[#1F1F1F] p-3 md:p-6">
-          <div className="max-w-[560px] mx-auto">{panel}</div>
+        <div className="relative h-[620px] overflow-hidden border border-[#1F1F1F] bg-[#F7F5FA]">
+          {/* Territory Hub behind the assistant, blurred like the real panel-open state */}
+          <Image
+            src="/images/cs05/territory-hub.png"
+            alt=""
+            aria-hidden="true"
+            fill
+            sizes="(min-width: 768px) 768px, 100vw"
+            className="object-cover object-left-top scale-[1.03] blur-[2.5px] select-none pointer-events-none"
+          />
+          <div className="absolute inset-0 bg-[#FFFFFF]/25" aria-hidden="true" />
+          <div className="absolute top-0 right-0 h-full w-full sm:w-[380px]">{panel}</div>
         </div>
       )}
       <p className="font-mono text-[10px] text-[#555555] mt-2 text-center">
