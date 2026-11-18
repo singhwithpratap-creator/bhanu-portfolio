@@ -4,9 +4,9 @@ import MercuryDemo from "@/components/MercuryDemo";
 import React from "react";
 
 export const metadata: Metadata = {
-  title: "QuickSilver 2.0 KPI Dashboard - Bhanu Parmar",
+  title: "Atlas 2.0 KPI Dashboard - Bhanu Parmar",
   description:
-    "How I redesigned Sanofi's 11-page Power BI dashboard into a simple decision tool, working with 100+ stakeholders, and added Mercury, an AI assistant that answers questions in plain language.",
+    "How I redesigned a vaccine maker's 11-page Power BI dashboard into a simple decision tool, working with 100+ stakeholders, and added Mercury, an AI assistant that answers questions in plain language.",
 };
 
 /* ── tiny reusable blocks ── */
@@ -51,17 +51,17 @@ function BodyText({ children }: { children: React.ReactNode }) {
   return <p className="text-[#888888] leading-relaxed mb-4">{children}</p>;
 }
 
-export default function QuickSilverPage() {
+export default function AtlasPage() {
   return (
     <CaseStudyLayout
       number="CS 05"
-      title="QuickSilver 2.0"
-      subtitle="KPI Dashboard Redesign · Sanofi US Vaccines"
+      title="Atlas 2.0"
+      subtitle="KPI Dashboard Redesign · Helix Vaccines (name changed)"
       year="2026"
       role="UX & Product Designer (Sole Designer)"
       tools={["Figma", "FigJam", "Power BI", "Snowflake", "Claude AI", "AI / LLM UX"]}
       heroImage="/images/cs05/cover-territory-hub.png"
-      overview="I was the only designer on this project. Sanofi's sales teams had an 11-page Power BI dashboard that was hard to use, so I sat down with more than 100 people who use it, ran workshops, and watched them work. From that, I built personas, journeys and a new structure: one home page with four focused pages around it, each showing just what you need first. Then I designed Mercury, an AI assistant you can ask questions in plain words. It shows where every number comes from, and it works the same on your desk and on your phone."
+      overview="I was the only designer on this project. The sales team at a large vaccine maker (I'll call it Helix Vaccines) had an 11-page Power BI dashboard that was hard to use, so I sat down with more than 100 people who use it, ran workshops, and watched them work. From that, I built personas, journeys and a new structure: one home page with four focused pages around it, each showing just what you need first. Then I designed Mercury, an AI assistant you can ask questions in plain words. It shows where every number comes from, and it works the same on your desk and on your phone."
       challenge="The old dashboard had 11 pages and 69 KPIs, with no clear order. Pages followed how the database was built, not how people work. Every month, each account manager (SAM) took 26 manual steps just to put together one key customer document, because the dashboard didn't fit their real day."
       metrics={[
         { value: "100+", label: "Stakeholders Consulted" },
@@ -76,8 +76,8 @@ export default function QuickSilverPage() {
           highlight: "There was no research to start from, so I set it up and ran every session myself.",
           customContent: (
             <div className="flex flex-col gap-5 mt-4 mb-8">
-              <ProcessStep num="01" title="Workshops and brainstorming" desc="I brought SAMs, regional directors, product owners, data engineers and the Sapphire contract team into the same room." />
-              <ProcessStep num="02" title="Watching 100+ people work" desc="I watched SAMs use QuickSilver 1.0 while they prepared for real customer meetings. Not in a lab, at their desks." />
+              <ProcessStep num="01" title="Workshops and brainstorming" desc="I brought SAMs, regional directors, product owners, data engineers and the contract tool team into the same room." />
+              <ProcessStep num="02" title="Watching 100+ people work" desc="I watched SAMs use Atlas 1.0 while they prepared for real customer meetings. Not in a lab, at their desks." />
               <ProcessStep num="03" title="Finding the real questions" desc="Hundreds of data requests came down to 3 questions that every customer visit is built around." />
               <ProcessStep num="04" title="Auditing every KPI" desc="I listed all 69 KPIs across 7 screens. 14 were repeated, 2 were missing and 4 couldn't be built." />
               <ProcessStep num="05" title="Mapping the monthly report" desc="I mapped how SAMs build their PRT each month. The 26-step pain point became how we measured success." />
@@ -183,7 +183,7 @@ export default function QuickSilverPage() {
         /* ───────── CONTRACT ───────── */
         {
           label: "10 · Contract & Eligibility",
-          highlight: "A clear summary with a link out to Sapphire. I didn't rebuild a tool people already use.",
+          highlight: "A clear summary with a link out to the existing contract tool. I didn't rebuild a tool people already use.",
           image: "/images/cs05/contract-eligibility.png",
           imageAlt: "Contract & Eligibility",
           imageCaption: "Savings, spend breakdown, price per dose and contract performance.",
@@ -219,7 +219,7 @@ export default function QuickSilverPage() {
                 Even with the new layout, a SAM getting ready for a meeting still jumped between pages to piece the story together. So I designed Mercury. You ask it something the way you&rsquo;d ask a colleague, and it answers from your own territory data, telling you which page each number came from.
               </BodyText>
               <BodyText>
-                Try it below. Act 1 is Jason at his desk. Act 2 is Jason on his phone, ten minutes before he meets Ascension Health.
+                Try it below. Act 1 is Jason at his desk. Act 2 is Jason on his phone, ten minutes before he meets Northfield Health.
               </BodyText>
               <MercuryDemo />
               <p className="text-[#F5F5F5] text-sm font-bold mt-10 mb-3">The rules I designed it around</p>
@@ -239,7 +239,7 @@ export default function QuickSilverPage() {
                 ))}
               </div>
               <p className="font-mono text-[10px] text-[#888888] uppercase tracking-widest border-l-2 border-[#CC310E] pl-3 mt-6 leading-relaxed">
-                Concept · The data is made up and reused from the dashboard mockups. PRT fields and alert details are placeholders.
+                Concept · Client, product and customer names are changed or blurred, and all data is made up. PRT fields and alert details are placeholders.
               </p>
             </>
           ),
@@ -268,7 +268,7 @@ export default function QuickSilverPage() {
           highlight: "Everything I designed can be built with features Power BI already has.",
           content: [
             "Bookmarks for navigation, field parameters for changing columns, drillthrough for detail views and tooltip pages for hover details. All built into Power BI.",
-            "I followed Sanofi's visual style guide: brand purples, its chart colours, Segoe UI, and green and red only for up and down.",
+            "I followed the client's visual style guide: brand colours, its chart palette, Segoe UI, and green and red only for up and down.",
           ],
           image: "/images/cs05/design-vision.png",
           imageAlt: "Design vision",

@@ -10,10 +10,10 @@ import Image from "next/image";
 const projects = [
   {
     number: "01",
-    title: "QuickSilver 2.0: KPI Dashboard Redesign",
-    subtitle: "Sanofi US Vaccines · Power BI Dashboard",
+    title: "Atlas 2.0: KPI Dashboard Redesign",
+    subtitle: "Global Vaccine Maker · Power BI Dashboard",
     tags: ["Product Design", "Dashboard", "Enterprise"],
-    href: "/work/quicksilver",
+    href: "/work/atlas",
     image: "/images/cs05/cover-territory-hub.png",
     year: "2026",
     accent: "Dashboard",

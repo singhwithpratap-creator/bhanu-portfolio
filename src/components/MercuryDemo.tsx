@@ -4,7 +4,7 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 
 /* ─────────────────────────────────────────────────────────────
-   Mercury: scripted, interactive prototype of QuickSilver's
+   Mercury: scripted, interactive prototype of Atlas's
    AI assistant. No real model is called: answers are pre-written
    from the illustrative dashboard data, but the interaction
    (thinking steps, streaming, sources, follow-ups) behaves like
@@ -41,42 +41,42 @@ const S: Record<string, Scenario> = {
   alerts: {
     id: "alerts",
     question: "Which of my health systems have open alerts right now?",
-    thinking: ["Applied your filters: Columbus OH · Jan – Sep 2023", "Checked Top 5 Health Systems", "Checked Active Alerts"],
+    thinking: ["Applied your filters: Riverton, OH · Jan – Sep 2023", "Checked Top 5 Health Systems", "Checked Active Alerts"],
     reading:
-      "Top 5 health systems in Columbus OH with at least one active alert (order blocks, credit holds or overdue invoices), Jan – Sep 2023, ranked by revenue.",
+      "Top 5 health systems in Riverton, OH with at least one active alert (order blocks, credit holds or overdue invoices), Jan – Sep 2023, ranked by revenue.",
     answer:
-      "4 of your top 5 health systems have open alerts, 7 in total. Providence St. Joseph has the most (3); Ascension Health is your largest account with 1.",
+      "4 of your top 5 health systems have open alerts, 8 in total. Pinecrest Health has the most (3); Northfield Health is your largest account with 1.",
     blocks: [
       {
         kind: "table",
         head: ["Health system", "Alerts", "Revenue", "YoY"],
         rows: [
-          ["Ascension Health", "1", "$840K", "+18%"],
-          ["HCA Healthcare", "2", "$610K", "+9%"],
-          ["Trinity Health", "1", "$480K", "+6%"],
-          ["Providence St. Joseph", "3", "$390K", "+2%"],
+          ["Northfield Health", "1", "$620K", "+11%"],
+          ["Summit Care Group", "2", "$540K", "+7%"],
+          ["Lakeshore Health", "2", "$410K", "+5%"],
+          ["Pinecrest Health", "3", "$330K", "+3%"],
         ],
       },
     ],
     sources: ["Territory Hub · Top 5 Health Systems", "Active Alerts"],
     link: "Open in Operations & Risk",
-    followUps: ["How is Ascension Health performing vs prior year?", "What's the alert on Ascension about?"],
+    followUps: ["How is Northfield Health performing vs prior year?", "What's the alert on Northfield about?"],
   },
   yoy: {
     id: "yoy",
-    question: "How is Ascension Health performing vs prior year?",
-    title: "Ascension Health: account insights",
-    thinking: ["Read Performance Overview for Ascension Health", "Compared with prior year", "Checked alerts on Territory Hub"],
-    reading: "Ascension Health, Columbus OH, Jan – Sep 2023 compared with the same period last year.",
+    question: "How is Northfield Health performing vs prior year?",
+    title: "Northfield Health: account insights",
+    thinking: ["Read Performance Overview for Northfield Health", "Compared with prior year", "Checked alerts on Territory Hub"],
+    reading: "Northfield Health, Riverton, OH, Jan – Sep 2023 compared with the same period last year.",
     answer:
-      "Ascension Health is growing. Revenue is $840K (+12% vs prior year) and doses delivered are up 8%. Flu is the largest part of the mix, and there is 1 open alert to resolve before your next conversation.",
+      "Northfield Health is growing. Revenue is $620K (+11% vs prior year) and doses delivered are up 6%. Flu is the largest part of the mix, and there is 1 open alert to resolve before your next conversation.",
     blocks: [
       { kind: "badges", items: [{ label: "Growing", tone: "good" }, { label: "Confidence: medium", tone: "neutral" }] },
       {
         kind: "drivers",
         items: [
-          { text: "Revenue is $840K, up 12% vs prior year.", source: "Performance Overview" },
-          { text: "Flu leads the mix (32%), then COVID (22%) and RSV (16%).", source: "Product Mix" },
+          { text: "Revenue is $620K, up 11% vs prior year.", source: "Performance Overview" },
+          { text: "Flu leads the mix (34%), then COVID (21%) and RSV (15%).", source: "Product Mix" },
           { text: "Revenue peaks in Sep – Nov, the flu season.", source: "Revenue by Month" },
         ],
       },
@@ -90,16 +90,16 @@ const S: Record<string, Scenario> = {
     ],
     sources: ["Performance Overview", "Product Mix", "Territory Hub · Alerts"],
     link: "Add to PRT draft",
-    followUps: ["What's the alert on Ascension about?", "How is my flu pre-book tracking?"],
+    followUps: ["What's the alert on Northfield about?", "How is my flu pre-book tracking?"],
   },
   prebook: {
     id: "prebook",
     question: "How is my flu pre-book tracking this season?",
-    thinking: ["Applied your filters: Columbus OH · Jan – Sep 2023", "Checked Flu Pre-Book vs In-Season"],
-    reading: "Share of flu orders placed as pre-book (Jan – Jul) vs in-season (Aug – Dec) across Columbus OH.",
-    answer: "73% of your flu orders came in as pre-book and 27% in-season. Most of the season's volume is already locked in.",
+    thinking: ["Applied your filters: Riverton, OH · Jan – Sep 2023", "Checked Flu Pre-Book vs In-Season"],
+    reading: "Share of flu orders placed as pre-book (Jan – Jul) vs in-season (Aug – Dec) across Riverton, OH.",
+    answer: "68% of your flu orders came in as pre-book and 32% in-season. Most of the season's volume is already locked in.",
     blocks: [
-      { kind: "kpis", items: [{ value: "73%", label: "Pre-book (Jan – Jul)" }, { value: "27%", label: "In-season (Aug – Dec)" }] },
+      { kind: "kpis", items: [{ value: "68%", label: "Pre-book (Jan – Jul)" }, { value: "32%", label: "In-season (Aug – Dec)" }] },
     ],
     sources: ["Territory Hub · Flu Pre-Book vs In-Season"],
     link: "Open in Market & Seasonality",
@@ -107,34 +107,34 @@ const S: Record<string, Scenario> = {
   },
   recap: {
     id: "recap",
-    question: "meeting ascension in 10 min, quick recap?",
-    title: "Ascension Health: quick recap",
-    thinking: ["Found Ascension Health", "Pulled your PRT draft insights"],
-    reading: "A short recap of Ascension Health for a customer meeting, using the insights already in your PRT draft.",
+    question: "meeting northfield in 10 min, quick recap?",
+    title: "Northfield Health: quick recap",
+    thinking: ["Found Northfield Health", "Pulled your PRT draft insights"],
+    reading: "A short recap of Northfield Health for a customer meeting, using the insights already in your PRT draft.",
     answer: "",
     blocks: [
       { kind: "badges", items: [{ label: "Growing", tone: "good" }, { label: "Confidence: medium", tone: "neutral" }] },
-      { kind: "kpis", items: [{ value: "$840K", label: "Revenue · +12% vs PY" }, { value: "+8%", label: "Doses delivered vs PY" }] },
+      { kind: "kpis", items: [{ value: "$620K", label: "Revenue · +11% vs PY" }, { value: "+6%", label: "Doses delivered vs PY" }] },
       {
         kind: "bullets",
         items: [
-          "Flu leads the product mix (32%), then COVID (22%) and RSV (16%).",
+          "Flu leads the product mix (34%), then COVID (21%) and RSV (15%).",
           "Revenue peaks in Sep – Nov, the flu season.",
           "1 open operational alert, worth raising early.",
         ],
       },
-      { kind: "note", text: "Same insights as your PRT draft for Ascension Health." },
+      { kind: "note", text: "Same insights as your PRT draft for Northfield Health." },
     ],
-    sources: ["PRT draft · Ascension Health"],
+    sources: ["PRT draft · Northfield Health"],
     link: "Open PRT draft",
     followUps: ["whats the alert about"],
   },
   alertDetail: {
     id: "alertDetail",
-    question: "What's the alert on Ascension about?",
-    thinking: ["Used the Ascension Health context", "Checked Operations & Risk"],
-    reading: "The open operational alert on Ascension Health, from Operations & Risk.",
-    answer: "There is 1 open alert on Ascension Health:",
+    question: "What's the alert on Northfield about?",
+    thinking: ["Used the Northfield Health context", "Checked Operations & Risk"],
+    reading: "The open operational alert on Northfield Health, from Operations & Risk.",
+    answer: "There is 1 open alert on Northfield Health:",
     blocks: [
       {
         kind: "alert",
@@ -148,14 +148,14 @@ const S: Record<string, Scenario> = {
     ],
     sources: ["Operations & Risk"],
     link: "View in Operations & Risk",
-    followUps: ["How is Ascension Health performing vs prior year?"],
+    followUps: ["How is Northfield Health performing vs prior year?"],
   },
 };
 
 const STARTERS: Record<Mode, { label: string; id: string }[]> = {
   desk: [
     { label: "Which of my health systems need attention?", id: "alerts" },
-    { label: "How is Ascension Health performing vs prior year?", id: "yoy" },
+    { label: "How is Northfield Health performing vs prior year?", id: "yoy" },
     { label: "How is my flu pre-book tracking this season?", id: "prebook" },
   ],
   phone: [
@@ -174,7 +174,7 @@ function matchScenario(q: string, lastId: string | null): Scenario | null {
   if (t.includes("alert") || t.includes("attention") || t.includes("issue")) return t.includes("account") || lastId === "recap" ? S.alertDetail : S.alerts;
   if (t.includes("recap") || t.includes("meeting") || t.includes("prt")) return S.recap;
   if (t.includes("pre-book") || t.includes("prebook") || t.includes("pre book") || t.includes("flu") || t.includes("season")) return S.prebook;
-  if (t.includes("ascension") || t.includes("prior year") || t.includes("perform") || t.includes("yoy") || t.includes("growing")) return S.yoy;
+  if (t.includes("northfield") || t.includes("prior year") || t.includes("perform") || t.includes("yoy") || t.includes("growing")) return S.yoy;
   return null;
 }
 
@@ -468,7 +468,7 @@ export default function MercuryDemo() {
       </div>
       <div className="px-4 py-2 bg-[#F1EFF4] text-[11px] text-[#444] flex items-center gap-2">
         <span className="w-1.5 h-1.5 rounded-full bg-[#7A00E6]" />
-        Using your filters: Columbus OH · Jan – Sep 2023
+        Using your filters: Riverton, OH · Jan – Sep 2023
       </div>
 
       {/* Messages */}
